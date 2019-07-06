@@ -21,21 +21,23 @@ Class WC_PV_Checkout{
      */
     public function enqueue_js(){
         //p_enqueue_script('NameMySccript','path/to/MyScript','dependencies_MyScript', 'VersionMyScript', 'InfooterTrueorFalse');
-        wp_register_script('wc_pv_intl-phones-lib',wc_loystar()->plugin_url().'/assets/vendor/js/intlTelInput-jquery.min.js',array('jquery'),wc_pv_PLUGIN_VERSION,true);
+        wp_register_script('wc_pv_intl-phones-lib',wc_pv()->plugin_url().'/assets/vendor/js/intlTelInput-jquery.min.js',array('jquery'),WC_PV_PLUGIN_VERSION,true);
         $script_dep = array('wc_pv_intl-phones-lib');
         if(is_checkout())//for checkout, to load properly
             $script_dep[] = 'wc-checkout';
-        wp_register_script('wc_pv_js-script',wc_loystar()->plugin_url().'/assets/js/frontend'.WC_PV_MIN_SUFFIX.'.js',$script_dep,WC_PV_PLUGIN_VERSION,true);
+        wp_register_script('wc_pv_js-script',wc_pv()->plugin_url().'/assets/js/frontend'.WC_PV_MIN_SUFFIX.'.js',$script_dep,WC_PV_PLUGIN_VERSION,true);
         //localise script,
         global $wc_pv_woo_custom_field_meta;
-        $wcjson = array('phoneValidatorName'=>$wc_pv_woo_custom_field_meta['billing_hidden_phone_field'],'url'=> esc_url_raw( rest_url() ),'pageUrl'=>get_page_link(),'userId'=>get_current_user_id(),'nonce'=>wp_create_nonce( 'wp_rest' ),'dobInput' => $this->dob_html_class, 'dateRange' => $this->date_range());
-        $wcjson['phoneValidatorErrName'] = $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'];
+        $wcjson = array(
+            'phoneValidatorName'=>$wc_pv_woo_custom_field_meta['billing_hidden_phone_field'],
+            'phoneValidatorErrName' => $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field']
+        );
         //get phone value for international lib use
-        $phone = wc_loystar()->get_woo_customer_meta($wcjson['userId'],'billing_phone');
+        $phone = get_user_meta(get_current_user_id(),'billing_phone',true);
         if(!empty($phone)){
             $wcjson['userPhone'] = $phone;
         }
-        $wcjson['utilsScript'] = wc_loystar()->plugin_url().'/assets/vendor/js/utils.js';
+        $wcjson['utilsScript'] = wc_pv()->plugin_url().'/assets/vendor/js/utils.js';
         wp_localize_script( 'wc_pv_js-script', 'wcPvJson', $wcjson );
 		//
 		wp_enqueue_script('wc_pv_intl-phones-lib');
@@ -45,8 +47,8 @@ Class WC_PV_Checkout{
      * enqueues all necessary css
      */
     public function enqueue_css(){
-        wp_enqueue_style( 'wc_pv_intl-phones-lib-css',wc_loystar()->plugin_url().'/assets/vendor/css/intlTelInput.min.css');
-        wp_enqueue_style( 'wc_pv_css-style',wc_loystar()->plugin_url().'/assets/css/style'.WC_PV_MIN_SUFFIX.'.css');
+        wp_enqueue_style( 'wc_pv_intl-phones-lib-css',wc_pv()->plugin_url().'/assets/vendor/css/intlTelInput.min.css');
+        wp_enqueue_style( 'wc_pv_css-style',wc_pv()->plugin_url().'/assets/css/frontend'.WC_PV_MIN_SUFFIX.'.css',array(),WC_PV_PLUGIN_VERSION);
     }
     
     /**

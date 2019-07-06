@@ -30,7 +30,6 @@ final class WC_PV{
         if (WC_PV_Dependencies::is_woocommerce_active()) {
             $this->define_constants();//define the constants
             $this->includes();//include relevant files
-            $this->init_hooks();
         } else {
             add_action('admin_notices', array($this, 'admin_notices'), 15);
         }

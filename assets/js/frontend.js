@@ -6,8 +6,8 @@ var $ = jQuery;
 var wcPvPhoneErrorMap = [ "Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
 //start
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
-    /*initialCountry: "auto",
-    geoIpLookup: function(callback) {
+    initialCountry: $('.woocommerce-checkout #billing_country').val(),
+    /*geoIpLookup: function(callback) {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
     const countryCode = (resp && resp.country) ? resp.country : "";//asking for payment shaa,smh
     callback(countryCode);
@@ -41,7 +41,10 @@ function wcPvValidatePhone(input){
     }
     return result;
 }
-
+//incase of country change
+$('.woocommerce-checkout #billing_country').change(function(){
+    wcPvPhoneIntl.intlTelInput("setCountry",$(this).val());
+});
 //for woocommerce
 var wcPvCheckoutForm = $('.woocommerce-checkout');
 wcPvCheckoutForm.on('checkout_place_order',function(){

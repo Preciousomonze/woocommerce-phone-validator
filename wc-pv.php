@@ -27,7 +27,7 @@ define('WC_PV_PLUGIN_VERSION','1.0.0');
  * environment, should be either test or production
  * Note: if youre on localhost, even if you change this constant to production, it'll still use test :)
  */
-define('WC_PV_ENVIRONMENT','production');
+define('WC_PV_ENVIRONMENT','test');
 
 //for global option meta access :)
 //$wc_pv_option_meta = array();
@@ -38,11 +38,11 @@ $wc_pv_woo_custom_field_meta = array(
 );
 // include dependencies file
 if(!class_exists('WC_PV_Dependencies')){
-    include_once dirname(__FILE__) . '/includes/class-wcpv-deps.php';
+    include_once dirname(__FILE__) . '/includes/class-wc-pv-deps.php';
 }
 // Include the main class.
 if(!class_exists('WC_PV')){
-    include_once dirname(__FILE__) . '/includes/class-wcpv.php';
+    include_once dirname(__FILE__) . '/includes/class-wc-pv.php';
 }
 function wc_pv(){
     return WC_PV::instance();
