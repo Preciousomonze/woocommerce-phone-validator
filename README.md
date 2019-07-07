@@ -2,7 +2,7 @@
 
 **Contributors:** __Preciousomonze__, [__altoin__](https://github.com/altoin/Woo-Phone-Validator)
 
-**Donate link:** [__Drop something for your boy 🤓 🥳__](https://rave.flutterwave.com/pay/preciousomonze){target="_blank"}
+**Donate link:** <a href="https://rave.flutterwave.com/pay/preciousomonze" target="_blank">__Drop something for your boy 🤓 🥳__</a>
 
 **Tags:** woocommerce, preciousomonze plugin, phone validator, intlTelInput
 
