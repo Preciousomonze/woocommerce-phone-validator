@@ -1,8 +1,8 @@
 # Woocommerce Phone Validator
 
-**Contributors:** __Preciousomonze__,[__altoin__](https://github.com/altoin/Woo-Phone-Validator)
+**Contributors:** __Preciousomonze__, [__altoin__](https://github.com/altoin/Woo-Phone-Validator)
 
-**Donate link:** [Drop something for your boy 🤓🥳](https://rave.flutterwave.com/pay/preciousomonze)
+**Donate link:** [__Drop something for your boy 🤓 🥳__](https://rave.flutterwave.com/pay/preciousomonze)
 
 **Tags:** woocommerce, preciousomonze plugin, phone validator, intlTelInput
 
