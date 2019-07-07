@@ -2,7 +2,7 @@
 
 **Contributors:** __Preciousomonze__, [__altoin__](https://github.com/altoin/Woo-Phone-Validator)
 
-**Donate link:** [__Drop something for your boy 🤓 🥳__](https://rave.flutterwave.com/pay/preciousomonze)
+**Donate link:** [__Drop something for your boy 🤓 🥳__](https://rave.flutterwave.com/pay/preciousomonze){target="_blank"}
 
 **Tags:** woocommerce, preciousomonze plugin, phone validator, intlTelInput
 
@@ -44,7 +44,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 1. 	Download the plugin zip file
 2. 	Login to your WordPress Admin. Click on "Plugins > Add New" from the left hand menu.
 3.  Click on the "Upload" option, then click "Choose File" to select the zip file from your computer. Once selected, press "OK" and press the "Install Now" button.
-4.  Activate the plugin.
+4.  Activate the plugin. 🤧 that's all.
 
 
 ## Frequently Asked Questions
