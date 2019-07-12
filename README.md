@@ -57,4 +57,14 @@ If you have suggestions or a new feature request, feel free to get in touch with
 *   First release
 
 ## Screenshots ##
-coming soon.
+## Screenshots ##
+
+### 1. Woocommerce billing phone field includes a flag
+###
+![Screenshot 1](https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/assets/images/screenshot-1.png)
+
+
+### 2. Error shown to user when an invalid phone number is submitted on checkout
+###
+![Screenshot 2](https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/assets/images/screenshot-2.png)
+
