@@ -6,7 +6,7 @@
  * Author: Precious Omonzejele (Code Explorer)
  * Author URI: https://codeexplorer.ninja
  * Version: 1.0.0
- * Requires at least: 4.9.0
+ * Requires at least: 4.9
  * Tested up to: 5.2
  * WC requires at least: 3.0
  * WC tested up to: 3.6
@@ -27,7 +27,7 @@ define('WC_PV_PLUGIN_VERSION','1.0.0');
  * environment, should be either test or production
  * Note: if youre on localhost, even if you change this constant to production, it'll still use test :)
  */
-define('WC_PV_ENVIRONMENT','test');
+define('WC_PV_ENVIRONMENT','production');
 
 //for global option meta access :)
 //$wc_pv_option_meta = array();
