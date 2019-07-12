@@ -1,16 +1,16 @@
 # Woocommerce Phone Validator
 
-**Contributors:** __Preciousomonze__, [__altoin__](https://github.com/altoin/Woo-Phone-Validator)
+**Contributors:** __Preciousomonze__
 
 **Donate link:** <a href="https://rave.flutterwave.com/pay/preciousomonze" target="_blank">__Drop something for your boy 🤓 🥳__</a>
 
-**Tags:** woocommerce, preciousomonze plugin, phone validator, intlTelInput
+**Tags:** woocommerce, preciousomonze plugin, phone validator, intlTelInput, woocommerce phone validator
 
 **Requires at least:** 4.9
 
 **Tested up to:** 5.2
 
-**Stable tag:** 1.0.0 ( Beta test phase 😅 )
+**Stable tag:** 1.0.0
 
 **License:** GPLv3 or later
 
@@ -53,10 +53,9 @@ If you have suggestions or a new feature request, feel free to get in touch with
 
 ## Changelog
 
-### 1.0.0 - 
-*   First release
+### 1.0.0 - July 12, 2019
+*   First release 🤗 🥳
 
-## Screenshots ##
 ## Screenshots ##
 
 ### 1. Woocommerce billing phone field includes a flag
