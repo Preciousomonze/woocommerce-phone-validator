@@ -1,6 +1,7 @@
 # Woocommerce Phone Validator
 
 **Contributors:** __Preciousomonze__
+
 **Donate link:** <a href="https://rave.flutterwave.com/pay/preciousomonze" target="_blank">__Drop something for your boy 🤓 🥳__</a>
 
 **Tags:** woocommerce, preciousomonze plugin, phone validator, intlTelInput, woocommerce phone validator
