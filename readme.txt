@@ -1,4 +1,4 @@
-﻿=== Woocommerce Phone Validator ===
+﻿=== Phone Validator for WooCommerce ===
 Contributors: preciousomonze
 Tags: woocommerce,phone number validator,checkout phone validator
 Requires at least: 4.9
@@ -7,12 +7,12 @@ Requires PHP: 5.6
 License: GNU General Public License v3.0
 License URI: https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/LICENSE
 Donate link: https://rave.flutterwave.com/pay/preciousomonze
-Stable tag: 1.0 (test phase)
+Stable tag: 1.0.1
 
-Woocommerce Phone Validator Helps in validating international telephone numbers on woocommerce checkout.
+Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce checkout.
 
 == Description ==
-Woocommerce Phone Validator is a plugin which helps in validating international telephone numbers for woocommerce orders. It adds a flag dropdown to the Billing phone number field which allows your site users to choose their country base and validate a phone number accordingly on the checkout page of WooCommerce. It forces users to enter a valid phone number before being able to checkout.
+Phone Validator for WooCommerce is a plugin which helps in validating international telephone numbers for woocommerce orders. It adds a flag dropdown to the Billing phone number field which allows your site users to choose their country base and validate a phone number accordingly on the checkout page of WooCommerce. It forces users to enter a valid phone number before being able to checkout.
 
 == Suggestions / Feature Request ==
 

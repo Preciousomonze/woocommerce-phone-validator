@@ -1,4 +1,4 @@
-# Woocommerce Phone Validator
+# Phone Validator for WooCommerce
 
 **Contributors:** __Preciousomonze__
 
@@ -10,7 +10,7 @@
 
 **Tested up to:** 5.2
 
-**Stable tag:** 1.0.0
+**Stable tag:** 1.0.1
 
 **License:** GPLv3 or later
 
@@ -18,7 +18,7 @@
 
 ## Description
 
-Woocommerce Phone Validator is a plugin which helps in validating international telephone numbers for woocommerce. It adds a flag dropdown to the Billing phone number field which allows your site users to choose their country base and validate a phone number accordingly on the checkout page of WooCommerce. It forces users to enter a valid phone number before being able to checkout.
+Phone Validator for WooCommerce is a plugin which helps in validating international telephone numbers for woocommerce. It adds a flag dropdown to the Billing phone number field which allows your site users to choose their country base and validate a phone number accordingly on the checkout page of WooCommerce. It forces users to enter a valid phone number before being able to checkout.
 
 #### This plugin is based on https://intl-tel-input.com/ developed by [Jack O'Connor](https://github.com/jackocnr/).
 
@@ -33,8 +33,8 @@ If you have suggestions or a new feature request, feel free to get in touch with
 ### Automatic Installation
 * 	Login to your WordPress Admin area
 * 	Go to "Plugins > Add New" from the left hand menu
-* 	In the search box type __Woocommerce Phone Validator__
-*	From the search result you will see __Woocommerce Phone Validator__ click on __Install Now__ to install the plugin.
+* 	In the search box type __Phone Validator for WooCommerce__
+*	From the search result you will see __Phone Validator for WooCommerce__ click on __Install Now__ to install the plugin.
 *	After installation, activate the plugin, that's all 🤗.
 
 

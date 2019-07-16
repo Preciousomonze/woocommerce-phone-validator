@@ -69,10 +69,13 @@ Class WC_PV_Checkout{
         global $wc_pv_woo_custom_field_meta;
         $phone_name = $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'];
         $phone_err_name = $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'];
-        $phone_valid_field = isset($_POST[$phone_name]) ? trim(strtolower($_POST[$phone_name])) : false;
-        $phone_valid_err_field = isset($_POST[$phone_err_name]) ? trim($_POST[$phone_err_name]) : false;
-        if(isset($_POST['billing_email']) && !$phone_valid_field){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
-            wc_add_notice( __( $phone_valid_err_field, WC_PV_TEXT_DOMAIN ), 'error');
+        $phone_valid_field = strtolower( sanitize_text_field($_POST[$phone_name]) );
+        $phone_valid_err_field = trim( sanitize_text_field( $_POST[$phone_err_name] ) );
+		$bil_email = sanitize_email($_POST['billing_email']);
+		       
+	   if( !empty($bil_email) && (empty($phone_valid_field) || !is_numeric($phone_valid_field) ) ){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
+            $out = esc_html( __( $phone_valid_err_field, WC_PV_TEXT_DOMAIN ) );
+			wc_add_notice( $out, 'error');
         }
     }
 }
