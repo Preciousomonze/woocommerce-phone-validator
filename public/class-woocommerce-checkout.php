@@ -1,6 +1,6 @@
 <?php
 /**
- * For handling the extra fields displayed on checkout
+ * For handling the checkout fields
  */
 Class WC_PV_Checkout{
 
@@ -8,12 +8,14 @@ Class WC_PV_Checkout{
      * Construcdur :)
      */
     public function __construct(){
+        if(is_account_page() || is_checkout()){
             //henqueue
             add_action( 'wp_enqueue_scripts', array($this,'enqueue_css' ));
             add_action( 'wp_enqueue_scripts', array($this,'enqueue_js' ));
             //woocommerce things
             add_filter('woocommerce_billing_fields', array($this,'add_billing_fields'),20,1);
             add_action('woocommerce_after_checkout_validation', array($this,'checkout_validate'));
+        }
     }
     
     /**
@@ -36,6 +38,13 @@ Class WC_PV_Checkout{
         $phone = get_user_meta(get_current_user_id(),'billing_phone',true);
         if(!empty($phone)){
             $wcjson['userPhone'] = $phone;
+        }
+        //change parent class according to pages
+        $wcJson['parentPage'] = '.woocommerce-checkout';
+        $wcJson['currentPage'] = 'checkout';
+        if(is_account_page()){
+            $wcJson['parentPage'] = '.woocommerce-MyAccount-content';
+            $wcJson['currentPage'] = 'account';
         }
         $wcjson['utilsScript'] = wc_pv()->plugin_url().'/assets/vendor/js/utils.js';
         wp_localize_script( 'wc_pv_js-script', 'wcPvJson', $wcjson );
