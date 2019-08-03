@@ -2,4 +2,7 @@
 = 1.0.0 =
 * lauhcing first version.
 = 1.0.1 =
-* Proper sanitizing
+* Fix: Proper sanitizing
+= 1.1.0 =
+* Fix: Made error message a little bit more descriptive
+* Added: Enables validation on Billing Address Page

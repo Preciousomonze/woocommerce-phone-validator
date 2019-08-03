@@ -8,9 +8,8 @@ Class WC_PV_Account{
      * Construcdur :)
      */
     public function __construct(){
-        if(is_account_page()){//inherits style and js from the checkout class :)
+        //inherits style and js from the checkout class :)
             add_action('woocommerce_after_save_address_validation', array($this,'account_page_validate'),10,2);
-        }
     }
 
     /**
@@ -27,10 +26,14 @@ Class WC_PV_Account{
         $phone_valid_field = strtolower( sanitize_text_field($_POST[$phone_name]) );
         $phone_valid_err_field = trim( sanitize_text_field( $_POST[$phone_err_name] ) );
 		$bil_email = sanitize_email($_POST['billing_email']);
-		       
-	   if( !empty($bil_email) && (empty($phone_valid_field) || !is_numeric($phone_valid_field) ) ){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
-            $out = esc_html( __( $phone_valid_err_field, WC_PV_TEXT_DOMAIN ) );
-			wc_add_notice( $out, 'error');
+        $bil_phone = sanitize_text_field($_POST['billing_phone']);
+
+        if( !empty($bil_email) && !empty($bil_phone) && (empty($phone_valid_field) || !is_numeric($phone_valid_field) ) ){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
+         $ph = explode(':',$phone_valid_err_field);
+         $ph[0] = '<strong>'.$ph[0].'</strong>';
+         $phone_err_msg = implode(':',$ph);
+         $out =  __($phone_err_msg, WC_PV_TEXT_DOMAIN );
+         wc_add_notice( $out, 'error');
         }
     }
 }

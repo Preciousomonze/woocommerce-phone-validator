@@ -3,7 +3,7 @@ var $ = jQuery;
 //$(document).ready(function(){
 //set phone number properly for intl
 // here, the index maps to the error code returned from getValidationError 
-var wcPvPhoneErrorMap = [ "Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+var wcPvPhoneErrorMap = [ "Invalid number", "Invalid country code", "Phone number too short", "Phone number too long", "Invalid number"];
 //start
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     initialCountry: $(`${wcPvJson.parentPage} #billing_country`).val(),
@@ -56,25 +56,25 @@ function wcPvValidateProcess(parentEl){
         if($('#wc-ls-phone-valid-field').length == 0){//append
             parentEl.append(`<input id="wc-ls-phone-valid-field" value="${phoneNumber}" type="hidden" name="${wcPvJson.phoneValidatorName}">`);
         }
+        parentEl.remove('#wc-ls-phone-valid-field-err-msg');
     }
     else{
         if($('#wc-ls-phone-valid-field-err-msg').length == 0){//append
         parentEl.append(`<input id="wc-ls-phone-valid-field-err-msg" value="${wcPvphoneErrMsg}" type="hidden" name="${wcPvJson.phoneValidatorErrName}">`);
         }
+        parentEl.remove('#wc-ls-phone-valid-field');
     }
 }
 //for woocommerce checkout
 if(wcPvJson.currentPage == "checkout"){
     let wcPvCheckoutForm = $(`${wcPvJson.parentPage}`);
-
     wcPvCheckoutForm.on('checkout_place_order',function(){
         wcPvValidateProcess(wcPvCheckoutForm);
     });
 }
 else if(wcPvJson.currentPage == "account"){//for account page
-    let wcPvAccForm = $(`${wcPvJson.parentPage}`);
-
-    $(`${wcPvJson.parentPage} input#billing_phone`).change(function(){
+    let wcPvAccForm = $(`${wcPvJson.parentPage} form`);
+    $(`${wcPvJson.parentPage}`).submit(function(){
         wcPvValidateProcess(wcPvAccForm);
     });
 }

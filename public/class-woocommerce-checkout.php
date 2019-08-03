@@ -8,14 +8,14 @@ Class WC_PV_Checkout{
      * Construcdur :)
      */
     public function __construct(){
-        if(is_account_page() || is_checkout()){
+        //if(wc_pv()->is_account_page() || wc_pv()->is_checkout()){
             //henqueue
             add_action( 'wp_enqueue_scripts', array($this,'enqueue_css' ));
             add_action( 'wp_enqueue_scripts', array($this,'enqueue_js' ));
             //woocommerce things
             add_filter('woocommerce_billing_fields', array($this,'add_billing_fields'),20,1);
             add_action('woocommerce_after_checkout_validation', array($this,'checkout_validate'));
-        }
+        //}
     }
     
     /**
@@ -40,11 +40,11 @@ Class WC_PV_Checkout{
             $wcjson['userPhone'] = $phone;
         }
         //change parent class according to pages
-        $wcJson['parentPage'] = '.woocommerce-checkout';
-        $wcJson['currentPage'] = 'checkout';
+        $wcjson['parentPage'] = '.woocommerce-checkout';
+        $wcjson['currentPage'] = 'checkout';
         if(is_account_page()){
-            $wcJson['parentPage'] = '.woocommerce-MyAccount-content';
-            $wcJson['currentPage'] = 'account';
+            $wcjson['parentPage'] = '.woocommerce-MyAccount-content';
+            $wcjson['currentPage'] = 'account';
         }
         $wcjson['utilsScript'] = wc_pv()->plugin_url().'/assets/vendor/js/utils.js';
         wp_localize_script( 'wc_pv_js-script', 'wcPvJson', $wcjson );
@@ -80,10 +80,14 @@ Class WC_PV_Checkout{
         $phone_err_name = $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'];
         $phone_valid_field = strtolower( sanitize_text_field($_POST[$phone_name]) );
         $phone_valid_err_field = trim( sanitize_text_field( $_POST[$phone_err_name] ) );
-		$bil_email = sanitize_email($_POST['billing_email']);
+        $bil_email = sanitize_email($_POST['billing_email']);
+        $bil_phone = sanitize_text_field($_POST['billing_phone']);
 		       
-	   if( !empty($bil_email) && (empty($phone_valid_field) || !is_numeric($phone_valid_field) ) ){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
-            $out = esc_html( __( $phone_valid_err_field, WC_PV_TEXT_DOMAIN ) );
+       if( !empty($bil_email) && !empty($bil_phone) && (empty($phone_valid_field) || !is_numeric($phone_valid_field) ) ){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
+        $ph = explode(':',$phone_valid_err_field);
+        $ph[0] = '<strong>'.$ph[0].'</strong>';
+        $phone_err_msg = implode(':',$ph);
+        $out =  __($phone_err_msg, WC_PV_TEXT_DOMAIN );
 			wc_add_notice( $out, 'error');
         }
     }

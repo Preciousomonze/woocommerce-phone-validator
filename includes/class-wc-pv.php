@@ -83,7 +83,10 @@ final class WC_PV{
     public function includes() {
         //if ($this->is_request('admin')) {}
         if ($this->is_request('frontend')) {
-            include_once( WC_PV_ABSPATH . 'public/class-woocommerce-checkout.php' );
+            add_action('woocommerce_init',function(){
+                include_once( WC_PV_ABSPATH . 'public/class-woocommerce-checkout.php' );
+                include_once( WC_PV_ABSPATH . 'public/class-woocommerce-account.php' );
+            },20);
         }
         //if ($this->is_request('ajax')) {}
     }
@@ -105,4 +108,30 @@ final class WC_PV{
         echo '</p></div>';
     }
 
+    /**
+     * Checks if we're currently on the checkout page
+     * 
+     * For some reason, the default woocommerce is_checkout() doesnt seem to work, runs too early
+     * 
+     * @return bool
+     */
+    public function is_checkout(){
+        $id = get_option('woocommerce_checkout_page_id',false);
+        if(is_page($id))
+            return true;
+        return false;
+    }
+    /**
+     * Checks if we're currently on the myaccount pages
+     * 
+     * For some reason, the default woocommerce is_account_page() doesnt seem to work, runs too early
+     * 
+     * @return bool
+     */
+    public function is_account_page(){
+        $id = get_option('woocommerce_myaccount_page_id',false);
+        if(is_page($id))
+            return true;
+        return false;
+    }
 }

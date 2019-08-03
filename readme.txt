@@ -9,10 +9,10 @@ License URI: https://github.com/Preciousomonze/woocommerce-phone-validator/blob/
 Donate link: https://rave.flutterwave.com/pay/preciousomonze
 Stable tag: 1.0.1
 
-Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce checkout.
+Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce billing address.
 
 == Description ==
-Phone Validator for WooCommerce is a plugin which helps in validating international telephone numbers for woocommerce orders. It adds a flag dropdown to the Billing phone number field which allows your site users to choose their country base and validate a phone number accordingly on the checkout page of WooCommerce. It forces users to enter a valid phone number before being able to checkout.
+Phone Validator for WooCommerce is a plugin which helps in validating international telephone numbers for woocommerce. It adds a flag dropdown to the Billing phone number field which allows your site users to choose their country base and validate a phone number accordingly on the _checkout_ page and _Billing Account edit_ page of WooCommerce. It forces users to enter a valid phone number before being able to checkout or update their Billing details.
 
 == Suggestions / Feature Request ==
 
@@ -42,10 +42,18 @@ If you have suggestions or a new feature request, feel free to get in touch with
 
 1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
 
+= Can i contribute to the codes of this plugin? =
+Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/)
+
 == Changelog ==
 
 = 1.0.0 =
-*   First release
+* lauhcing first version.
+= 1.0.1 =
+* Fix: Proper sanitizing
+= 1.1.0 =
+* Fix: Made error message a little bit more descriptive
+* Added: Enables validation on Billing Address Page
 
 == Upgrade notice ==
 None
@@ -55,3 +63,5 @@ None
 1. Woocommerce billing phone field includes a flag
 
 2. Error shown to user when an invalid phone number is submitted on checkout
+
+3. Error show to user when an invalid phone number is submitted on the billing address edit page

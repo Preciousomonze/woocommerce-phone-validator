@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Phone Validator for WooCommerce
  * Plugin URI: https://github.com/Preciousomonze/woocommerce-phone-validator
- * Description: Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce checkout.
+ * Description: Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce billing address.
  * Author: Precious Omonzejele (Code Explorer)
  * Author URI: https://codeexplorer.ninja
- * Version: 1.0.1
+ * Version: 1.1.0
  * Requires at least: 4.9
  * Tested up to: 5.2
  * WC requires at least: 3.0
@@ -21,13 +21,13 @@ if (!defined('ABSPATH')) {
 define('WC_PV_PLUGIN_DIR',  plugin_dir_path( __FILE__ ) );
 define('WC_PV_PLUGIN_FILE', __FILE__ );
 define('WC_PV_TEXT_DOMAIN', 'woocommerce');
-define('WC_PV_PLUGIN_VERSION','1.0.1');
+define('WC_PV_PLUGIN_VERSION','1.1.0');
 
 /** 
  * environment, should be either test or production
  * Note: if youre on localhost, even if you change this constant to production, it'll still use test :)
  */
-define('WC_PV_ENVIRONMENT','production');
+define('WC_PV_ENVIRONMENT','test');
 
 //for global option meta access :)
 //$wc_pv_option_meta = array();
