@@ -73,4 +73,4 @@ If you have suggestions or a new feature request, feel free to get in touch with
 
 ### 3. Error show to user when an invalid phone number is submitted on the billing address edit page
 ###
-![Screenshot 3](https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/assets/images/screenshot-3.PNG)
+![Screenshot 3](https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/assets/images/screenshot-3.png)
