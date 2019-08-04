@@ -53,6 +53,7 @@ Yes you can, check out the [github repo here](https://github.com/Preciousomonze/
 * Fix: Proper sanitizing
 = 1.1.0 =
 * Fix: Made error message a little bit more descriptive
+* Fix: Removed appended element when not needed
 * Added: Enables validation on Billing Address Page
 
 == Upgrade notice ==

@@ -59,6 +59,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 * Fix: Proper sanitizing
 ### 1.1.0  - August 10, 2019
 * Fix: Made error message a little bit more descriptive
+* Fix: Removed appended element when not needed
 * Added: Enables validation on Billing Address Page
 
 ## Screenshots ##
