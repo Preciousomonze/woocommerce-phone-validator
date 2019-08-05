@@ -57,10 +57,14 @@ If you have suggestions or a new feature request, feel free to get in touch with
 *   First release 🤗 🥳
 ### 1.0.1 - July 15, 2019
 * Fix: Proper sanitizing
-### 1.1.0  - August 10, 2019
+### 1.1.0  - August 04, 2019
 * Fix: Made error message a little bit more descriptive
 * Fix: Removed appended element when not needed
 * Added: Enables validation on Billing Address Page
+### 1.1.1 - August 06, 2019
+* Fix: Js remove element
+* Fix: Compatibility with checkout manager when the checkout fields are altered
+* Fix: Validation loop hole
 
 ## Screenshots ##
 

@@ -5,6 +5,9 @@ var $ = jQuery;
 // here, the index maps to the error code returned from getValidationError 
 var wcPvPhoneErrorMap = [ "Invalid number", "Invalid country code", "Phone number too short", "Phone number too long", "Invalid number"];
 //start
+if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has overriden my baby
+    $('#billing_phone_field').addClass('wc-pv-phone wc-pv-intl');
+}
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     initialCountry: $(`${wcPvJson.parentPage} #billing_country`).val(),
     /*geoIpLookup: function(callback) {
@@ -37,7 +40,7 @@ function wcPvValidatePhone(input){
     }
     else{
         let errorCode = phone.intlTelInput("getValidationError");
-        wcPvphoneErrMsg = `Phone validation error: ${wcPvPhoneErrorMap[errorCode]}`;
+        wcPvphoneErrMsg = `Phone validation error: ${(wcPvPhoneErrorMap[errorCode] == undefined ? 'Internal Error': wcPvPhoneErrorMap[errorCode])}`;
     }
     return result;
 }
@@ -51,18 +54,20 @@ $(`${wcPvJson.parentPage} #billing_country`).change(function(){
  */
 function wcPvValidateProcess(parentEl){
     let phoneNumber = wcPvValidatePhone(wcPvPhoneIntl);
+    if($('.wc-pv-intl input').length == 0)//doesnt exist, no need
+        return;
     if(phoneNumber != false){//phone is valid
         $(`${wcPvJson.parentPage} input#billing_phone`).val(phoneNumber);//set the real value so it submits it along
         if($('#wc-ls-phone-valid-field').length == 0){//append
             parentEl.append(`<input id="wc-ls-phone-valid-field" value="${phoneNumber}" type="hidden" name="${wcPvJson.phoneValidatorName}">`);
         }
-        parentEl.remove('#wc-ls-phone-valid-field-err-msg');
+        $('#wc-ls-phone-valid-field-err-msg').remove();
     }
     else{
         if($('#wc-ls-phone-valid-field-err-msg').length == 0){//append
         parentEl.append(`<input id="wc-ls-phone-valid-field-err-msg" value="${wcPvphoneErrMsg}" type="hidden" name="${wcPvJson.phoneValidatorErrName}">`);
         }
-        parentEl.remove('#wc-ls-phone-valid-field');
+        $('#wc-ls-phone-valid-field').remove();
     }
 }
 //for woocommerce checkout
