@@ -10,7 +10,7 @@
 
 **Tested up to:** 5.2
 
-**Stable tag:** 1.0.1
+**Stable tag:** 1.1.1
 
 **License:** GPLv3 or later
 
@@ -39,7 +39,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 
 
 ### Manual Installation
-1. 	Download the plugin zip file in the repo or click [__here__](https://github.com/Preciousomonze/woocommerce-phone-validator/releases/download/1.0.0/woocommerce-phone-validator.zip)
+1. 	Download the plugin zip file in the repo or click [__here__](https://github.com/Preciousomonze/woocommerce-phone-validator/releases/)
 2. 	Login to your WordPress Admin. Click on "Plugins > Add New" from the left hand menu.
 3.  Click on the "Upload" option, then click "Choose File" to select the zip file from your computer. Once selected, press "OK" and press the "Install Now" button.
 4.  Activate the plugin. 🤧 that's all.
