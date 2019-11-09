@@ -78,8 +78,8 @@ Class WC_PV_Checkout{
         global $wc_pv_woo_custom_field_meta;
         $phone_name = $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'];
         $phone_err_name = $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'];
-        $phone_valid_field = strtolower( sanitize_text_field($_POST[$phone_name]) );
-        $phone_valid_err_field = trim( sanitize_text_field( $_POST[$phone_err_name] ) );
+        $phone_valid_field = isset( $_POST[$phone_name] ) ? strtolower( sanitize_text_field($_POST[$phone_name]) ) : '';
+        $phone_valid_err_field = isset( $_POST[$phone_err_name] ) ? trim( sanitize_text_field( $_POST[$phone_err_name] ) ) : '';
         $bil_email = sanitize_email($_POST['billing_email']);
         $bil_phone = sanitize_text_field($_POST['billing_phone']);
 		       
