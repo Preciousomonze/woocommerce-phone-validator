@@ -3,7 +3,7 @@ var $ = jQuery;
 //$(document).ready(function(){
 //set phone number properly for intl
 // here, the index maps to the error code returned from getValidationError 
-var wcPvPhoneErrorMap = [ "Invalid number", "Invalid country code", "Phone number too short", "Phone number too long", "Invalid number"];
+var wcPvPhoneErrorMap = wcPvJson.validationErrors;
 //start
 if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has overriden my baby
     $('#billing_phone_field').addClass('wc-pv-phone wc-pv-intl');
@@ -15,7 +15,8 @@ var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     const countryCode = (resp && resp.country) ? resp.country : "";//asking for payment shaa,smh
     callback(countryCode);
     });
-},//to pick user country*/
+    },//to pick user country*/
+    separateDialCode: wcPvJson.separateDialCode,
     utilsScript: wcPvJson.utilsScript
   });
 

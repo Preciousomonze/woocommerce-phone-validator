@@ -25,29 +25,37 @@ Class WC_PV_Checkout{
         //p_enqueue_script('NameMySccript','path/to/MyScript','dependencies_MyScript', 'VersionMyScript', 'InfooterTrueorFalse');
         wp_register_script('wc_pv_intl-phones-lib',wc_pv()->plugin_url().'/assets/vendor/js/intlTelInput-jquery.min.js',array('jquery'),WC_PV_PLUGIN_VERSION,true);
         $script_dep = array('wc_pv_intl-phones-lib');
-        if(is_checkout())//for checkout, to load properly
+
+        if ( is_checkout() )//for checkout, to load properly
             $script_dep[] = 'wc-checkout';
-        wp_register_script('wc_pv_js-script',wc_pv()->plugin_url().'/assets/js/frontend'.WC_PV_MIN_SUFFIX.'.js',$script_dep,WC_PV_PLUGIN_VERSION,true);
+
+            wp_register_script('wc_pv_js-script',wc_pv()->plugin_url().'/assets/js/frontend'.WC_PV_MIN_SUFFIX.'.js',$script_dep,WC_PV_PLUGIN_VERSION,true);
         //localise script,
         global $wc_pv_woo_custom_field_meta;
-        $wcjson = array(
-            'phoneValidatorName'=>$wc_pv_woo_custom_field_meta['billing_hidden_phone_field'],
-            'phoneValidatorErrName' => $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field']
+        $wc_pv_json = array(
+            'phoneValidatorName'    => $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'],
+            'phoneValidatorErrName' => $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'],
+            'separateDialCode'      => wc_pv()->separate_dial_code(),
+            'utilsScript'           => wc_pv()->plugin_url() . '/assets/vendor/js/utils.js',
+            'validationErrors'      => wc_pv()->get_validation_errors(),
+            'defaultCountry'        => wc_pv()->get_default_country(),
         );
         //get phone value for international lib use
-        $phone = get_user_meta(get_current_user_id(),'billing_phone',true);
-        if(!empty($phone)){
-            $wcjson['userPhone'] = $phone;
+        $phone = wc_pv()->get_current_user_phone();
+
+        if ( ! empty( $phone ) ) {
+            $wc_pv_json['userPhone'] = $phone;
         }
         //change parent class according to pages
-        $wcjson['parentPage'] = '.woocommerce-checkout';
-        $wcjson['currentPage'] = 'checkout';
-        if(is_account_page()){
-            $wcjson['parentPage'] = '.woocommerce-MyAccount-content';
-            $wcjson['currentPage'] = 'account';
+        $wc_pv_json['parentPage'] = '.woocommerce-checkout';
+        $wc_pv_json['currentPage'] = 'checkout';
+
+        if( is_account_page() ) {
+            $wc_pv_json['parentPage'] = '.woocommerce-MyAccount-content';
+            $wc_pv_json['currentPage'] = 'account';
         }
-        $wcjson['utilsScript'] = wc_pv()->plugin_url().'/assets/vendor/js/utils.js';
-        wp_localize_script( 'wc_pv_js-script', 'wcPvJson', $wcjson );
+ 
+        wp_localize_script( 'wc_pv_js-script', 'wcPvJson', $wc_pv_json );
 		//
 		wp_enqueue_script('wc_pv_intl-phones-lib');
         wp_enqueue_script('wc_pv_js-script');

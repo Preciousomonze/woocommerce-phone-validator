@@ -17,7 +17,7 @@ final class WC_PV{
      * @return class object
      */
     public static function instance() {
-        if (is_null(self::$_instance)) {
+        if ( is_null( self::$_instance ) ) {
             self::$_instance = new self();
         }
         return self::$_instance;
@@ -27,11 +27,12 @@ final class WC_PV{
      * Class constructor
      */
     public function __construct() {
-        if (WC_PV_Dependencies::is_woocommerce_active()) {
+        if ( WC_PV_Dependencies::is_woocommerce_active() ) {
             $this->define_constants();//define the constants
             $this->includes();//include relevant files
-        } else {
-            add_action('admin_notices', array($this, 'admin_notices'), 15);
+        }
+        else {
+            add_action( 'admin_notices', array( $this, 'admin_notices' ), 15 );
         }
     }
 
@@ -39,13 +40,15 @@ final class WC_PV{
      * Constants define
      */
     private function define_constants() {
-        $this->define('WC_PV_ABSPATH', dirname(WC_PV_PLUGIN_FILE) . '/');
-        $this->define('WC_PV_PLUGIN_FILE', plugin_basename(WC_PV_PLUGIN_FILE));
-        $this->define('WC_PV_ASSETS_PATH', plugins_url('assets/',__FILE__));
-        if(trim(strtolower(WC_PV_ENVIRONMENT)) == 'production')
-            $this->define('WC_PV_MIN_SUFFIX', '.min');
+        $this->define( 'WC_PV_ABSPATH', dirname( WC_PV_PLUGIN_FILE ) . '/' );
+        $this->define( 'WC_PV_PLUGIN_FILE', plugin_basename( WC_PV_PLUGIN_FILE ) );
+        $this->define( 'WC_PV_ASSETS_PATH', plugins_url( 'assets/', __FILE__ ) );
+
+        if( trim( strtolower( WC_PV_ENVIRONMENT ) ) == 'production' )
+            $this->define( 'WC_PV_MIN_SUFFIX', '.min' );
         else
-            $this->define('WC_PV_MIN_SUFFIX', '');    
+            $this->define( 'WC_PV_MIN_SUFFIX', '' );
+
     }
 
     /**
@@ -53,9 +56,9 @@ final class WC_PV{
      * @param string $name
      * @param mixed $value
      */
-    private function define($name, $value) {
-        if (!defined($name)) {
-            define($name, $value);
+    private function define( $name, $value ) {
+        if ( !defined( $name ) ) {
+            define( $name, $value );
         }
     }
 
@@ -73,7 +76,7 @@ final class WC_PV{
             case 'cron' :
                 return defined('DOING_CRON');
             case 'frontend' :
-                return (!is_admin() || defined('DOING_AJAX') ) && !defined('DOING_CRON');
+                return ( !is_admin() || defined( 'DOING_AJAX' ) ) && !defined( 'DOING_CRON' );
         }
     }
 
@@ -83,10 +86,10 @@ final class WC_PV{
     public function includes() {
         //if ($this->is_request('admin')) {}
         if ($this->is_request('frontend')) {
-            add_action('woocommerce_init',function(){
+            add_action( 'woocommerce_init', function(){
                 include_once( WC_PV_ABSPATH . 'public/class-woocommerce-checkout.php' );
                 include_once( WC_PV_ABSPATH . 'public/class-woocommerce-account.php' );
-            },20);
+            }, 20 );
         }
         //if ($this->is_request('ajax')) {}
     }
@@ -96,7 +99,7 @@ final class WC_PV{
      * @return string path
      */
     public function plugin_url() {
-        return untrailingslashit(plugins_url('/', WC_PV_PLUGIN_FILE));
+        return untrailingslashit( plugins_url( '/', WC_PV_PLUGIN_FILE ) );
     }
 
     /**
@@ -104,8 +107,9 @@ final class WC_PV{
      */
     public function admin_notices() {
         echo '<div class="error"><p>';
-        _e('<strong>Woocommerce Phone Validator</strong> plugin requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> plugin to be active!', WC_PV_TEXT_DOMAIN);
+        _e('<strong>Woocommerce Phone Validator</strong> plugin requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> plugin to be active!', WC_PV_TEXT_DOMAIN );
         echo '</p></div>';
+
     }
 
     /**
@@ -115,12 +119,15 @@ final class WC_PV{
      * 
      * @return bool
      */
-    public function is_checkout(){
-        $id = get_option('woocommerce_checkout_page_id',false);
-        if(is_page($id))
+    public function is_checkout() {
+        $id = get_option( 'woocommerce_checkout_page_id', false );
+
+        if( is_page( $id ) )
             return true;
+
         return false;
     }
+
     /**
      * Checks if we're currently on the myaccount pages
      * 
@@ -129,9 +136,64 @@ final class WC_PV{
      * @return bool
      */
     public function is_account_page(){
-        $id = get_option('woocommerce_myaccount_page_id',false);
-        if(is_page($id))
+        $id = get_option( 'woocommerce_myaccount_page_id', false );
+
+        if( is_page( $id ) )
             return true;
+
         return false;
     }
+
+    /**
+     * Validation error list
+     * 
+     * Must follow the phone validation error sequence
+     * 
+     * @param string $translation_type (optional) this determines some stuff, invalid for now, so not needed 
+     * @return array
+     */
+    public function get_validation_errors( $translation_type = '__' ){
+        // "Invalid number", "Invalid country code", "Phone number too short", "Phone number too long", "Invalid number"
+        $errors = array(
+            __( 'Invalid number', WC_PV_TEXT_DOMAIN ),
+            __( 'Invalid country code', WC_PV_TEXT_DOMAIN ),
+            __( 'Phone number too short', WC_PV_TEXT_DOMAIN ),
+            __( 'Phone number too long', WC_PV_TEXT_DOMAIN ),
+            __( 'Invalid number', WC_PV_TEXT_DOMAIN ),
+        );
+        return $errors;
+    }
+
+    /**
+     * Separate dial code
+     * 
+     * @param  bool $value (optional) default is false
+     * @return bool
+     */
+    public function separata_dial_code( $value = false ){
+        /**
+         * Filter boolean value to separate dial code
+         */
+        return apply_filters( 'wc_pv_separate_dial_code', $value );
+    }
+
+    /**
+     * Gets default country
+     * 
+     * @return string
+     */
+    public function get_default_country() {
+        $value = '';
+        return apply_filters( 'wc_pv_set_default_country', $value );
+    }
+
+    /**
+     * Get logged in user billing phone
+     * 
+     * @return string
+     */
+    public function get_current_user_phone() {
+       return get_user_meta( get_current_user_id(), 'billing_phone', true );
+    }
+
 }
