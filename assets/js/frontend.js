@@ -8,8 +8,10 @@ var wcPvPhoneErrorMap = wcPvJson.validationErrors;
 if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has overriden my baby
     $('#billing_phone_field').addClass('wc-pv-phone wc-pv-intl');
 }
+// Set default country
+let wcPvDefCountry = ( wcPvJson.defaultCountry == '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
-    initialCountry: $(`${wcPvJson.parentPage} #billing_country`).val(),
+    initialCountry: ( wcPvDefCountry == '' ? 'nigeria' : wcPvDefCountry ),
     /*geoIpLookup: function(callback) {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
     const countryCode = (resp && resp.country) ? resp.country : "";//asking for payment shaa,smh
