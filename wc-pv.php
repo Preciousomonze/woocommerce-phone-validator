@@ -3,15 +3,16 @@
  * Plugin Name: Phone Validator for WooCommerce
  * Plugin URI: https://github.com/Preciousomonze/woocommerce-phone-validator
  * Description: Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce billing address.
- * Author: Precious Omonze (Code Explorer)
+ * Author: Precious Omonze (CodeXplorer)
  * Author URI: https://codeexplorer.ninja
- * Version: 1.1.1
+ * Version: 1.2.0
  * Requires at least: 4.9
  * Tested up to: 5.2
  * WC requires at least: 3.0
  * WC tested up to: 3.6
  * 
- * Text Domain: woocommerce
+ * Text Domain: woo-phone-validator
+ * Domain Path: /languages
  */
 
 if (!defined('ABSPATH')) {
@@ -20,8 +21,8 @@ if (!defined('ABSPATH')) {
 //make sure you update the version values when necessary
 define('WC_PV_PLUGIN_DIR',  plugin_dir_path( __FILE__ ) );
 define('WC_PV_PLUGIN_FILE', __FILE__ );
-define('WC_PV_TEXT_DOMAIN', 'woocommerce');
-define('WC_PV_PLUGIN_VERSION','1.1.1');
+define('WC_PV_TEXT_DOMAIN', 'woo-phone-validator');
+define('WC_PV_PLUGIN_VERSION','1.2.0');
 
 /** 
  * environment, should be either test or production
