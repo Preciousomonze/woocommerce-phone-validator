@@ -8,3 +8,6 @@
 .intl-tel-input{
   width:100% !important;
 }
+.intl-tel-input input{
+  padding-left:55px !important;
+}
