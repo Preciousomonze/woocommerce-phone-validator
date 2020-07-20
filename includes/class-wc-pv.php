@@ -28,8 +28,16 @@ final class WC_PV{
      */
     public function __construct() {
         if ( WC_PV_Dependencies::is_woocommerce_active() ) {
-            $this->define_constants();//define the constants
-            $this->includes();//include relevant files
+            // Define the constants.
+            $this->define_constants();
+
+            // Include relevant files.
+            $this->includes();
+
+            // Always load translation files.
+	    	add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+            
+            do_action( 'wc_pv_init' );
         }
         else {
             add_action( 'admin_notices', array( $this, 'admin_notices' ), 15 );
@@ -102,6 +110,20 @@ final class WC_PV{
         return untrailingslashit( plugins_url( '/', WC_PV_PLUGIN_FILE ) );
     }
 
+	/**
+	 * Load Localisation files.
+	 *
+	 *
+	 * @since  1.2.0
+	 */
+	public function load_plugin_textdomain() {
+        // Traditional WordPress plugin locale filter.
+		// $locale = apply_filters( 'plugin_locale', get_locale(), 'woo-phone-validator' );
+
+		// load_textdomain( 'woo-phone-validator', WP_LANG_DIR . '/woo-phone-validator/woo-phone-validator-' . $locale . '.mo' );
+		load_plugin_textdomain( 'woo-phone-validator', false, plugin_basename( dirname( WC_PV_PLUGIN_FILE ) ) . '/languages' );
+	}
+
     /**
      * Display admin notice
      */
@@ -170,11 +192,11 @@ final class WC_PV{
      * @param  bool $value (optional) default is false
      * @return bool
      */
-    public function separata_dial_code( $value = false ){
+    public function separate_dial_code( $value = false ){
         /**
          * Filter boolean value to separate dial code
          */
-        return apply_filters( 'wc_pv_separate_dial_code', $value );
+        return apply_filters( 'wc_pv_separate_dial_code', $value, $value );
     }
 
     /**
@@ -184,7 +206,7 @@ final class WC_PV{
      */
     public function get_default_country() {
         $value = '';
-        return apply_filters( 'wc_pv_set_default_country', $value );
+        return apply_filters( 'wc_pv_set_default_country', $value, $value );
     }
 
     /**

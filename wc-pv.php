@@ -25,14 +25,15 @@ define('WC_PV_TEXT_DOMAIN', 'woo-phone-validator');
 define('WC_PV_PLUGIN_VERSION','1.2.0');
 
 /** 
- * environment, should be either test or production
+ * Environment, should be either test or production
  * Note: if youre on localhost, even if you change this constant to production, it'll still use test :)
  */
 $_wc_pv_env = 'production';
-if(strpos($_SERVER['SERVER_NAME'],'localhost') !== false)
+
+if ( strpos( $_SERVER['SERVER_NAME'], 'localhost' ) !== false || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) )
     $_wc_pv_env = 'test';
-    
-define('WC_PV_ENVIRONMENT',$_wc_pv_env);
+
+define( 'WC_PV_ENVIRONMENT', $_wc_pv_env );
 
 //for global option meta access :)
 //$wc_pv_option_meta = array();
