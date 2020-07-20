@@ -10,15 +10,16 @@ if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has ove
 }
 // Set default country
 let wcPvDefCountry = ( wcPvJson.defaultCountry == '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
+alert(wcPvDefCountry);
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
-    initialCountry: ( wcPvDefCountry == '' ? 'nigeria' : wcPvDefCountry ),
+    initialCountry: ( wcPvDefCountry == '' ? 'ng' : wcPvDefCountry ),
     /*geoIpLookup: function(callback) {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
     const countryCode = (resp && resp.country) ? resp.country : "";//asking for payment shaa,smh
     callback(countryCode);
     });
     },//to pick user country*/
-    separateDialCode: wcPvJson.separateDialCode,
+    separateDialCode: ( wcPvJson.separateDialCode == 1 ? true : false ), 
     utilsScript: wcPvJson.utilsScript
   });
 
