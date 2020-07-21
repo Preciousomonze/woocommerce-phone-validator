@@ -44,7 +44,7 @@ function wcPvValidatePhone(input){
     }
     else{
         let errorCode = phone.intlTelInput("getValidationError");
-        wcPvphoneErrMsg = `Phone validation error: ${(wcPvPhoneErrorMap[errorCode] == undefined ? 'Internal Error': wcPvPhoneErrorMap[errorCode])}`;
+        wcPvphoneErrMsg = ` ${wcPvJson.phoneErrorTitle + (wcPvPhoneErrorMap[errorCode] == undefined ? wcPvJson.phoneUnknownErrorMsg : wcPvPhoneErrorMap[errorCode])}`;
     }
     return result;
 }
