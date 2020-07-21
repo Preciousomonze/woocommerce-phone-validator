@@ -64,12 +64,16 @@ function wcPvValidateProcess(parentEl){
     let phoneNumber = wcPvValidatePhone(wcPvPhoneIntl);
     if($('.wc-pv-intl input').length == 0)//doesnt exist, no need
         return;
+    
+    // Remove errors first, so its not stagnant, special thanks to Sylvain :)
+    $('#wc-ls-phone-valid-field-err-msg').remove();
+
     if(phoneNumber != false){//phone is valid
         $(`${wcPvJson.parentPage} input#billing_phone`).val(phoneNumber);//set the real value so it submits it along
         if($('#wc-ls-phone-valid-field').length == 0){//append
             parentEl.append(`<input id="wc-ls-phone-valid-field" value="${phoneNumber}" type="hidden" name="${wcPvJson.phoneValidatorName}">`);
         }
-        $('#wc-ls-phone-valid-field-err-msg').remove();
+    //    $('#wc-ls-phone-valid-field-err-msg').remove();
     }
     else{
         if($('#wc-ls-phone-valid-field-err-msg').length == 0){//append
