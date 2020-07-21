@@ -10,7 +10,7 @@ if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has ove
 }
 // Set default country
 let wcPvDefCountry = ( wcPvJson.defaultCountry == '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
-alert(wcPvDefCountry);
+let separateDialCode = ( wcPvJson.separateDialCode == 1 ? true : false );
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     initialCountry: ( wcPvDefCountry == '' ? 'ng' : wcPvDefCountry ),
     /*geoIpLookup: function(callback) {
@@ -19,7 +19,7 @@ var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     callback(countryCode);
     });
     },//to pick user country*/
-    separateDialCode: ( wcPvJson.separateDialCode == 1 ? true : false ), 
+    separateDialCode: separateDialCode, 
     utilsScript: wcPvJson.utilsScript
   });
 
@@ -52,6 +52,10 @@ function wcPvValidatePhone(input){
 $(`${wcPvJson.parentPage} #billing_country`).change(function(){
     wcPvPhoneIntl.intlTelInput("setCountry",$(this).val());
 });
+// Adjust design if true
+if( separateDialCode == true ){
+    $('.wc-pv-intl').addClass( 'wc-pv-separate-dial-code' );
+}
 /**
  *  Js validation process
  * @param {object} parentEl the parent element 
