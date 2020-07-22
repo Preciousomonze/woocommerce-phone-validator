@@ -205,8 +205,16 @@ final class WC_PV{
      * @return string
      */
     public function get_default_country() {
-        $value = '';
-        return apply_filters( 'wc_pv_set_default_country', $value, $value );
+        $default = apply_filters( 'woocommerce_get_base_location', get_option( 'woocommerce_default_country' ) );
+        
+        // Remove sub-states.
+        if ( strstr( $default, ':' ) ) {
+            list( $country, $state ) = explode( ':', $default );
+            $default = $country;
+        } 
+
+        return apply_filters( 'wc_pv_set_default_country', $default );
+    }
     }
 
     /**
