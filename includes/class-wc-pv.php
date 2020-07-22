@@ -129,7 +129,7 @@ final class WC_PV{
      */
     public function admin_notices() {
         echo '<div class="error"><p>';
-        _e('<strong>Woocommerce Phone Validator</strong> plugin requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> plugin to be active!', WC_PV_TEXT_DOMAIN );
+        _e('<strong>Woocommerce Phone Validator</strong> plugin requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> plugin to be active!', 'woo-phone-validator' );
         echo '</p></div>';
 
     }
@@ -177,11 +177,11 @@ final class WC_PV{
     public function get_validation_errors( $translation_type = '__' ){
         // "Invalid number", "Invalid country code", "Phone number too short", "Phone number too long", "Invalid number"
         $errors = array(
-            __( 'Invalid number', WC_PV_TEXT_DOMAIN ),
-            __( 'Invalid country code', WC_PV_TEXT_DOMAIN ),
-            __( 'Phone number too short', WC_PV_TEXT_DOMAIN ),
-            __( 'Phone number too long', WC_PV_TEXT_DOMAIN ),
-            __( 'Invalid number', WC_PV_TEXT_DOMAIN ),
+            __( 'Invalid number', 'woo-phone-validator' ),
+            __( 'Invalid country code', 'woo-phone-validator' ),
+            __( 'Phone number too short', 'woo-phone-validator' ),
+            __( 'Phone number too long', 'woo-phone-validator' ),
+            __( 'Invalid number', 'woo-phone-validator' ),
         );
         return $errors;
     }
