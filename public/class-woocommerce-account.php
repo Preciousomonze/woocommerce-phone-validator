@@ -33,7 +33,7 @@ Class WC_PV_Account{
          $ph = explode( ':', $phone_valid_err_field);
          $ph[0] = '<strong>'.$ph[0].'</strong>';
          $phone_err_msg = implode(':',$ph);
-         $out =  __($phone_err_msg, WC_PV_TEXT_DOMAIN );
+         $out =  __($phone_err_msg, 'woo-phone-validator' );
          wc_add_notice( $out, 'error' );
         }
     }

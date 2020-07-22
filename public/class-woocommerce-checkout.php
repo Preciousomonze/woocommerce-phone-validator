@@ -40,6 +40,7 @@ Class WC_PV_Checkout{
             'separateDialCode'      => wc_pv()->separate_dial_code(),
             'validationErrors'      => wc_pv()->get_validation_errors(),
             'defaultCountry'        => wc_pv()->get_default_country(),
+            'onlyCountries'         => wc_pv()->get_allowed_countries(),
             'utilsScript'           => wc_pv()->plugin_url() . '/assets/vendor/js/utils.js',
         );
         //get phone value for international lib use
@@ -97,7 +98,7 @@ Class WC_PV_Checkout{
         $ph = explode(':',$phone_valid_err_field);
         $ph[0] = '<strong>'.$ph[0].'</strong>';
         $phone_err_msg = implode(':',$ph);
-        $out =  __($phone_err_msg, WC_PV_TEXT_DOMAIN );
+        $out =  __($phone_err_msg, 'woo-phone-validator' );
 			wc_add_notice( $out, 'error');
         }
     }

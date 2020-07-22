@@ -7,9 +7,9 @@
  * Author URI: https://codeexplorer.ninja
  * Version: 1.2.0
  * Requires at least: 4.9
- * Tested up to: 5.2
+ * Tested up to: 5.3
  * WC requires at least: 3.0
- * WC tested up to: 3.6
+ * WC tested up to: 4.3
  * 
  * Text Domain: woo-phone-validator
  * Domain Path: /languages

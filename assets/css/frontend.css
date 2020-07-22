@@ -3,14 +3,14 @@
   * Author : Precious Omonzejele
   */
 .wc-pv-intl{
-  overflow: visible !important;
+  overflow: visible!important
 }
 .wc-pv-intl .intl-tel-input{
-  width: 100% !important;
+  width: 100%!important
 }
 
 .wc-pv-intl .intl-tel-input input{
-  padding-left: 55px !important;
+  padding-left: 55px!important
 }
 /**
  * design for separate dial code set to true

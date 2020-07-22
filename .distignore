@@ -1,0 +1,14 @@
+/.wordpress-org
+/.git
+/.github
+/node_modules
+/build
+/vendor
+.distignore
+.gitignore
+Gruntfile.js
+package.json
+package-lock.json
+readme.md
+*.zip
+.eslintrc.json
