@@ -13,6 +13,7 @@ let wcPvDefCountry = ( wcPvJson.defaultCountry == '' ? $( `${wcPvJson.parentPage
 alert(wcPvDefCountry);
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     initialCountry: ( wcPvDefCountry == '' ? 'ng' : wcPvDefCountry ),
+    onlyCountries: wcPvJson.onlyCountries,
     /*geoIpLookup: function(callback) {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
     const countryCode = (resp && resp.country) ? resp.country : "";//asking for payment shaa,smh

@@ -215,6 +215,16 @@ final class WC_PV{
 
         return apply_filters( 'wc_pv_set_default_country', $default );
     }
+
+    /**
+     * Gets allowed countries
+     *
+     * @since  1.2.0
+     * 
+     * @return array
+     */
+    public function get_allowed_countries() {
+        return apply_filters( 'wc_pv_allowed_countries', array_keys( WC()->countries->get_allowed_countries() ) );
     }
 
     /**
