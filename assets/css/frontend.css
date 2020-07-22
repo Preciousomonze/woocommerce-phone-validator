@@ -1,13 +1,9 @@
-/**
-  * Main css file for styling the frontend in the plugin
-  * Author : Precious Omonzejele
-  */
-.wc-pv-intl{
-  overflow:visible !important;
+.wc-pv-intl {
+  overflow: visible!important
 }
-.intl-tel-input{
-  width:100% !important;
+.intl-tel-input {
+  width: 100%!important
 }
-.intl-tel-input input{
-  padding-left:55px !important;
+.intl-tel-input input {
+  padding-left: 55px!important
 }
