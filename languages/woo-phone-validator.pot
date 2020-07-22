@@ -1,0 +1,60 @@
+# Copyright (C) 2020 Precious Omonze (CodeXplorer)
+# This file is distributed under the same license as the Phone Validator for WooCommerce package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Phone Validator for WooCommerce 1.2.0\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/woocommerce-phone-validator\n"
+"POT-Creation-Date: 2020-07-21 23:32:42+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: node-wp-i18n 1.2.3\n"
+
+#: includes/class-wc-pv.php:132
+msgid ""
+"<strong>Woocommerce Phone Validator</strong> plugin requires <a "
+"href=\"https://wordpress.org/plugins/woocommerce/\" "
+"target=\"_blank\">WooCommerce</a> plugin to be active!"
+msgstr ""
+
+#: includes/class-wc-pv.php:180 includes/class-wc-pv.php:184
+msgid "Invalid number"
+msgstr ""
+
+#: includes/class-wc-pv.php:181
+msgid "Invalid country code"
+msgstr ""
+
+#: includes/class-wc-pv.php:182
+msgid "Phone number too short"
+msgstr ""
+
+#: includes/class-wc-pv.php:183
+msgid "Phone number too long"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Phone Validator for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/Preciousomonze/woocommerce-phone-validator"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Phone Validator for WooCommerce Helps in validating international telephone "
+"numbers on woocommerce billing address."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Precious Omonze (CodeXplorer)"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://codeexplorer.ninja"
+msgstr ""
