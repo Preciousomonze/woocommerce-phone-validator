@@ -35,11 +35,13 @@ Class WC_PV_Checkout{
         $wc_pv_json = array(
             'phoneValidatorName'    => $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'],
             'phoneValidatorErrName' => $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'],
+            'phoneErrorTitle'       => _x( 'Phone validation error: ', 'starting error phrase', 'woo-phone-validator' ),
+            'phoneUnknownErrorMsg'  => _x( 'Internal error 🥶', 'Incase error is unknown','woo-phone-validator' ),
             'separateDialCode'      => wc_pv()->separate_dial_code(),
-            'utilsScript'           => wc_pv()->plugin_url() . '/assets/vendor/js/utils.js',
             'validationErrors'      => wc_pv()->get_validation_errors(),
             'defaultCountry'        => wc_pv()->get_default_country(),
             'onlyCountries'         => wc_pv()->get_allowed_countries(),
+            'utilsScript'           => wc_pv()->plugin_url() . '/assets/vendor/js/utils.js',
         );
         //get phone value for international lib use
         $phone = wc_pv()->get_current_user_phone();

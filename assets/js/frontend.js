@@ -10,6 +10,7 @@ if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has ove
 }
 // Set default country
 var wcPvDefCountry = ( wcPvJson.defaultCountry === '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
+let separateDialCode = ( wcPvJson.separateDialCode == 1 ? true : false );
 
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     initialCountry: ( wcPvDefCountry == '' ? 'ng' : wcPvDefCountry ),
@@ -20,7 +21,7 @@ var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     callback(countryCode);
     });
     },//to pick user country*/
-    separateDialCode: ( wcPvJson.separateDialCode == 1 ? true : false ), 
+    separateDialCode: separateDialCode, 
     utilsScript: wcPvJson.utilsScript
 });
 
@@ -45,7 +46,7 @@ function wcPvValidatePhone(input){
     }
     else{
         let errorCode = phone.intlTelInput('getValidationError');
-        wcPvphoneErrMsg = `Phone validation error: ${(wcPvPhoneErrorMap[errorCode] == undefined ? 'Internal Error': wcPvPhoneErrorMap[errorCode])}`;
+        wcPvphoneErrMsg = ` ${wcPvJson.phoneErrorTitle + (wcPvPhoneErrorMap[errorCode] == undefined ? wcPvJson.phoneUnknownErrorMsg : wcPvPhoneErrorMap[errorCode])}`;
     }
     return result;
 }
@@ -53,6 +54,10 @@ function wcPvValidatePhone(input){
 $(`${wcPvJson.parentPage} #billing_country`).change(function(){
     wcPvPhoneIntl.intlTelInput('setCountry',$(this).val());
 });
+// Adjust design if true
+if( separateDialCode == true ){
+    $('.wc-pv-intl').addClass( 'wc-pv-separate-dial-code' );
+}
 /**
  *  Js validation process
  * @param {object} parentEl the parent element 
@@ -61,12 +66,16 @@ function wcPvValidateProcess(parentEl){
     let phoneNumber = wcPvValidatePhone(wcPvPhoneIntl);
     if($('.wc-pv-intl input').length == 0)//doesnt exist, no need
         return;
+    
+    // Remove errors first, so its not stagnant, special thanks to Sylvain :)
+    $('#wc-ls-phone-valid-field-err-msg').remove();
+
     if(phoneNumber != false){//phone is valid
         $(`${wcPvJson.parentPage} input#billing_phone`).val(phoneNumber);//set the real value so it submits it along
         if($('#wc-ls-phone-valid-field').length == 0){//append
             parentEl.append(`<input id="wc-ls-phone-valid-field" value="${phoneNumber}" type="hidden" name="${wcPvJson.phoneValidatorName}">`);
         }
-        $('#wc-ls-phone-valid-field-err-msg').remove();
+    //    $('#wc-ls-phone-valid-field-err-msg').remove();
     }
     else{
         if($('#wc-ls-phone-valid-field-err-msg').length == 0){//append
