@@ -9,27 +9,27 @@ if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has ove
     $('#billing_phone_field').addClass('wc-pv-phone wc-pv-intl');
 }
 // Set default country
-let wcPvDefCountry = ( wcPvJson.defaultCountry == '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
-alert(wcPvDefCountry);
+var wcPvDefCountry = ( wcPvJson.defaultCountry === '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
+
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     initialCountry: ( wcPvDefCountry == '' ? 'ng' : wcPvDefCountry ),
     onlyCountries: wcPvJson.onlyCountries,
     /*geoIpLookup: function(callback) {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-    const countryCode = (resp && resp.country) ? resp.country : "";//asking for payment shaa,smh
+    const countryCode = (resp && resp.country) ? resp.country : '';//asking for payment shaa,smh
     callback(countryCode);
     });
     },//to pick user country*/
     separateDialCode: ( wcPvJson.separateDialCode == 1 ? true : false ), 
     utilsScript: wcPvJson.utilsScript
-  });
+});
 
 /*if(wcPvJson.userPhone !== undefined ){
     wcPvPhoneIntl.intlTelInput("setNumber").val(wcPvJson.userPhone);
 }*/
 
 //some globals
-var wcPvphoneErrMsg = "";
+var wcPvphoneErrMsg = '';
 
 /**
  * Validates the phone number
@@ -40,18 +40,18 @@ var wcPvphoneErrMsg = "";
 function wcPvValidatePhone(input){
     const phone = input;
     let result = false;
-    if(phone.intlTelInput("isValidNumber") == true){
-        result = phone.intlTelInput("getNumber");
+    if(phone.intlTelInput('isValidNumber') == true){
+        result = phone.intlTelInput('getNumber');
     }
     else{
-        let errorCode = phone.intlTelInput("getValidationError");
+        let errorCode = phone.intlTelInput('getValidationError');
         wcPvphoneErrMsg = `Phone validation error: ${(wcPvPhoneErrorMap[errorCode] == undefined ? 'Internal Error': wcPvPhoneErrorMap[errorCode])}`;
     }
     return result;
 }
 //incase of country change
 $(`${wcPvJson.parentPage} #billing_country`).change(function(){
-    wcPvPhoneIntl.intlTelInput("setCountry",$(this).val());
+    wcPvPhoneIntl.intlTelInput('setCountry',$(this).val());
 });
 /**
  *  Js validation process
@@ -70,19 +70,19 @@ function wcPvValidateProcess(parentEl){
     }
     else{
         if($('#wc-ls-phone-valid-field-err-msg').length == 0){//append
-        parentEl.append(`<input id="wc-ls-phone-valid-field-err-msg" value="${wcPvphoneErrMsg}" type="hidden" name="${wcPvJson.phoneValidatorErrName}">`);
+            parentEl.append(`<input id="wc-ls-phone-valid-field-err-msg" value="${wcPvphoneErrMsg}" type="hidden" name="${wcPvJson.phoneValidatorErrName}">`);
         }
         $('#wc-ls-phone-valid-field').remove();
     }
 }
 //for woocommerce checkout
-if(wcPvJson.currentPage == "checkout"){
+if(wcPvJson.currentPage == 'checkout'){
     let wcPvCheckoutForm = $(`${wcPvJson.parentPage}`);
     wcPvCheckoutForm.on('checkout_place_order',function(){
         wcPvValidateProcess(wcPvCheckoutForm);
     });
 }
-else if(wcPvJson.currentPage == "account"){//for account page
+else if(wcPvJson.currentPage == 'account'){//for account page
     let wcPvAccForm = $(`${wcPvJson.parentPage} form`);
     $(`${wcPvJson.parentPage}`).submit(function(){
         wcPvValidateProcess(wcPvAccForm);
