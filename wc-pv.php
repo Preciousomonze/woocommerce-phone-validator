@@ -30,7 +30,7 @@ define('WC_PV_PLUGIN_VERSION','1.2.0');
  */
 $_wc_pv_env = 'production';
 
-if ( strpos( $_SERVER['SERVER_NAME'], 'localhost' ) !== false || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) )
+if ( isset( $_SERVER['SERVER_NAME'] ) && strpos( $_SERVER['SERVER_NAME'], 'localhost' ) !== false || ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) )
     $_wc_pv_env = 'test';
 
 define( 'WC_PV_ENVIRONMENT', $_wc_pv_env );
