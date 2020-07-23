@@ -91,8 +91,8 @@ Class WC_PV_Checkout{
         $phone_err_name = $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'];
         $phone_valid_field = isset( $_POST[$phone_name] ) ? strtolower( sanitize_text_field($_POST[$phone_name]) ) : '';
         $phone_valid_err_field = isset( $_POST[$phone_err_name] ) ? trim( sanitize_text_field( $_POST[$phone_err_name] ) ) : '';
-        $bil_email = sanitize_email($_POST['billing_email']);
-        $bil_phone = sanitize_text_field($_POST['billing_phone']);
+        $bil_email = isset( $_POST['billing_email'] ) ? sanitize_email($_POST['billing_email']) : '';
+        $bil_phone = isset( $_POST['billing_phone'] ) ? sanitize_text_field($_POST['billing_phone']) : '';
 
        if( !empty($bil_email) && !empty($bil_phone) && (!empty($phone_valid_err_field)) && (empty($phone_valid_field) || !is_numeric($phone_valid_field) ) ){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
             if( !is_numeric( str_replace( ' ', '', $bil_phone ) ) ) // WC will handle this, so no need to report errors

@@ -30,7 +30,10 @@ Class WC_PV_Account{
         $bil_phone = isset( $_POST['billing_phone'] ) ? sanitize_text_field( $_POST['billing_phone'] ) : '';
 
         if( !empty( $bil_email ) && !empty( $bil_phone ) && ( empty( $phone_valid_field ) || !is_numeric( $phone_valid_field ) ) ){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
-         $ph = explode( ':', $phone_valid_err_field);
+            if( !is_numeric( str_replace( ' ', '', $bil_phone ) ) ) // WC will handle this, so no need to report errors
+            return;
+
+            $ph = explode( ':', $phone_valid_err_field);
          $ph[0] = '<strong>'.$ph[0].'</strong>';
          $phone_err_msg = implode(':',$ph);
          $out =  __($phone_err_msg, 'woo-phone-validator' );
