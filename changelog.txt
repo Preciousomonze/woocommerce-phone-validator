@@ -17,8 +17,10 @@
 * Fix: Validation loop hole
 
 = 1.2.0 =
-* New: Translation support for error messages, ikr! finally 😂
+* New: Translation support for error messages, ikr! finally 😂 (I am sincerely sorry.)
 * New: Enable country code after flag(Operation Separate Dial Code) using filter 'wc_pv_separate_dial_code', set to true ☺️
 * New: Ability to set default country using filter 'wc_pv_set_default_country'
 * New: Phone field now uses same list of allowed countries in your WooCommerce settings by default ( Thanks to Helgatheviking 🤾🏻‍♀️)
 * New: Enable altering list of allowed countries using filter hooks
+* Update: Tested up to WooCommerce 4.3
+* Update: Tested up to WordPress 5.4
