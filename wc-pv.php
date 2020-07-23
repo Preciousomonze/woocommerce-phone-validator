@@ -4,10 +4,10 @@
  * Plugin URI: https://github.com/Preciousomonze/woocommerce-phone-validator
  * Description: Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce billing address.
  * Author: Precious Omonze (CodeXplorer)
- * Author URI: https://codeexplorer.ninja
+ * Author URI: https://codexplorer.ninja
  * Version: 1.2.0
  * Requires at least: 4.9
- * Tested up to: 5.3
+ * Tested up to: 5.4
  * WC requires at least: 3.0
  * WC tested up to: 4.3
  * 
