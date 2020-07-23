@@ -8,10 +8,10 @@ var wcPvPhoneErrorMap = wcPvJson.validationErrors;
 if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has overriden my baby
     $('#billing_phone_field').addClass('wc-pv-phone wc-pv-intl');
 }
-// Set default country
+// Set default country.
 var wcPvDefCountry = ( wcPvJson.defaultCountry === '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
 let separateDialCode = ( wcPvJson.separateDialCode == 1 ? true : false );
-
+console.log(wcPvDefCountry);
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     initialCountry: ( wcPvDefCountry == '' ? 'ng' : wcPvDefCountry ),
     onlyCountries: wcPvJson.onlyCountries,
@@ -36,7 +36,7 @@ var wcPvphoneErrMsg = '';
  * Validates the phone number
  * 
  * @param intlTelInput input
- * @returns string or bool
+ * @return string or bool
  */
 function wcPvValidatePhone(input){
     const phone = input;
@@ -66,7 +66,7 @@ function wcPvValidateProcess(parentEl){
     let phoneNumber = wcPvValidatePhone(wcPvPhoneIntl);
     if($('.wc-pv-intl input').length == 0)//doesnt exist, no need
         return;
-    
+
     // Remove errors first, so its not stagnant, special thanks to Sylvain :)
     $('#wc-ls-phone-valid-field-err-msg').remove();
 

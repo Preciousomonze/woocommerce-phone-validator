@@ -200,19 +200,33 @@ final class WC_PV{
     }
 
     /**
+     * 
+     * 
+     * @return bool
+     */
+    public function use_wc_store_default_country() {
+        return apply_filters( 'wc_pv_use_wc_default_store', false );
+    }
+
+    /**
      * Gets default country
      * 
+     * If 'wc_pv_use_wc_default_store is set to true, uses store default country
+     * 
+     * @since 1.2.0
      * @return string
      */
     public function get_default_country() {
-        $default = apply_filters( 'woocommerce_get_base_location', get_option( 'woocommerce_default_country' ) );
-        
-        // Remove sub-states.
-        if ( strstr( $default, ':' ) ) {
-            list( $country, $state ) = explode( ':', $default );
-            $default = $country;
-        } 
+        $default = '';
+        if( true === wc_pv()->use_wc_store_default_country() ){
+            $default = apply_filters( 'woocommerce_get_base_location', get_option( 'woocommerce_default_country' ) );
 
+            // Remove sub-states.
+            if ( strstr( $default, ':' ) ) {
+                list( $country, $state ) = explode( ':', $default );
+                $default = $country;
+            }
+        }
         return apply_filters( 'wc_pv_set_default_country', $default );
     }
 
