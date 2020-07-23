@@ -93,12 +93,15 @@ Class WC_PV_Checkout{
         $phone_valid_err_field = isset( $_POST[$phone_err_name] ) ? trim( sanitize_text_field( $_POST[$phone_err_name] ) ) : '';
         $bil_email = sanitize_email($_POST['billing_email']);
         $bil_phone = sanitize_text_field($_POST['billing_phone']);
-		       
+
        if( !empty($bil_email) && !empty($bil_phone) && (!empty($phone_valid_err_field)) && (empty($phone_valid_field) || !is_numeric($phone_valid_field) ) ){//there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
-        $ph = explode(':',$phone_valid_err_field);
-        $ph[0] = '<strong>'.$ph[0].'</strong>';
-        $phone_err_msg = implode(':',$ph);
-        $out =  __($phone_err_msg, 'woo-phone-validator' );
+            if( !is_numeric( $bil_phone ) ) // WC will handle this, so no need to report errors
+                return;
+
+            $ph = explode(':',$phone_valid_err_field);
+            $ph[0] = '<strong>'.$ph[0].'</strong>';
+            $phone_err_msg = implode(':',$ph);
+            $out =  __($phone_err_msg, 'woo-phone-validator' );
 			wc_add_notice( $out, 'error');
         }
     }
