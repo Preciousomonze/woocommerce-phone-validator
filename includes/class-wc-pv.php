@@ -195,17 +195,19 @@ final class WC_PV{
     public function separate_dial_code( $value = false ){
         /**
          * Filter boolean value to separate dial code
+         * @since 1.2.0
          */
-        return apply_filters( 'wc_pv_separate_dial_code', $value, $value );
+        return apply_filters( 'wc_pv_separate_dial_code', $value );
     }
 
     /**
+     * Use default WooCommerce store
      * 
-     * 
+     * @since 1.2.0
      * @return bool
      */
     public function use_wc_store_default_country() {
-        return apply_filters( 'wc_pv_use_wc_default_store', false );
+        return apply_filters( 'wc_pv_use_wc_default_store_country', false );
     }
 
     /**
@@ -233,7 +235,7 @@ final class WC_PV{
     /**
      * Gets allowed countries
      *
-     * @since  1.2.0
+     * @since 1.2.0
      * 
      * @return array
      */

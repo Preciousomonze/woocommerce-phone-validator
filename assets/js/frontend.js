@@ -10,11 +10,13 @@ if($('.wc-pv-intl input').length == 0){//add class, some checkout plugin has ove
 }
 // Set default country.
 var wcPvDefCountry = ( wcPvJson.defaultCountry === '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
+
 let separateDialCode = ( wcPvJson.separateDialCode == 1 ? true : false );
-console.log(wcPvDefCountry);
+let onlyCountries = wcPvJson.onlyCountries.map( value => { return value.toUpperCase(); } );
+
 var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
-    initialCountry: ( wcPvDefCountry == '' ? 'ng' : wcPvDefCountry ),
-    onlyCountries: wcPvJson.onlyCountries,
+    initialCountry: ( wcPvDefCountry == '' ? 'NG' : wcPvDefCountry ),
+    onlyCountries: onlyCountries,
     /*geoIpLookup: function(callback) {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
     const countryCode = (resp && resp.country) ? resp.country : '';//asking for payment shaa,smh
@@ -29,7 +31,7 @@ var wcPvPhoneIntl = $('.wc-pv-intl input').intlTelInput({
     wcPvPhoneIntl.intlTelInput("setNumber").val(wcPvJson.userPhone);
 }*/
 
-//some globals
+// Some Globals
 var wcPvphoneErrMsg = '';
 
 /**
@@ -50,9 +52,15 @@ function wcPvValidatePhone(input){
     }
     return result;
 }
-//incase of country change
-$(`${wcPvJson.parentPage} #billing_country`).change(function(){
-    wcPvPhoneIntl.intlTelInput('setCountry',$(this).val());
+
+// Incase of country change
+$( `${wcPvJson.parentPage} #billing_country` ).change( function() {
+    let value = $( this ).val();
+
+    // Make sure you only set if its in the selected countries
+    if ( onlyCountries.includes( value ) ) {
+        wcPvPhoneIntl.intlTelInput( 'setCountry', value );
+    }
 });
 // Adjust design if true
 if( separateDialCode == true ){
