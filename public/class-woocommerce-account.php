@@ -9,7 +9,7 @@ Class WC_PV_Account{
      */
     public function __construct(){
         //inherits style and js from the checkout class :)
-            add_action('woocommerce_after_save_address_validation', array($this,'account_page_validate'),10,2);
+        add_action('woocommerce_after_save_address_validation', array($this,'account_page_validate'),10,2);
     }
 
     /**
@@ -34,10 +34,10 @@ Class WC_PV_Account{
             return;
 
             $ph = explode( ':', $phone_valid_err_field);
-         $ph[0] = '<strong>'.$ph[0].'</strong>';
-         $phone_err_msg = implode(':',$ph);
-         $out =  __($phone_err_msg, 'woo-phone-validator' );
-         wc_add_notice( $out, 'error' );
+            $ph[0] = '<strong>'.$ph[0].'</strong>';
+            $phone_err_msg = implode(':',$ph);
+            $out =  __($phone_err_msg, 'woo-phone-validator' );
+            wc_add_notice( $out, 'error' );
         }
     }
 }
