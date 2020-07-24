@@ -74,8 +74,8 @@ If you have suggestions or a new feature request, feel free to get in touch with
 * New: Ability to set default country using filter 'wc_pv_set_default_country'
 * New: Phone field now uses same list of allowed countries in your WooCommerce settings by default ( Thanks to Helgatheviking 🤾🏻‍♀️)
 * New: Enable altering list of allowed countries using filter hooks
-* Update: Tested up to WooCommerce 4.3
-* Update: Tested up to WordPress 5.4
+* Update: Tested up to WordPress 5.4 🥳🥳
+* Update: Tested up to WooCommerce 4.3 🥳🥳
 * Fix: Error Messages not re-rendering due to logic error: https://wordpress.org/support/topic/error-messages-are-not-refreshed-in-case-of-successive-errors-on-checkout-page/
 
 ## Screenshots ##
