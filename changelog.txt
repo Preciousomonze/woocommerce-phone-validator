@@ -24,4 +24,4 @@
 * New: Enable altering list of allowed countries using filter hooks
 * Update: Tested up to WordPress 5.4 🥳🥳
 * Update: Tested up to WooCommerce 4.3 🥳🥳
-* Fix: Error Messages not re-rendering due to logic error: https://wordpress.org/support/topic/error-messages-are-not-refreshed-in-case-of-successive-errors-on-checkout-page/
+* Fix: Error Messages not re-rendering due to logic error(Thanks to Sylvain): https://wordpress.org/support/topic/error-messages-are-not-refreshed-in-case-of-successive-errors-on-checkout-page/
