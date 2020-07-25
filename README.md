@@ -69,7 +69,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 * Fix: Compatibility with checkout manager when the checkout fields are altered
 * Fix: Validation loop hole
 ### 1.2.0 - 25/07/2020
-* New: Translation support for error messages, ikr! finally 😂 (I am sincerely sorry.)
+* New: Translation support for error messages, ikr! finally 😂 (I am sincerely sorry).
 * New: Enable country code after flag(Operation Separate Dial Code) using filter 'wc_pv_separate_dial_code', set to true ☺️
 * New: Ability to set default country using filter 'wc_pv_set_default_country'
 * New: Phone field now uses same list of allowed countries in your WooCommerce settings by default ( Thanks to Helgatheviking 🤾🏻‍♀️)

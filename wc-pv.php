@@ -1,12 +1,20 @@
 <?php
 /**
+ * Phone Validator for WooCommerce
+ *
+ * @package PluginPackage
+ * @author Precious Omonze (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
+ * @copyright 2020 CodeXplorer 🤾🏽‍♂️🥞🦜🤡
+ * @license GPL-3.0-or-later
+ *
+ * @wordpress-plugin
  * Plugin Name: Phone Validator for WooCommerce
  * Plugin URI: https://github.com/Preciousomonze/woocommerce-phone-validator
- * Description: Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce billing address.
- * Author: Precious Omonze (CodeXplorer)
+ * Description: Phone Validator for WooCommerce Helps in validating international telephone numbers on WooCommerc billing address.
+ * Author: Precious Omonze (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
  * Author URI: https://codexplorer.ninja
  * Version: 1.2.0
- * Requires at least: 4.9
+ * Requires at least: 5.0
  * Tested up to: 5.4
  * WC requires at least: 3.0
  * WC tested up to: 4.3
@@ -15,16 +23,16 @@
  * Domain Path: /languages
  */
 
-if (!defined('ABSPATH')) {
+if ( !defined('ABSPATH') ) {
     exit;
 }
 //make sure you update the version values when necessary
-define('WC_PV_PLUGIN_DIR',  plugin_dir_path( __FILE__ ) );
-define('WC_PV_PLUGIN_FILE', __FILE__ );
-define('WC_PV_TEXT_DOMAIN', 'woo-phone-validator');
-define('WC_PV_PLUGIN_VERSION','1.2.0');
+define( 'WC_PV_PLUGIN_DIR',  plugin_dir_path( __FILE__ ) );
+define( 'WC_PV_PLUGIN_FILE', __FILE__ );
+define( 'WC_PV_TEXT_DOMAIN', 'woo-phone-validator' );
+define( 'WC_PV_PLUGIN_VERSION', '1.2.0' );
 
-/** 
+/**
  * Environment, should be either test or production
  * Note: if youre on localhost, even if you change this constant to production, it'll still use test :)
  */
