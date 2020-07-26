@@ -40,7 +40,6 @@
 	},
 	"scripts": {
 		"lint:js": "eslint $npm_package_assets_js_js",
-		"prebuild": "rm -rf ./vendor",
 		"build": "npm run uglify && npm run css && npm run makepot && npm run localzip",
 		"preuglify": "rm -f $npm_package_assets_js_min",
 		"uglify": "for 'f' in $npm_package_assets_js_js; do file=${f%.js}; node_modules/.bin/uglifyjs $f -c -m -o $file.min.js $f; done",
