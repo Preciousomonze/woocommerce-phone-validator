@@ -1,0 +1,25 @@
+/**
+  * Main css file for styling the frontend in the plugin
+  * Author : Precious Omonzejele
+  */
+.wc-pv-intl{
+  overflow: visible!important
+}
+.wc-pv-intl .intl-tel-input{
+  width: 100%!important
+}
+
+.wc-pv-intl .intl-tel-input input{
+  padding-left: 55px!important
+}
+/**
+ * design for separate dial code set to true
+ */
+
+ .wc-pv-intl.wc-pv-separate-dial-code .selected-flag{
+  width: 83px !important;
+}
+
+.wc-pv-intl.wc-pv-separate-dial-code .intl-tel-input input{
+  padding-left: 88px !important;
+}

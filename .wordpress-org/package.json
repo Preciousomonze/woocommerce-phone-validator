@@ -1,0 +1,54 @@
+{
+	"title": "WooCommerce Phone Validator",
+	"name": "woocommerce-phone-validator",
+	"textDomain": "woo-phone-validator",
+	"mainFile": "wc-pv.php",
+	"version": "1.2.0",
+	"description": "Forces validation of WooCommerce phone field on checkout and billing address edit page ",
+	"license": "GPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Preciousomonze/woocommerce-phone-validator"
+	},
+	"bugs": {
+		"url": "https://github.com/Preciousomonze/woocommerce-phone-validator/issues"
+	},
+	"author": "Preciousomonze",
+	"dependencies": {
+		"install": "^0.13.0",
+		"npm": "^6.14.7",
+		"string-replace-all": "^1.0.3",
+		"uglify-js": "^3.10.0"
+	},
+	"devDependencies": {
+		"clean-css-cli": "^4.3.0",
+		"eslint": "^7.5.0",
+		"node-wp-i18n": "^1.2.3",
+		"uglify-es": "^3.3.9",
+		"jsdoc": "~3.6.3",
+		"wp-hookdoc": "^0.2.0"
+	},
+	"assets": {
+		"js": {
+			"min": "assets/js/*.min.js",
+			"js": "assets/js/*.js"
+		},
+		"styles": {
+			"min": "assets/css/*.min.css",
+			"css": "assets/css/*.css"
+		}
+	},
+	"scripts": {
+		"lint:js": "eslint $npm_package_assets_js_js",
+		"prebuild": "rm -rf ./vendor",
+		"build": "npm run uglify && npm run css && npm run makepot && npm run localzip",
+		"preuglify": "rm -f $npm_package_assets_js_min",
+		"uglify": "for 'f' in $npm_package_assets_js_js; do file=${f%.js}; node_modules/.bin/uglifyjs $f -c -m -o $file.min.js $f; done",
+		"precss": "rm -f $npm_package_assets_styles_min",
+		"css": "for f in $npm_package_assets_styles_css; do file=${f%.css}; node_modules/.bin/cleancss $f -o $file.min.css; done",
+		"makepot": "wpi18n addtextdomain woo-phone-validator; wpi18n makepot --domain-path languages --pot-file woo-phone-validator.pot --type plugin --main-file wc-pv.php --exclude node_modules",
+		"compress-zip": "php zipper_file.php",
+		"offload-zip": "php zipper_file.php --offload=true",
+		"deploy": "npm run build && npm run compress-zip && npm run offload-zip"
+	}
+}
