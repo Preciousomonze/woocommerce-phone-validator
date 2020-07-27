@@ -108,6 +108,7 @@ $files_to_ignore = array(
 	'vendor/',
 	//'shortcode_text',
 );
+echo "compressing.....\n";
 
 foreach ( $files as $name => $file ){
     // Skip directories (they would be added automatically)
