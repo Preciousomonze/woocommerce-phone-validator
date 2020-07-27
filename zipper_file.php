@@ -132,7 +132,7 @@ foreach ( $files as $name => $file ){
 $zip->close();
 echo "zipped! 😎\n";
 
-if (!empty($del_file_in_zip) ) {
+if ( !empty($del_files_in_zip) ) {
 
 	// Now remove some stuff inside the zip file, no better way
 	if( $zip->open($plugin_name.'.zip') ) {
@@ -140,7 +140,7 @@ if (!empty($del_file_in_zip) ) {
 
 		for($i = 0; $i < count($files_to_delete); $i++){
 			echo "Deleting: " . $files_to_delete[$i] . "...\n";
-			var_dump("Deleted: ". $zip->deleteName($folder_path.$files_to_delete[$i]) ); // Delete this current file too
+			var_dump("Deleted: ". (bool)$zip->deleteName($folder_path.$files_to_delete[$i]) ); // Delete this current file too
 		}
 		$zip->close();
 		echo "\nNecessary stuff deleted. 😎";
@@ -150,7 +150,7 @@ if (!empty($del_file_in_zip) ) {
 	}
 }
 
-echo "If your zipping and stuff were successful, congratss!!, else, check around, something must be up, you will surely solve it, Mafo! 💪😊.
+echo "\n\nIf your zipping and stuff were successful, congratss!!, else, check around, something must be up, you will surely solve it, Mafo! 💪😊.
  \nIf you are using github action to deploy your WordPress Plugin, do not forget to -offload!
  \nBe like CodeXplorer 🤾🏽‍♂️🥞🦜🤡, and Please do not forget to star the repo of this program here:";
 
