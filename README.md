@@ -1,6 +1,9 @@
 # Phone Validator for WooCommerce
 
-**Contributors:** __Preciousomonze__
+**Author:** __Preciousomonze__
+
+**Contributors:** __Helgatheviking 🤾🏻‍♀️__
+
 
 **Donate link:** <a href="https://rave.flutterwave.com/pay/preciousomonze" target="_blank">__Drop something for your boy 🤓 🥳__</a>
 
@@ -53,18 +56,27 @@ If you have suggestions or a new feature request, feel free to get in touch with
 
 ## Changelog
 
-### 1.0.0 - July 12, 2019
+### 1.0.0 - 12/07/2019
 *   First release 🤗 🥳
-### 1.0.1 - July 15, 2019
+### 1.0.1 - 15/07/2019
 * Fix: Proper sanitizing
-### 1.1.0  - August 04, 2019
+### 1.1.0  - 04/08/2019
 * Fix: Made error message a little bit more descriptive
 * Fix: Removed appended element when not needed
 * Added: Enables validation on Billing Address Page
-### 1.1.1 - August 08, 2019
+### 1.1.1 -  08/08/2019
 * Fix: Js remove element
 * Fix: Compatibility with checkout manager when the checkout fields are altered
 * Fix: Validation loop hole
+### 1.2.0 - 25/07/2020
+* New: Translation support for error messages, ikr! finally 😂 (I am sincerely sorry).
+* New: Enable country code after flag(Operation Separate Dial Code) using filter 'wc_pv_separate_dial_code', set to true ☺️
+* New: Ability to set default country using filter 'wc_pv_set_default_country'
+* New: Phone field now uses same list of allowed countries in your WooCommerce settings by default ( Thanks to Helgatheviking 🤾🏻‍♀️)
+* New: Enable altering list of allowed countries using filter hooks
+* Update: Tested up to WordPress 5.4 🥳🥳
+* Update: Tested up to WooCommerce 4.3 🥳🥳
+* Fix: Error Messages not re-rendering due to logic error(Thanks to Sylvain): https://wordpress.org/support/topic/error-messages-are-not-refreshed-in-case-of-successive-errors-on-checkout-page/
 
 ## Screenshots ##
 
