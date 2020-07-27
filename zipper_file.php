@@ -139,8 +139,11 @@ if ( !empty($del_files_in_zip) ) {
 		$files_to_delete = explode(',', $del_files_in_zip);
 
 		for($i = 0; $i < count($files_to_delete); $i++){
-			echo "Deleting: " . $files_to_delete[$i] . "...\n";
-			var_dump("Deleted: ". (bool)$zip->deleteName($folder_path.$files_to_delete[$i]) ); // Delete this current file too
+			$file = trim($files_to_delete[$i]);
+			if( !empty($file) ){
+				echo "Deleting: " . $file . "...\nDeleted:";
+				var_dump( $zip->deleteName($folder_path.$file) ); // Delete this current file.
+			}
 		}
 		$zip->close();
 		echo "\nNecessary stuff deleted. 😎";
