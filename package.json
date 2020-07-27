@@ -40,13 +40,13 @@
 	},
 	"scripts": {
 		"lint:js": "eslint $npm_package_assets_js_js",
-		"build": "npm run uglify && npm run css && npm run makepot && npm run localzip",
-		"preuglify": "rm -f $npm_package_assets_js_min",
-		"uglify": "for f in $npm_package_assets_js_js; do file=${f%.js}; node_modules/.bin/uglifyjs $f -c -m -o $file.min.js $f; done",
-		"precss": "rm -f $npm_package_assets_styles_min",
-		"css": "for f in $npm_package_assets_styles_css; do file=${f%.css}; node_modules/.bin/cleancss $f -o $file.min.css; done",
+		"build": "npm run uglify && npm run cleancss && npm run makepot",
+		"preuglify": "pre-uglify.sh",
+		"uglify": "npm run preuglify && uglify.sh",
+		"precss": "pre-cleancss.sh",
+		"cleancss": "npm run precss && cleancss.sh",
 		"makepot": "wpi18n addtextdomain woo-phone-validator; wpi18n makepot --domain-path languages --pot-file woo-phone-validator.pot --type plugin --main-file wc-pv.php --exclude node_modules",
-		"compress-zip": "php zipper_file.php",
+		"compress-zip": "php zipper_file.php --ignore_file_path=.git,node_modules,vendor",
 		"offload-zip": "php zipper_file.php --offload=true",
 		"deploy": "npm run build && npm run compress-zip && npm run offload-zip"
 	}
