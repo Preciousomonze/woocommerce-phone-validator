@@ -45,7 +45,7 @@
 		"uglify": "npm run preuglify && uglify.sh",
 		"precss": "pre-cleancss.sh",
 		"cleancss": "npm run precss && cleancss.sh",
-		"makepot": "wpi18n addtextdomain woo-phone-validator; wpi18n makepot --domain-path languages --pot-file woo-phone-validator.pot --type plugin --main-file wc-pv.php --exclude node_modules",
+		"makepot": "wpi18n addtextdomain woo-phone-validator; wpi18n makepot --domain-path languages --pot-file woo-phone-validator.pot --type plugin --main-file wc-pv.php --exclude node_modules,.wordpress-org,vendor",
 		"compress-zip": "php zipper_file.php --ignore_file_path=.git,node_modules,vendor",
 		"offload-zip": "php zipper_file.php --offload=true",
 		"deploy": "npm run build && npm run compress-zip && npm run offload-zip"
