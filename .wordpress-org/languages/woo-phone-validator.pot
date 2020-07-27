@@ -1,11 +1,11 @@
-# Copyright (C) 2020 Precious Omonze (CodeXplorer)
+# Copyright (C) 2020 Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
 # This file is distributed under the same license as the Phone Validator for WooCommerce package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Phone Validator for WooCommerce 1.2.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/woocommerce-phone-validator\n"
-"POT-Creation-Date: 2020-07-21 23:32:42+00:00\n"
+"POT-Creation-Date: 2020-07-27 13:12:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,13 +48,23 @@ msgstr ""
 #. Description of the plugin/theme
 msgid ""
 "Phone Validator for WooCommerce Helps in validating international telephone "
-"numbers on woocommerce billing address."
+"numbers on WooCommerc billing address."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Precious Omonze (CodeXplorer)"
+msgid "Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://codeexplorer.ninja"
+msgid "https://codexplorer.ninja"
+msgstr ""
+
+#: public/class-woocommerce-checkout.php:38
+msgctxt "starting error phrase"
+msgid "Phone validation error: "
+msgstr ""
+
+#: public/class-woocommerce-checkout.php:39
+msgctxt "Incase error is unknown"
+msgid "Internal error 🥶"
 msgstr ""
