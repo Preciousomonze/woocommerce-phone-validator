@@ -3,6 +3,12 @@
  * File to easily zip all files and folders to be ready for plugin install
  * 
  * Also for extraction to wordpress-org folder for auto deploy :)
+ * Also try to make your code sniffer ignore this file, e get why :)
+ * 
+ * @param -ignore_file_path (optional) csv of paths/files to ignore, if not called, there are default paths to be ignored by the script
+ * @param -offload (optional) if set, the file will only extract the zip to .wordpress-org folder
+ * @author Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
+ * @contributors add names here
  */
 
 // Get real path for our folder
@@ -10,12 +16,16 @@ $root_path = realpath(__DIR__);
 $plugin_name = 'woo-phone-validator';
 $folder_path = $plugin_name.'/';
 
-$param = getopt(null, ['offload:']);
+$offload_param = getopt(null, ['offload:']);
+$ignore_param = getopt(null, ['ignore_file_path:']);
+var_dump($ignore_param);
 
 /**
  * The extractTo() method does not offer any parameter to allow extracting files and folders recursively 
  * from another (parent) folder inside the ZIP archive. 
  * With the following method it is possible:
+ * from  stanislav dot eckert at vizson dot de ¶ 
+ * https://www.php.net/manual/en/ziparchive.extractto.php
  */
 class SubDir_ZipArchive extends ZipArchive{
 
@@ -72,7 +82,7 @@ class SubDir_ZipArchive extends ZipArchive{
 $zip = new SubDir_ZipArchive();
 
 ##################################################################################################
-if ( isset($param['offload']) && $param['offload'] ) {
+if ( isset($offload_param['offload']) && $offload_param['offload'] ) {
 	if ( $zip->open($plugin_name.'.zip') ) {
 		echo "extracting to folder...\n";
 
@@ -101,13 +111,23 @@ $files = new RecursiveIteratorIterator(
     RecursiveIteratorIterator::LEAVES_ONLY
 );
 
-// Files or paths to ignore zipping, necessary, cause $zip->deleteName() doesnt delete folders for some reason.
+/**
+ * Files or paths to ignore zipping, necessary, cause $zip->deleteName() doesnt delete folders for some reason.
+ * this is the default, param ignore_file_path overrides if set
+ */
 $files_to_ignore = array(
 	'.git',
 	'node_modules',
 	'vendor/',
 	//'shortcode_text',
 );
+if ( isset($ignore_param['ignore_file_path']) ) {
+	$data_paths = explode(',', $ignore_param['ignore_file_path']);
+
+	if( !empty() ){
+
+	}
+}
 echo "compressing.....\n";
 
 foreach ( $files as $name => $file ){
@@ -143,7 +163,7 @@ if( $zip->open($plugin_name.'.zip') ) {
 	$files_to_delete = array(
 		'zipper_file.php',
 		'README.md',
-		'node_modules/', // Doesn't delete for some weird reason
+		//'node_modules/', // Doesn't delete for some weird reason
 		'.wordpress-org/',
 		'package-lock.json',
 		'composer.lock',
