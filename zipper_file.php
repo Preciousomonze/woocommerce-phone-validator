@@ -75,7 +75,13 @@ if ( $offload_param ) {
 ###########
 
 // First delete incase theres an old zip file.
-unlink($plugin_name.'.zip');
+echo "trying to Delete [" .$plugin_name . ".zip] if any... 🚦🤓\n";
+if ( unlink($plugin_name.'.zip') ){
+	echo "Deleted!\n\n";
+}
+else{
+	echo "Couldn't delete!\n\n";
+}
 
 $zip->open($plugin_name.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
@@ -94,7 +100,6 @@ $files_to_ignore = array(
 	'.git',
 	'node_modules',
 	'vendor/',
-	//'shortcode_text',
 );
 if ( !empty($ignore_file_path) ) {
 	// Update files to ignore.
@@ -113,7 +118,8 @@ foreach ( $files as $name => $file ){
 
 		// Ignore Paths
 		for ( $i = 0; $i < count($files_to_ignore); $i++ ) {
-			if ( strpos($file_path, $files_to_ignore[$i]) !== false ) {
+			$f = trim($files_to_ignore[$i]);
+			if ( strpos($file_path, $f) !== false ) {
 				$move_on = true;
 				break;
 			}
