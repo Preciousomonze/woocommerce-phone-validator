@@ -32,14 +32,10 @@ $del_files_in_zip = ( isset($del_files_in_zip['delete_files_in_zip']) ? trim($de
 $offload_param = ( isset($offload_param['offload']) ? true : null );
 $offload_dir_param = ( isset($offload_dir_param['offload_dir']) ? trim($offload_dir_param['offload_dir']) : null );
 
-var_dump($plugin_name);
+// Ref note
+$ref_note = "Please do not forget to star the repo of this program here:";
 
-var_dump($ignore_file_path);
-
-var_dump($del_files_in_zip);
-
-var_dump($offload_param);
-var_dump($offload_dir_param);
+## Start work!
 
 if ( empty($plugin_name) ) {
 	exit('-plugin_name param required! 😒');
@@ -60,10 +56,10 @@ if ( $offload_param ) {
 		$offload_dir = ( empty($offload_dir_param) ? '.wordpress-org/' : $offload_dir_param );
 		echo "extracting to folder:[" . $offload_dir. "] ... 🚦🤓\n";
 
-		$er =  $zip->extractSubDirTo($offload_dir, $folder_path);
+		$er =  $zip->extract_subdir_to($offload_dir, $folder_path);
 
-		echo "\n Done.";
-		echo "\n ok, errors: " . ( count($er) == 0 ? "None! 😁" : count($er) . "" );
+		echo "\nDone.";
+		echo "\nOk, errors: " . ( count($er) == 0 ? "None! 😁\n" . $ref_note : count($er) . "" );
 	
 		$zip->close();
 	}
@@ -161,7 +157,7 @@ if ( !empty($del_files_in_zip) ) {
 
 echo "\n\nIf your zipping and stuff were successful, congratss!!, else, check around, something must be up, you will surely solve it, Mafo! 💪😊.
  \nIf you are using github action to deploy your WordPress Plugin, do not forget to -offload!
- \nBe like CodeXplorer 🤾🏽‍♂️🥞🦜🤡, and Please do not forget to star the repo of this program here:";
+ \nBe like CodeXplorer 🤾🏽‍♂️🥞🦜🤡, and " . $ref_note;
 
 /**
  * The ZipArchive::extractTo() method does not offer any parameter to allow extracting files and folders recursively 
