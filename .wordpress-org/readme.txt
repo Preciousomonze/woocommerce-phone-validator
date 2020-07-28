@@ -7,7 +7,7 @@ Requires PHP: 7.0
 License: GNU General Public License v3.0
 License URI: https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/LICENSE
 Donate link: https://rave.flutterwave.com/pay/preciousomonze
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 
 Phone Validator for WooCommerce Helps in validating international telephone numbers on WooCommerce billing address. 
 
@@ -38,11 +38,14 @@ If you have suggestions or a new feature request, feel free to get in touch with
 
 == Frequently Asked Questions ==
 
-= What Do I Need To Use The Plugin =
+= What do I need, to use the plugin? =
 
 1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
 
-= Can i contribute to the codes of this plugin? =
+= I noticed some issues, how can i report it? =
+Oops, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
+
+= Can I contribute to the codes of this plugin? =
 Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/)
 
 == Changelog ==
@@ -63,7 +66,8 @@ Yes you can, check out the [github repo here](https://github.com/Preciousomonze/
 * New: Enable altering list of allowed countries using filter hooks
 * Update: Tested up to WordPress 5.4 🥳🥳
 * Update: Tested up to WooCommerce 4.3 🥳🥳
-
+= 1.2.1 =
+* Update: Adjusted stable tag, Github Actions wahala and struggle, some svn structure clean up.
 
 == Upgrade notice ==
 Translation support.  IKR! finally 😂 (I am sincerely sorry).

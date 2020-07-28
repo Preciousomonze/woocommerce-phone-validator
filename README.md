@@ -11,9 +11,9 @@
 
 **Requires at least:** 4.9
 
-**Tested up to:** 5.2
+**Tested up to:** 5.4
 
-**Stable tag:** 1.2.0
+**Stable tag:** 1.2.1
 
 **License:** GPLv3 or later
 
@@ -50,9 +50,15 @@ If you have suggestions or a new feature request, feel free to get in touch with
 
 ## Frequently Asked Questions
 
-### What Do I Need To Use The Plugin
+### What do I need to use the plugin?
 
 1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
+
+### I noticed some issues, how can i report it?
+    Oops, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
+
+### Can I contribute to the codes of this plugin? 
+Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/)
 
 ## Changelog
 
@@ -68,7 +74,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 * Fix: Js remove element
 * Fix: Compatibility with checkout manager when the checkout fields are altered
 * Fix: Validation loop hole
-### 1.2.0 - 25/07/2020
+### 1.2.0 - 27/07/2020
 * New: Translation support for error messages, ikr! finally 😂 (I am sincerely sorry).
 * New: Enable country code after flag(Operation Separate Dial Code) using filter 'wc_pv_separate_dial_code', set to true ☺️
 * New: Ability to set default country using filter 'wc_pv_set_default_country'
@@ -77,6 +83,8 @@ If you have suggestions or a new feature request, feel free to get in touch with
 * Update: Tested up to WordPress 5.4 🥳🥳
 * Update: Tested up to WooCommerce 4.3 🥳🥳
 * Fix: Error Messages not re-rendering due to logic error(Thanks to Sylvain): https://wordpress.org/support/topic/error-messages-are-not-refreshed-in-case-of-successive-errors-on-checkout-page/
+### 1.2.1 - 28/07/2020
+* Update: Adjusted stable tag, Github Actions wahala and struggle, some svn structure clean up.
 
 ## Screenshots ##
 

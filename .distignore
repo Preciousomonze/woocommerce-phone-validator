@@ -9,6 +9,8 @@
 Gruntfile.js
 package.json
 package-lock.json
-readme.md
+*.sh
+zipper_file.php
+*.md
 *.zip
 .eslintrc.json
