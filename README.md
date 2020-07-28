@@ -13,7 +13,7 @@
 
 **Tested up to:** 5.2
 
-**Stable tag:** 1.1.1
+**Stable tag:** 1.2.0
 
 **License:** GPLv3 or later
 
