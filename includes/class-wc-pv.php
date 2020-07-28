@@ -14,6 +14,7 @@ final class WC_PV{
 
     /**
      * Main instance
+     *
      * @return class object
      */
     public static function instance() {
