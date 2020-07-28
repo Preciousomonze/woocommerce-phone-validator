@@ -7,7 +7,7 @@ Requires PHP: 7.0
 License: GNU General Public License v3.0
 License URI: https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/LICENSE
 Donate link: https://rave.flutterwave.com/pay/preciousomonze
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 
 Phone Validator for WooCommerce Helps in validating international telephone numbers on woocommerce billing address.
 
