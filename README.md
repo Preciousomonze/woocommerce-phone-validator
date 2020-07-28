@@ -35,7 +35,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 
 ### Automatic Installation
 * 	Login to your WordPress Admin area
-* 	Go to "Plugins > Add New" from the left hand menu
+* 	Go to "Plugins > Add New" from the left-hand menu
 * 	In the search box type __Phone Validator for WooCommerce__
 *	From the search result you will see __Phone Validator for WooCommerce__ click on __Install Now__ to install the plugin.
 *	After installation, activate the plugin, that's all 🤗.
