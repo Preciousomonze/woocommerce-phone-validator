@@ -2,13 +2,13 @@ name: Plugin asset/readme update
 on:
   push:
     branches:
-    - master
+    - readme-assets-trunk #this branch only tries to update readme and assets to deploy this actio
     paths:
     - '.wordpress-org/**'
     - 'readme.txt'
 jobs:
-  master:
-    name: Push to master
+  adjust_readme_assets:
+    name: Push to readme-assets-trunk
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
