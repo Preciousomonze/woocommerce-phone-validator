@@ -9,9 +9,11 @@
 
 **Tags:** woocommerce, preciousomonze plugin, phone validator, intlTelInput, woocommerce phone validator
 
-**Requires at least:** 4.9
+**Requires at least:** 5.0
 
 **Tested up to:** 5.4
+
+**Requires PHP:** 5.6
 
 **Stable tag:** 1.2.1
 
@@ -51,14 +53,16 @@ If you have suggestions or a new feature request, feel free to get in touch with
 ## Frequently Asked Questions
 
 ### What do I need to use the plugin?
-
 1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
 
+### Do you have a sample of using your filter hooks to customize the plugin? 👀🥶
+Sure fam! I like to ease things for people. 💆🏽‍♂️ check out the list of hooks and sample usage, [click here](https://gist.github.com/Preciousomonze/03c54e7e0cc0e11ca709832bc757810b).
+
 ### I noticed some issues, how can i report it?
- Oops, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
+ Awwwwn 😊, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues).
 
 ### Can I contribute to the codes of this plugin? 
-Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/)
+Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/).
 
 ## Changelog
 
