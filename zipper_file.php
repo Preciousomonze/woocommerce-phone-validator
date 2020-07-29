@@ -8,11 +8,11 @@
  * Make sure you put this file in the same parent directory as your plugin. Will think of doing an update for that later. 
  * Also try to make your code sniffer ignore this file, e get why :)
  * 
- * @param -plugin_name The Name of your plugin, should be the same with slug
- * @param -ignore_file_path (optional) csv format of paths/files to ignore, if not called, there are default paths to be ignored by the script
- * @param -delete_files_in_zip (optional) csv format of paths/files to delete in the zip(it also searches for matches, so git will ignore github,etc). this was added cause i felt, adding all to ignore wont be as fast as deleting from the zip file, note: it doesn't delete folers for some reason :(
- * @param -offload (optional) if set, the file will only extract the {plugin_name}.zip file to .wordpress-org folder, any value is true
- * @param -offload_dir (optional) if not set, defaults extracting to .wordpress-org folder, only useful if -offload param is set
+ * @param --plugin_name The Name of your plugin, should be the same with slug
+ * @param --ignore_file_path (optional) csv format of paths/files to ignore, if not called, there are default paths to be ignored by the script
+ * @param --delete_files_in_zip (optional) csv format of paths/files to delete in the zip(it also searches for matches, so git will ignore github,etc). this was added cause i felt, adding all to ignore wont be as fast as deleting from the zip file, note: it doesn't delete folers for some reason :(
+ * @param --offload (optional) if set, the file will only extract the {plugin_name}.zip file to .wordpress-org folder, any value is true
+ * @param --offload_dir (optional) if not set, defaults extracting to .wordpress-org folder, only useful if -offload param is set
  * 
  * @author Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
  * @contributors add names here
@@ -33,7 +33,7 @@ $offload_param = ( isset($offload_param['offload']) ? true : null );
 $offload_dir_param = ( isset($offload_dir_param['offload_dir']) ? trim($offload_dir_param['offload_dir']) : null );
 
 // Ref note
-$ref_note = "Please do not forget to star the repo of this program here:";
+$ref_note = "Please do not forget to star the repo of this program here: https://github.com/Preciousomonze/wp-plugin-deploy-helper";
 
 ## Start work!
 
