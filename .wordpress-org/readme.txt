@@ -3,7 +3,7 @@ Contributors: preciousomonze,helgatheviking
 Tags: woocommerce,phone number validator,checkout phone validator,account phone validator,woocommerce validation
 Requires at least: 4.9
 Tested up to: 5.4
-Requires PHP: 7.0
+Requires PHP: 5.6
 License: GNU General Public License v3.0
 License URI: https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/LICENSE
 Donate link: https://rave.flutterwave.com/pay/preciousomonze
@@ -43,7 +43,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
 
 = I noticed some issues, how can i report it? =
-Oops, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
+Awwwwn 😊, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
 
 = Can I contribute to the codes of this plugin? =
 Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/)
