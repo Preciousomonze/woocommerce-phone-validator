@@ -1,0 +1,15 @@
+{
+  "require": {
+    "squizlabs/php_codesniffer": "^3.4.5",
+    "wp-coding-standards/wpcs": "^2.2",
+    "woocommerce/woocommerce-sniffs": "^0.0.9"
+  },
+  "scripts": {
+    "phpcs": [
+      "phpcs . -s -p"
+    ],
+    "phpcbf": [
+      "phpcbf . -p"
+    ]
+  }
+}

@@ -9,8 +9,11 @@
 Gruntfile.js
 package.json
 package-lock.json
+composer.json
+composer.lock
 *.sh
 zipper_file.php
 *.md
 *.zip
 .eslintrc.json
+/.vscode
