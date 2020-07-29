@@ -43,7 +43,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
 
 = I noticed some issues, how can i report it? =
-Oops, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
+Awwwwn 😊, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
 
 = Can I contribute to the codes of this plugin? =
 Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/)
