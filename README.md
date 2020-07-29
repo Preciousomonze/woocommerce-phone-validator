@@ -5,7 +5,7 @@
 **Contributors:** __Helgatheviking 🤾🏻‍♀️__
 
 
-**Donate link:** <a href="https://rave.flutterwave.com/pay/preciousomonze" target="_blank">__Drop something for your boy 🤓 🥳__</a>
+**Donate link:** I do not mind a token for ordering Pancakes 🥞, so you can <a href="https://rave.flutterwave.com/pay/preciousomonze" target="_blank">__Drop something for your boy 🤓 🥳__</a>
 
 **Tags:** woocommerce, preciousomonze plugin, phone validator, intlTelInput, woocommerce phone validator
 
@@ -55,7 +55,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
 
 ### I noticed some issues, how can i report it?
-    Oops, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
+ Oops, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
 
 ### Can I contribute to the codes of this plugin? 
 Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/)
