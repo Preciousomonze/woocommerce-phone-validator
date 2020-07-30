@@ -46,10 +46,10 @@
 		"precss": "pre-cleancss.sh",
 		"cleancss": "npm run precss && cleancss.sh",
 		"makepot": "wpi18n addtextdomain woo-phone-validator; wpi18n makepot --domain-path languages --pot-file woo-phone-validator.pot --type plugin --main-file wc-pv.php --exclude node_modules,.wordpress-org,vendor",
-		"compress-zip": "php zipper_file.php --plugin_name=woo-phone-validator --ignore_file_path=.git,.wordpress-org,node_modules,vendor,.sh --delete_files_in_zip=zipper_file.php,README.md,package-lock.json,composer.lock,.eslintrc.json,.distignore",
+		"compress-zip": "php zipper_file.php --plugin_name=woo-phone-validator --ignore_file_path=.git,.wordpress-org,node_modules,vendor,.sh --delete_files_in_zip=zipper_file.php,README.md,package-lock.json,composer.lock,phpcs.xml,.eslintrc.json,.distignore",
 		"offload-zip": "php zipper_file.php --plugin_name=woo-phone-validator --offload=true",
 		"compress-zip-offload": "npm run compress-zip && npm run offload-zip",
-		"readme-assets-trunk": "npm run cleancss && npm run uglify && npm run lint:js && npm run compress-zip-offload",
+		"readme-assets:trunk": "npm run cleancss && npm run uglify && npm run lint:js && npm run compress-zip-offload",
 		"deploy": "npm run build && npm run compress-zip && npm run offload-zip"
 	}
 }

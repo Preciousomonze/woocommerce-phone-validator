@@ -15,5 +15,6 @@ composer.lock
 zipper_file.php
 *.md
 *.zip
+*.xml
 .eslintrc.json
 /.vscode
