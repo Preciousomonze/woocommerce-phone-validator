@@ -62,6 +62,7 @@ final class WC_PV {
 	}
 
 	/**
+	 * Define constants
 	 *
 	 * @param string $name
 	 * @param mixed  $value
@@ -95,7 +96,6 @@ final class WC_PV {
 	 * Load plugin files
 	 */
 	public function includes() {
-		// if ( $this->is_request( 'admin' ) ) {}
 		if ( $this->is_request( 'frontend' ) ) {
 			add_action(
 				'woocommerce_init',
