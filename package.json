@@ -39,8 +39,8 @@
 		}
 	},
 	"scripts": {
-		"lint:js": "eslint $npm_package_assets_js_js",
-		"build": "npm run uglify && npm run cleancss && npm run makepot",
+		"lint:js": "lint-js.sh",
+		"build": "npm run cleancss && npm run uglify && npm run lint:js && npm run makepot",
 		"preuglify": "pre-uglify.sh",
 		"uglify": "npm run preuglify && uglify.sh",
 		"precss": "pre-cleancss.sh",
@@ -49,7 +49,7 @@
 		"compress-zip": "php zipper_file.php --plugin_name=woo-phone-validator --ignore_file_path=.git,.wordpress-org,node_modules,vendor,.sh --delete_files_in_zip=zipper_file.php,README.md,package-lock.json,composer.lock,.eslintrc.json,.distignore",
 		"offload-zip": "php zipper_file.php --plugin_name=woo-phone-validator --offload=true",
 		"compress-zip-offload": "npm run compress-zip && npm run offload-zip",
-		"readme-assets-trunk": "npm run uglify && npm run cleancss && npm run compress-zip-offload",
+		"readme-assets-trunk": "npm run cleancss && npm run uglify && npm run lint:js && npm run compress-zip-offload",
 		"deploy": "npm run build && npm run compress-zip && npm run offload-zip"
 	}
 }
