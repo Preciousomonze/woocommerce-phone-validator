@@ -4,7 +4,8 @@ on:
     branches:
     - readme-assets-trunk #this branch only tries to update readme and assets to deploy this action
     paths:
-    - '.wordpress-org/**'
+    - '.wordpress-org/assets/**'
+    - '.wordpress-org/readme**'
 jobs:
   adjust_readme_assets:
     name: Push to readme-assets-trunk
