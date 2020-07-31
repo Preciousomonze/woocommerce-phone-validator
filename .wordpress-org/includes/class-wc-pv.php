@@ -11,7 +11,7 @@ final class WC_PV {
 	 * @var WC_PV
 	 * @since 1.0.0
 	 */
-	protected static $_instance = null;
+	protected static $instance = null;
 
 	/**
 	 * Main instance
@@ -19,10 +19,10 @@ final class WC_PV {
 	 * @return class object
 	 */
 	public static function instance() {
-		if ( is_null( self::$_instance ) ) {
-			self::$_instance = new self();
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
 		}
-		return self::$_instance;
+		return self::$instance;
 	}
 
 	/**
@@ -53,7 +53,7 @@ final class WC_PV {
 		$this->define( 'WC_PV_PLUGIN_FILE', plugin_basename( WC_PV_PLUGIN_FILE ) );
 		$this->define( 'WC_PV_ASSETS_PATH', plugins_url( 'assets/', __FILE__ ) );
 
-		if ( trim( strtolower( WC_PV_ENVIRONMENT ) ) == 'production' ) {
+		if ( trim( strtolower( WC_PV_ENVIRONMENT ) ) === 'production' ) {
 			$this->define( 'WC_PV_MIN_SUFFIX', '.min' );
 		} else {
 			$this->define( 'WC_PV_MIN_SUFFIX', '' );
@@ -62,6 +62,7 @@ final class WC_PV {
 	}
 
 	/**
+	 * Define constants
 	 *
 	 * @param string $name
 	 * @param mixed  $value
@@ -92,10 +93,9 @@ final class WC_PV {
 	}
 
 	/**
-	 * load plugin files
+	 * Load plugin files
 	 */
 	public function includes() {
-		// if ($this->is_request('admin')) {}
 		if ( $this->is_request( 'frontend' ) ) {
 			add_action(
 				'woocommerce_init',
@@ -184,7 +184,7 @@ final class WC_PV {
 	 * @return array
 	 */
 	public function get_validation_errors( $translation_type = '__' ) {
-		// "Invalid number", "Invalid country code", "Phone number too short", "Phone number too long", "Invalid number"
+		// Invalid number, Invalid country code, Phone number too short, Phone number too long, Invalid number
 		$errors = array(
 			__( 'Invalid number', 'woo-phone-validator' ),
 			__( 'Invalid country code', 'woo-phone-validator' ),

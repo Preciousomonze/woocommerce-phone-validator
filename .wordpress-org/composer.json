@@ -1,0 +1,40 @@
+{
+  "name": "codexplorer/woo-phone-validator",
+	"description": "Forces validation of WooCommerce billing phone field on checkout and billing address edit page",
+	"type": "wordpress-plugin",
+  "license": "GPL-3.0",
+  "authors": [
+      {
+          "name": "Precious Omonzejele",
+          "email": "me@codexplorer.ninja"
+      }
+  ],
+  "keywords": [
+      "phone-number",
+      "Phone Validator",
+      "WordPress",
+      "WooCommerce",
+      "validation",
+      "international-telephone",
+      "input"
+  ],
+   "support": {
+    "issues": "https://github.com/Preciousomonze/woocommerce-phone-validator/issues",
+    "forum": "https://wordpress.org/support/plugin/woo-phone-validator/",
+    "source": "https://github.com/Preciousomonze/woocommerce-phone-validator"
+  },
+  "require": {
+    "php": ">=5.6",
+    "squizlabs/php_codesniffer": "^3.4.5",
+    "wp-coding-standards/wpcs": "^2.2",
+    "woocommerce/woocommerce-sniffs": "^0.0.9"
+  },
+  "scripts": {
+    "phpcs": [
+      "phpcs . -s -p"
+    ],
+    "phpcbf": [
+      "phpcbf . -p"
+    ]
+  }
+}

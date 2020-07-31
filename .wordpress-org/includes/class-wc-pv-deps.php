@@ -18,10 +18,13 @@ class WC_PV_Dependencies {
 	 * @return Boolean
 	 */
 	public static function woocommerce_active_check() {
+		$wc_boot_file = 'woocommerce/woocommerce.php';
+
 		if ( ! self::$active_plugins ) {
 			self::init();
 		}
-		return in_array( 'woocommerce/woocommerce.php', self::$active_plugins ) || array_key_exists( 'woocommerce/woocommerce.php', self::$active_plugins );
+
+		return ( in_array( $wc_boot_file, self::$active_plugins, true ) || array_key_exists( $wc_boot_file, self::$active_plugins ) );
 	}
 
 	/**

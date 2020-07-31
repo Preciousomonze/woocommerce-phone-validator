@@ -8,11 +8,11 @@
  * Make sure you put this file in the same parent directory as your plugin. Will think of doing an update for that later. 
  * Also try to make your code sniffer ignore this file, e get why :)
  * 
- * @param --plugin_name The Name of your plugin, should be the same with slug
- * @param --ignore_file_path (optional) csv format of paths/files to ignore, if not called, there are default paths to be ignored by the script
- * @param --delete_files_in_zip (optional) csv format of paths/files to delete in the zip(it also searches for matches, so git will ignore github,etc). this was added cause i felt, adding all to ignore wont be as fast as deleting from the zip file, note: it doesn't delete folers for some reason :(
- * @param --offload (optional) if set, the file will only extract the {plugin_name}.zip file to .wordpress-org folder, any value is true
- * @param --offload_dir (optional) if not set, defaults extracting to .wordpress-org folder, only useful if -offload param is set
+ * @param --plugin_name The Name of your plugin, should be the same with your unique slug.
+ * @param --ignore_file_path (optional) csv format of paths/files to ignore, if not called, there are default paths to be ignored by the script.
+ * @param --delete_files_in_zip (optional) csv format of paths/files to delete in the zip(it also searches for matches, so git will ignore github,etc). this was added cause i felt, adding all to ignore wont be as fast as deleting from the zip file, note: it doesn't delete folders for some reason :(
+ * @param --offload (optional) if set, the file will only extract the {plugin_name}.zip file to .wordpress-org folder, any value is true.
+ * @param --offload_dir (optional) if not set, defaults extracting to .wordpress-org folder, only useful if -offload param is set.
  * 
  * @author Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
  * @contributors add names here
@@ -54,6 +54,13 @@ if ( $offload_param ) {
 	if ( $zip->open($plugin_name.'.zip') ) {
 
 		$offload_dir = ( empty($offload_dir_param) ? '.wordpress-org/' : $offload_dir_param );
+
+		// Delete folder and files first.
+		echo "deleting folder:[" . $offload_dir. "] ... 🚦🤓\n";
+		$del = $zip->del_tree($offload_dir);
+		
+		echo ( $del == true ? "\nDone deleting.\n" : "\nCould not delete folder.\n" . "\n" );
+
 		echo "extracting to folder:[" . $offload_dir. "] ... 🚦🤓\n";
 
 		$er =  $zip->extract_subdir_to($offload_dir, $folder_path);
@@ -162,11 +169,37 @@ echo "\n\nIf your zipping and stuff were successful, congratss!!, else, check ar
 /**
  * The ZipArchive::extractTo() method does not offer any parameter to allow extracting files and folders recursively 
  * from another (parent) folder inside the ZIP archive. 
- * With the following method it is possible:
+ * With the following method it is possible
+ * 
  * @author stanislav dot eckert at vizson dot de ¶  <https://www.php.net/manual/en/ziparchive.extractto.php>
  * @contributors Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
  */
-class SubDir_ZipArchive extends ZipArchive{
+class SubDir_ZipArchive extends ZipArchive {
+
+	/**
+	 * Delete a folder with contents.
+	 * 
+	 * Glob function doesn't return the hidden files, therefore scandir can be more useful,
+	 * when trying to delete recursively a tree.
+	 * 
+	 * @author  nbari at dalmp dot com ¶ <https://www.php.net/manual/en/function.rmdir.php>
+	 * @contributors Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
+	 * @return Boolean
+	 */
+	public function del_tree($dir) {
+		if ( !is_dir($dir) ) {
+			echo "Folder[" . $dir . "] doesn't exist 🤡.";
+			return false;
+		}
+
+		$files = array_diff(scandir($dir), array('.','..'));
+
+		 foreach ($files as $file) {
+		   ( is_dir("$dir/$file") ) ? $this->del_tree("$dir/$file") : unlink("$dir/$file");
+		}
+
+		 return rmdir($dir);
+	} 
 
 	/**
 	 * Extract to Sub Directory
