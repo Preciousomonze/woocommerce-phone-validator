@@ -1,4 +1,9 @@
-/* script */
+/**
+ * Frontend Script
+ * 
+ * @author Precious Omonzejele (CodeXplorer) 
+ */
+
 var $ = jQuery;
 // $(document).ready(function(){
 // set phone number properly for intl
@@ -13,14 +18,15 @@ var wcPvDefCountry = ( wcPvJson.defaultCountry == '' ? $( `${wcPvJson.parentPage
 
 let separateDialCode = ( wcPvJson.separateDialCode == 1 ? true : false );
 let onlyCountries    = wcPvJson.onlyCountries.map( value => { return value.toUpperCase(); } );
+// let preferredCountries = wcPvJson.preferredCountries.map( value => { return value.toUpperCase(); } );
 
 var wcPvPhoneIntl = $( '.wc-pv-intl input' ).intlTelInput(
     {
         initialCountry: ( ( wcPvDefCountry == '' || wcPvDefCountry == undefined ) ? 'NG' : wcPvDefCountry ),
         onlyCountries: onlyCountries,
         separateDialCode: separateDialCode,
+        preferredCountries: wcPvJson.preferredCountries,
         utilsScript: wcPvJson.utilsScript,
-        preferredCountry: '',
         //autoHideDialCode: true,
         //nationalMode: false,
         /* geoIpLookup: function(callback) {
@@ -32,7 +38,7 @@ var wcPvPhoneIntl = $( '.wc-pv-intl input' ).intlTelInput(
     }
 );
 
-/*if(wcPvJson.userPhone !== undefined ){
+/*if (wcPvJson.userPhone !== undefined ) {
 	wcPvPhoneIntl.intlTelInput("setNumber").val(wcPvJson.userPhone);
 }*/
 
