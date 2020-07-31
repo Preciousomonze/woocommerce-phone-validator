@@ -7,6 +7,7 @@
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/.wordpress-org/*</exclude-pattern>
+	<exclude-pattern>zipper_file.php</exclude-pattern>
 
     <!-- Rules -->
 	<rule ref="WordPress-Extra">
