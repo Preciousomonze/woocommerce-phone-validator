@@ -41,6 +41,7 @@ Class WC_PV_Checkout{
             'validationErrors'      => wc_pv()->get_validation_errors(),
             'defaultCountry'        => wc_pv()->get_default_country(),
             'onlyCountries'         => wc_pv()->get_allowed_countries(),
+            'preferredCountries'    => wc_pv()->get_preferred_countries(),
             'utilsScript'           => wc_pv()->plugin_url() . '/assets/vendor/js/utils.js',
         );
         //get phone value for international lib use

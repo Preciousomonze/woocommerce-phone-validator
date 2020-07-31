@@ -3,11 +3,11 @@ Contributors: preciousomonze,helgatheviking
 Tags: woocommerce,phone number validator,checkout phone validator,account phone validator,woocommerce validation
 Requires at least: 4.9
 Tested up to: 5.4
-Requires PHP: 7.0
+Requires PHP: 5.6
 License: GNU General Public License v3.0
 License URI: https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/LICENSE
 Donate link: https://rave.flutterwave.com/pay/preciousomonze
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 
 Phone Validator for WooCommerce Helps in validating international telephone numbers on WooCommerce billing address. 
 
@@ -39,35 +39,16 @@ If you have suggestions or a new feature request, feel free to get in touch with
 == Frequently Asked Questions ==
 
 = What do I need, to use the plugin? =
-
 1.	You need to have WooCommerce plugin installed and activated on your WordPress site.
 
+= Do you have a sample of using your filter hooks to customize the plugin? 👀🥶 =
+Sure fam! I like to ease things for people. 💆🏽‍♂️ check out the list of hooks and sample usage, [click here](https://gist.github.com/Preciousomonze/03c54e7e0cc0e11ca709832bc757810b).
+
 = I noticed some issues, how can i report it? =
-Oops, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues)
+Awwwwn 😊, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woocommerce-phone-validator/issues).
 
 = Can I contribute to the codes of this plugin? =
-Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/)
-
-== Changelog ==
-
-= 1.0.0 =
-* lauhcing first version.
-= 1.0.1 =
-* Fix: Proper sanitizing
-= 1.1.0 =
-* Added: Enables validation on Billing Address Page
-= 1.1.1 =
-* Fix: Compatibility with checkout manager when the checkout fields are altered
-= 1.2.0 =
-* New: Translation support for error messages, ikr! finally 😂 (I am sincerely sorry).
-* New: Enable country code after flag(Operation Separate Dial Code) using filter 'wc_pv_separate_dial_code', set to true ☺️
-* New: Ability to set default country using filter 'wc_pv_set_default_country'
-* New: Phone field now uses same list of allowed countries in your WooCommerce settings by default ( Thanks to Helgatheviking 🤾🏻‍♀️)
-* New: Enable altering list of allowed countries using filter hooks
-* Update: Tested up to WordPress 5.4 🥳🥳
-* Update: Tested up to WooCommerce 4.3 🥳🥳
-= 1.2.1 =
-* Update: Adjusted stable tag, Github Actions wahala and struggle, some svn structure clean up.
+Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woocommerce-phone-validator/).
 
 == Upgrade notice ==
 Translation support.  IKR! finally 😂 (I am sincerely sorry).
@@ -79,4 +60,4 @@ New filter hooks to help customize some things, view Changelog for more info.
 
 2. Error shown to user when an invalid phone number is submitted on checkout
 
-3. Error show to user when an invalid phone number is submitted on the billing address edit page
+3. Error shown to user when an invalid phone number is submitted on the billing address edit page

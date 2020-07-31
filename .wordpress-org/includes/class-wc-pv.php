@@ -242,6 +242,17 @@ final class WC_PV{
      */
     public function get_allowed_countries() {
         return apply_filters( 'wc_pv_allowed_countries', array_keys( WC()->countries->get_allowed_countries() ) );
+	}
+
+    /**
+     * Gets Preferred countries
+     *
+     * @since 1.3.0
+     * 
+     * @return array
+     */
+    public function get_preferred_countries() {
+        return apply_filters( 'wc_pv_preferred_countries', array() );
     }
 
     /**
