@@ -4,4 +4,4 @@
 echo "linting... 🚦🤓";
 for f in $npm_package_assets_js_js; do file=${f%.js}; eslint --fix $f; done
 echo "done linting 😘";
-$SHELL;
+#$SHELL;
