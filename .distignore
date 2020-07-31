@@ -12,7 +12,7 @@ package-lock.json
 composer.json
 composer.lock
 *.sh
-zipper_file.php
+wp-plugin-deploy-helper.php
 *.md
 *.zip
 *.xml
