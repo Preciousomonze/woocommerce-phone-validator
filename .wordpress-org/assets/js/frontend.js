@@ -40,7 +40,7 @@ var wcPvPhoneIntl = $( '.wc-pv-intl input' ).intlTelInput(
 var wcPvphoneErrMsg = '';
 
 /**
- * Validates the phone number.
+ * Validates the phone number
  *
  * @param intlTelInput input
  * @return string or bool
