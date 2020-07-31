@@ -100,6 +100,6 @@ Yes you can, check out the [github repo here](https://github.com/Preciousomonze/
 ###
 ![Screenshot 2](https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/assets/images/screenshot-2.PNG)
 
-### 3. Error show to user when an invalid phone number is submitted on the billing address edit page
+### 3. Error shown to user when an invalid phone number is submitted on the billing address edit page
 ###
 ![Screenshot 3](https://github.com/Preciousomonze/woocommerce-phone-validator/blob/master/assets/images/screenshot-3.png)
