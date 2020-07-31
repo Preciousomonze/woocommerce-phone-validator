@@ -32,7 +32,7 @@ var wcPvPhoneIntl = $( '.wc-pv-intl input' ).intlTelInput(
     }
 );
 
-/*if(wcPvJson.userPhone !== undefined ){
+/*if (wcPvJson.userPhone !== undefined ) {
 	wcPvPhoneIntl.intlTelInput("setNumber").val(wcPvJson.userPhone);
 }*/
 

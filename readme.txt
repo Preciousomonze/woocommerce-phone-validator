@@ -81,4 +81,4 @@ New filter hooks to help customize some things, view Changelog for more info.
 
 2. Error shown to user when an invalid phone number is submitted on checkout
 
-3. Error show to user when an invalid phone number is submitted on the billing address edit page
+3. Error shown to user when an invalid phone number is submitted on the billing address edit page
