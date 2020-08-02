@@ -90,6 +90,7 @@ Yes you can, check out the [github repo here](https://github.com/Preciousomonze/
 [See changelog for all versions](https://raw.githubusercontent.com/Preciousomonze/woo-phone-validator/master/changelog.txt).
 
 == Upgrade notice ==
+
 = 1.2.0 =
 Translation support. IKR! finally 😂 (I am sincerely sorry).
 New filter hooks to help customize some things, view Changelog for more info.
