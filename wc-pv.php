@@ -7,7 +7,7 @@
  *
  * @wordpress-plugin
  * Plugin Name: Phone Validator for WooCommerce
- * Plugin URI: https://github.com/Preciousomonze/woocommerce-phone-validator
+ * Plugin URI: https://github.com/Preciousomonze/woo-phone-validator
  * Description: Phone Validator for WooCommerce Helps in validating international telephone numbers on WooCommerc billing address.
  * Author: Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
  * Author URI: https://codexplorer.ninja

@@ -19,9 +19,9 @@
       "input"
   ],
    "support": {
-    "issues": "https://github.com/Preciousomonze/woocommerce-phone-validator/issues",
+    "issues": "https://github.com/Preciousomonze/woo-phone-validator/issues",
     "forum": "https://wordpress.org/support/plugin/woo-phone-validator/",
-    "source": "https://github.com/Preciousomonze/woocommerce-phone-validator"
+    "source": "https://github.com/Preciousomonze/woo-phone-validator"
   },
   "require": {
     "php": ">=5.6",

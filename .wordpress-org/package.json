@@ -8,10 +8,10 @@
 	"license": "GPL-3.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Preciousomonze/woocommerce-phone-validator"
+		"url": "https://github.com/Preciousomonze/woo-phone-validator"
 	},
 	"bugs": {
-		"url": "https://github.com/Preciousomonze/woocommerce-phone-validator/issues"
+		"url": "https://github.com/Preciousomonze/woo-phone-validator/issues"
 	},
 	"author": "Preciousomonze",
 	"dependencies": {
