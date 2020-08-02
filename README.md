@@ -66,18 +66,8 @@ Yes you can, check out the [github repo here](https://github.com/Preciousomonze/
 
 ## Changelog
 
-### 1.0.0 - 12/07/2019
-*   First release 🤗 🥳
-### 1.0.1 - 15/07/2019
-* Fix: Proper sanitizing
-### 1.1.0  - 04/08/2019
-* Fix: Made error message a little bit more descriptive
-* Fix: Removed appended element when not needed
-* Added: Enables validation on Billing Address Page
-### 1.1.1 -  08/08/2019
-* Fix: Js remove element
-* Fix: Compatibility with checkout manager when the checkout fields are altered
-* Fix: Validation loop hole
+### 1.2.1 - 28/07/2020
+* Update: Adjusted stable tag, Github Actions wahala and struggle, some svn structure clean up.
 ### 1.2.0 - 27/07/2020
 * New: Translation support for error messages, ikr! finally 😂 (I am sincerely sorry).
 * New: Enable country code after flag(Operation Separate Dial Code) using filter 'wc_pv_separate_dial_code', set to true ☺️
@@ -87,8 +77,21 @@ Yes you can, check out the [github repo here](https://github.com/Preciousomonze/
 * Update: Tested up to WordPress 5.4 🥳🥳
 * Update: Tested up to WooCommerce 4.3 🥳🥳
 * Fix: Error Messages not re-rendering due to logic error(Thanks to Sylvain): https://wordpress.org/support/topic/error-messages-are-not-refreshed-in-case-of-successive-errors-on-checkout-page/
-### 1.2.1 - 28/07/2020
-* Update: Adjusted stable tag, Github Actions wahala and struggle, some svn structure clean up.
+### 1.1.1 - 08/08/2019
+* Fix: Js remove element
+* Fix: Compatibility with checkout manager when the checkout fields are altered
+* Fix: Validation loop hole
+### 1.1.0 - 04/08/2019
+* Fix: Made error message a little bit more descriptive
+* Fix: Removed appended element when not needed
+* Added: Enables validation on Billing Address Page
+### 1.0.1 - 15/07/2019
+* Fix: Proper sanitizing
+### 1.0.0 - 12/07/2019
+* Launching first release 🤗🥳
+
+
+#### [See changelog for all versions](https://raw.githubusercontent.com/Preciousomonze/woo-phone-validator/master/changelog.txt).
 
 ## Screenshots ##
 

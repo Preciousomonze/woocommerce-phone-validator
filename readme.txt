@@ -50,10 +50,6 @@ Awwwwn 😊, sorry about that, you can submit an issue [by clicking here](https:
 = Can I contribute to the codes of this plugin? =
 Yes you can, check out the [github repo here](https://github.com/Preciousomonze/woo-phone-validator/).
 
-== Upgrade notice ==
-Translation support.  IKR! finally 😂 (I am sincerely sorry).
-New filter hooks to help customize some things, view Changelog for more info.
-
 == Screenshots ==
 
 1. Woocommerce billing phone field includes a flag
@@ -61,3 +57,39 @@ New filter hooks to help customize some things, view Changelog for more info.
 2. Error shown to user when an invalid phone number is submitted on checkout
 
 3. Error shown to user when an invalid phone number is submitted on the billing address edit page
+
+== Changelog ==
+
+= 1.3.0 - 31/07/2020 =
+* Fix: typo for billing_phone in js file.
+* New: Enable Preferred Countries listing using filter.
+
+= 1.2.1 - 28/07/2020 =
+* Update: Adjusted stable tag, Github Actions wahala and struggle, some svn structure clean up.
+
+= 1.2.0 - 27/07/2020 =
+* New: Translation support for error messages, ikr! finally 😂 (I am sincerely sorry).
+* New: Enable country code after flag(Operation Separate Dial Code) using filter 'wc_pv_separate_dial_code', set to true ☺️
+* New: Ability to set default country using filter 'wc_pv_set_default_country'
+* New: Phone field now uses same list of allowed countries in your WooCommerce settings by default ( Thanks to Helgatheviking 🤾🏻‍♀️)
+* New: Enable altering list of allowed countries using filter hooks
+* Update: Tested up to WordPress 5.4 🥳🥳
+* Update: Tested up to WooCommerce 4.3 🥳🥳
+* Fix: Error Messages not re-rendering due to logic error(Thanks to Sylvain): https://wordpress.org/support/topic/error-messages-are-not-refreshed-in-case-of-successive-errors-on-checkout-page/
+
+= 1.1.1 - 08/08/2019 =
+* Fix: Js remove element
+* Fix: Compatibility with checkout manager when the checkout fields are altered
+* Fix: Validation loop hole
+
+= 1.1.0 - 04/08/2019 =
+* Fix: Made error message a little bit more descriptive
+* Fix: Removed appended element when not needed
+* Added: Enables validation on Billing Address Page
+
+[See changelog for all versions](https://raw.githubusercontent.com/Preciousomonze/woo-phone-validator/master/changelog.txt).
+
+== Upgrade notice ==
+= 1.2.0 =
+Translation support. IKR! finally 😂 (I am sincerely sorry).
+New filter hooks to help customize some things, view Changelog for more info.
