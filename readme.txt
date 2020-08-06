@@ -36,6 +36,16 @@ If you have suggestions or a new feature request, feel free to get in touch with
 4.  Activate the plugin. that's all.
 
 
+== Support Note ==
+Support is handled in the [WordPress forums](https://wordpress.org/support/plugin/woo-phone-validator).
+In as much as I try to be available ASAP to respond **(being my way of the ninja 😎🍥)**, please note that support is still limited and does not cover any custom implementation of the plugin.
+Before posting, please read the FAQ. Also, __please verify the problem with other plugins disabled and while using a default theme__.
+
+If you really need a custom implementation or very quick hand on anything(__this will not be free 🤑__), you can message me on twitter, stating the need; **[@preciousomonze](https://twitter.com/preciousomonze)** 
+
+Please report any bugs, errors, warnings, code problems to [Github](https://github.com/Preciousomonze/woo-phone-validator/issues).
+
+
 == Frequently Asked Questions ==
 
 = What do I need, to use the plugin? =
@@ -44,7 +54,7 @@ If you have suggestions or a new feature request, feel free to get in touch with
 = Do you have a sample of using your filter hooks to customize the plugin? 👀🥶 =
 Sure fam! I like to ease things for people. 💆🏽‍♂️ check out the list of hooks and sample usage, [click here](https://gist.github.com/Preciousomonze/03c54e7e0cc0e11ca709832bc757810b).
 
-= I noticed some issues, how can i report it? =
+= I noticed a bug or some code issues, how can i report it? =
 Awwwwn 😊, sorry about that, you can submit an issue [by clicking here](https://github.com/Preciousomonze/woo-phone-validator/issues).
 
 = Can I contribute to the codes of this plugin? =
