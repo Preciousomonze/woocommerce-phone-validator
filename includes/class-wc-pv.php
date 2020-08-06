@@ -1,8 +1,17 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+/**
+ * The Main Plugin class.
+ *
+ * @class   WC_PV
+ * @package Woo Phone Validator/Classes
+ * @since   1.0.0
+ */
 
+defined( 'ABSPATH' ) || exit;
+
+/**
+ * The main heart of the plugin :)
+ */
 final class WC_PV {
 
 	/**
@@ -12,6 +21,14 @@ final class WC_PV {
 	 * @since 1.0.0
 	 */
 	protected static $instance = null;
+
+	/**
+	 * Array of deprecated hook handlers.
+	 *
+	 * @var array of WC_PV_Deprecated_Hooks
+	 * @since 2.0.0
+	 */
+	public $deprecated_hook_handlers = array();
 
 	/**
 	 * Main instance
@@ -26,23 +43,45 @@ final class WC_PV {
 	}
 
 	/**
+	 * Cloning is forbidden.
+	 *
+	 * @since 2.0.0
+	 */
+	public function __clone() {
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cloning this object is forbidden. 🤡', 'woo-phone-validator' ), '2.0.0' );
+	}
+
+	/**
+	 * Unserializing instances of this class is forbidden.
+	 *
+	 * @since 2.0.0
+	 */
+	public function __wakeup() {
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Unserializing instances of this class is forbidden. 🤡', 'woo-phone-validator' ), '2.0.0' );
+	}
+
+	/**
 	 * Class constructor
 	 */
 	public function __construct() {
-		if ( WC_PV_Dependencies::is_woocommerce_active() ) {
-			// Define the constants.
-			$this->define_constants();
-
-			// Include relevant files.
-			$this->includes();
-
-			// Always load translation files.
-			add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-
-			do_action( 'wc_pv_init' );
-		} else {
+		if ( ! WC_PV_Dependencies::is_woocommerce_active() ) {
 			add_action( 'admin_notices', array( $this, 'admin_notices' ), 15 );
+			return;
 		}
+		// Define the constants.
+		$this->define_constants();
+
+		// Include relevant files.
+		$this->includes();
+
+		// Always load translation files.
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+
+		// Prepare handling of deprecated action and filters for future use :).
+		$this->deprecated_hook_handlers['actions'] = new WC_PV_Deprecated_Action_Hooks();
+		$this->deprecated_hook_handlers['filters'] = new WC_PV_Deprecated_Filter_Hooks();
+
+		do_action( 'wc_pv_init' );
 	}
 
 	/**
@@ -99,13 +138,18 @@ final class WC_PV {
 		if ( $this->is_request( 'frontend' ) ) {
 			add_action(
 				'woocommerce_init',
-				function() {
+				function() {		
 					include_once WC_PV_ABSPATH . 'public/class-woocommerce-checkout.php';
 					include_once WC_PV_ABSPATH . 'public/class-woocommerce-account.php';
 				},
 				20
 			);
 		}
+
+		// Support deprecated filter hooks and actions.
+		include_once WC_PV_ABSPATH . 'includes/compatibility/class-wc-pv-deprecated-action-hooks.php';
+		include_once WC_PV_ABSPATH . 'includes/compatibility/class-wc-pv-deprecated-filter-hooks.php';
+		
 		// if ($this->is_request('ajax')) {}
 	}
 
@@ -140,6 +184,8 @@ final class WC_PV {
 		echo '</p></div>';
 
 	}
+
+	#####################################################################
 
 	/**
 	 * Checks if we're currently on the checkout page
