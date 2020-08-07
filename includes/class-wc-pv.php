@@ -138,7 +138,7 @@ final class WC_PV {
 		if ( $this->is_request( 'frontend' ) ) {
 			add_action(
 				'woocommerce_init',
-				function() {		
+				function() {
 					include_once WC_PV_ABSPATH . 'public/class-woocommerce-checkout.php';
 					include_once WC_PV_ABSPATH . 'public/class-woocommerce-account.php';
 				},
@@ -149,7 +149,7 @@ final class WC_PV {
 		// Support deprecated filter hooks and actions.
 		include_once WC_PV_ABSPATH . 'includes/compatibility/class-wc-pv-deprecated-action-hooks.php';
 		include_once WC_PV_ABSPATH . 'includes/compatibility/class-wc-pv-deprecated-filter-hooks.php';
-		
+
 		// if ($this->is_request('ajax')) {}
 	}
 
@@ -185,7 +185,6 @@ final class WC_PV {
 
 	}
 
-	#####################################################################
 
 	/**
 	 * Checks if we're currently on the checkout page
@@ -220,7 +219,7 @@ final class WC_PV {
 
 		return false;
 	}
-	
+
 	/**
 	 * For backend validation of phone
 	 *
@@ -236,7 +235,7 @@ final class WC_PV {
 		$bil_email             = isset( $_POST['billing_email'] ) ? sanitize_email( $_POST['billing_email'] ) : '';
 		$bil_phone             = isset( $_POST['billing_phone'] ) ? sanitize_text_field( $_POST['billing_phone'] ) : '';
 
-		//if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// from account side.
+		// if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// from account side.
 		if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( ! empty( $phone_valid_err_field ) ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
 			if ( ! is_numeric( str_replace( ' ', '', $bil_phone ) ) ) { // WC will handle this, so no need to report errors
 				return true;

@@ -59,13 +59,13 @@ class WC_PV_Engine {
 	 * Construcdur :)
 	 */
 	public function __construct() {
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_css' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_css' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js' ) );
 
-        // Woocommerce things
+		// Woocommerce things
 		add_filter( 'woocommerce_billing_fields', array( $this, 'add_billing_fields' ), 20, 1 );
 	}
-	
+
 	/**
 	 * Enqueues all necessary scripts
 	 */
@@ -82,7 +82,7 @@ class WC_PV_Engine {
 		// Localise script,
 		global $wc_pv_woo_custom_field_meta;
 		$wc_pv_json = array(
-            'isRTL'                 => is_rtl(),
+			'isRTL'                 => is_rtl(),
 			'phoneValidatorName'    => $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'],
 			'phoneValidatorErrName' => $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'],
 			'phoneErrorTitle'       => _x( '<strong>Phone validation error:</strong> ', 'starting error phrase', 'woo-phone-validator' ),
@@ -90,8 +90,8 @@ class WC_PV_Engine {
 			'separateDialCode'      => wc_pv()->separate_dial_code(),
 			'validationErrors'      => wc_pv()->get_validation_errors(),
 			'defaultCountry'        => wc_pv()->get_default_country(),
-            'onlyCountries'         => wc_pv()->get_allowed_countries(),
-            'preferredCountries'    => wc_pv()->get_preferred_countries(),
+			'onlyCountries'         => wc_pv()->get_allowed_countries(),
+			'preferredCountries'    => wc_pv()->get_preferred_countries(),
 			'utilsScript'           => wc_pv()->plugin_url() . '/assets/vendor/js/utils.js',
 		);
 		// get phone value for international lib use
@@ -112,7 +112,7 @@ class WC_PV_Engine {
 		wp_localize_script( 'wc_pv_js-script', 'wcPvJson', $wc_pv_json );
 		wp_enqueue_script( 'wc_pv_intl-phones-lib' );
 		wp_enqueue_script( 'wc_pv_js-script' );
-    }
+	}
 
 	/**
 	 * Enqueues all necessary css.

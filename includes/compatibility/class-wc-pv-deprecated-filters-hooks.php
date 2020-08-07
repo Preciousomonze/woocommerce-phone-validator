@@ -24,7 +24,7 @@ class WC_PV_Deprecated_Filter_Hooks extends WC_Deprecated_Filter_Hooks {
 	/**
 	 * Array of versions on each hook has been deprecated.
 	 * Format of 'old_hook' => 'version_number_of_deprecation'
-     * 
+	 *
 	 * @var array
 	 */
 	protected $deprecated_version = array();

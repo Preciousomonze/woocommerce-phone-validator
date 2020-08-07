@@ -15,7 +15,7 @@ class WC_PV_Deprecated_Action_Hooks extends WC_Deprecated_Action_Hooks {
 
 	/**
 	 * Array of deprecated hooks we need to handle.
-     * Format of 'new' => 'old'.
+	 * Format of 'new' => 'old'.
 	 *
 	 * @var array
 	 */
@@ -24,7 +24,7 @@ class WC_PV_Deprecated_Action_Hooks extends WC_Deprecated_Action_Hooks {
 	/**
 	 * Array of versions on each hook has been deprecated.
 	 * Format of 'old_hook' => 'version_number_of_deprecation'
-     * 
+	 *
 	 * @var array
 	 */
 	protected $deprecated_version = array();
