@@ -1,7 +1,7 @@
 /**
  * Frontend Script
- * 
- * @author Precious Omonzejele (CodeXplorer) 
+ *
+ * @author Precious Omonzejele (CodeXplorer)
  */
 
 var $ = jQuery;
@@ -98,10 +98,10 @@ function wcPvValidateProcess( parentEl ) {
         $( `${wcPvJson.parentPage} input#billing_phone` ).val( phoneNumber ); // Set the real value so it submits it along.
 
         if ( $( '#wc-ls-phone-valid-field' ).length == 0 ) { // Append.
-            parentEl.append( ` <input id = "wc-ls-phone-valid-field" value = "${phoneNumber}" type = "hidden" name = "${wcPvJson.phoneValidatorName}" > ` );
+            parentEl.append( `<input id = "wc-ls-phone-valid-field" value = "${phoneNumber}" type = "hidden" name = "${wcPvJson.phoneValidatorName}" > ` );
         }
     } else {
-        parentEl.append( ` <input id = "wc-ls-phone-valid-field-err-msg" value = "${wcPvphoneErrMsg}" type = "hidden" name = "${wcPvJson.phoneValidatorErrName}" > ` );
+        parentEl.append( `<input id = "wc-ls-phone-valid-field-err-msg" value = "${wcPvphoneErrMsg}" type = "hidden" name = "${wcPvJson.phoneValidatorErrName}" > ` );
         $( '#wc-ls-phone-valid-field' ).remove();
     }
 }
