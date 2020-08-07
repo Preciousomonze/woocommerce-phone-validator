@@ -73,4 +73,5 @@ class WC_PV_Account {
 		wc_pv()->billing_phone_validation();
 	}
 }
-new WC_PV_Account();
+
+WC_PV_Account::instance();

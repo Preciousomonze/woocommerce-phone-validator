@@ -131,3 +131,5 @@ class WC_PV_Engine {
 	}
 
 }
+
+WC_PV_Engine::instance();

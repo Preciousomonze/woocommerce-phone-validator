@@ -72,4 +72,5 @@ class WC_PV_Checkout {
 		wc_pv()->billing_phone_validation();
 	}
 }
-new WC_PV_Checkout();
+
+WC_PV_Checkout::instance();

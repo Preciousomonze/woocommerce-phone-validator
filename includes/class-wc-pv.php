@@ -180,7 +180,7 @@ final class WC_PV {
 	 */
 	public function admin_notices() {
 		echo '<div class="error"><p>';
-		_e( '<strong>Woocommerce Phone Validator</strong> plugin requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> plugin to be active!', 'woo-phone-validator' );
+		$note = __( '<strong>Phone Validator for WooCommerce</strong> plugin requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> plugin to be active!', 'woo-phone-validator' );
 		echo '</p></div>';
 
 	}
