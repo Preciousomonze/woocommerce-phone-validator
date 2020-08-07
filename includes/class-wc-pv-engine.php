@@ -82,7 +82,7 @@ class WC_PV_Engine {
 		// Localise script,
 		global $wc_pv_woo_custom_field_meta;
 		$wc_pv_json = array(
-			'isRTL'                 => is_rtl(),
+			'isRTL'                 => ( is_rtl() ? 'yes' : 'no' ),
 			'phoneValidatorName'    => $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'],
 			'phoneValidatorErrName' => $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'],
 			'phoneErrorTitle'       => _x( '<strong>Phone validation error:</strong> ', 'starting error phrase', 'woo-phone-validator' ),
@@ -118,8 +118,8 @@ class WC_PV_Engine {
 	 * Enqueues all necessary css.
 	 */
 	public function enqueue_css() {
-		wp_enqueue_style( 'wc_pv_intl-phones-lib-css', wc_pv()->plugin_url() . '/assets/vendor/css/intlTelInput.min.css' );
-		wp_enqueue_style( 'wc_pv_css-style', wc_pv()->plugin_url() . '/assets/css/frontend' . WC_PV_MIN_SUFFIX . '.css', array(), WC_PV_PLUGIN_VERSION );
+		wp_enqueue_style( 'wc_pv_intl-phones-lib-css', wc_pv()->plugin_url() . '/assets/vendor/css/intlTelInput.min.css', array(), WC_PV_PLUGIN_VERSION );
+		wp_enqueue_style( 'wc_pv_css-style', wc_pv()->plugin_url() . '/assets/css/frontend' . WC_PV_MIN_SUFFIX . '.css', array('wc_pv_intl-phones-lib-css'), WC_PV_PLUGIN_VERSION );
 	}
 
 	/**
