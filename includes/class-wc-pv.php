@@ -149,8 +149,6 @@ final class WC_PV {
 		// Support deprecated filter hooks and actions.
 		include_once WC_PV_ABSPATH . 'includes/compatibility/class-wc-pv-deprecated-action-hooks.php';
 		include_once WC_PV_ABSPATH . 'includes/compatibility/class-wc-pv-deprecated-filter-hooks.php';
-
-		// if ($this->is_request('ajax')) {}
 	}
 
 	/**
@@ -179,10 +177,8 @@ final class WC_PV {
 	 * Display admin notice
 	 */
 	public function admin_notices() {
-		echo '<div class="error"><p>';
 		$note = __( '<strong>Phone Validator for WooCommerce</strong> plugin requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> plugin to be active!', 'woo-phone-validator' );
-		echo '</p></div>';
-
+		echo '<div class="error"><p>' . $note . '</p></div>';
 	}
 
 
