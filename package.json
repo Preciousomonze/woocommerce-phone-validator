@@ -45,7 +45,7 @@
 		"uglify": "uglify.sh",
 		"precss": "pre-cleancss.sh",
 		"cleancss": "npm run precss && cleancss.sh",
-		"php-beautify": "vendor/bin/phpcbf --standard=WooCommerce-Core --extensions=php --ignore=*/vendor/*,*/.wordpress-org/*,*/assets/* ./",
+		"php-beautify": "composer phpcbf",
 		"makepot": "wpi18n addtextdomain woo-phone-validator; wpi18n makepot --domain-path languages --pot-file woo-phone-validator.pot --type plugin --main-file wc-pv.php --exclude node_modules,.wordpress-org,vendor",
 		"compress-zip": "compress-zip-offload.sh -c",
 		"offload-zip": "compress-zip-offload.sh -o",
