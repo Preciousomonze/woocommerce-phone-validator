@@ -70,14 +70,18 @@ class WC_PV_Engine {
 	 * Enqueues all necessary scripts
 	 */
 	public function enqueue_js() {
-		wp_register_script( 'wc_pv_intl-phones-lib', wc_pv()->plugin_url() . '/assets/vendor/js/intlTelInput-jquery.min.js', array( 'jquery' ), WC_PV_PLUGIN_VERSION, true );
+		$intl_tel_js_file = '/vendor/js/intlTelInput-jquery.min.js';
+		$frontend_js_file = '/js/frontend' . WC_PV_MIN_SUFFIX . '.js';
+
+		wp_register_script( 'wc_pv_intl-phones-lib', $intl_tel_js_file, array( 'jquery' ), wc_pv()->get_asset_version_number( $intl_tel_js_file ), true );
 		$script_dep = array( 'wc_pv_intl-phones-lib' );
 
 		if ( is_checkout() ) { // For checkout, to load properly
 			$script_dep[] = 'wc-checkout';
 		}
 
-		wp_register_script( 'wc_pv_js-script', wc_pv()->plugin_url() . '/assets/js/frontend' . WC_PV_MIN_SUFFIX . '.js', $script_dep, WC_PV_PLUGIN_VERSION, true );
+
+		wp_register_script( 'wc_pv_js-script', $frontend_js_file, $script_dep, wc_pv()->get_asset_version_number( $frontend_js_file ), true );
 
 		// Localise script,
 		global $wc_pv_woo_custom_field_meta;

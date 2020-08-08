@@ -315,7 +315,6 @@ final class WC_PV {
 	 * Gets allowed countries
 	 *
 	 * @since 1.2.0
-	 *
 	 * @return array
 	 */
 	public function get_allowed_countries() {
@@ -326,7 +325,6 @@ final class WC_PV {
 	 * Gets Preferred countries
 	 *
 	 * @since 1.3.0
-	 *
 	 * @return array
 	 */
 	public function get_preferred_countries() {
@@ -340,6 +338,21 @@ final class WC_PV {
 	 */
 	public function get_current_user_phone() {
 		return get_user_meta( get_current_user_id(), 'billing_phone', true );
+	}
+
+	/**
+	 * Gets asset version Number.
+	 * 
+	 * If in debug mode, uses filemtime to avoid 
+	 * caching wahala
+	 * 
+	 * @param string $file The asset file
+	 * @since 2.0.0
+	 * @return mixed
+	 */
+	public function get_asset_version_number( $file ) {
+		$f = wc_pv()->plugin_url() . '/assets/' . ltrim( $file, '/' );
+		return ( trim( strtolower( WC_PV_ENVIRONMENT ) ) === 'production' ? WC_PV_PLUGIN_VERSION : filemtime( $f ) );
 	}
 
 }
