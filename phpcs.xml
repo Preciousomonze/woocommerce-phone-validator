@@ -18,6 +18,7 @@
 		<exclude name="PEAR.Functions.FunctionCallSignature" />
 		<exclude name="Squiz.Commenting" />
 		<exclude name="Squiz.PHP.DisallowSizeFunctionsInLoops.Found" />
+		<exclude name="Squiz.PHP.CommentedOutCode"/>
 		<exclude name="Squiz.WhiteSpace" />
 		<exclude name="WordPress.Arrays" />
 		<exclude name="WordPress.Files.FileName" />
