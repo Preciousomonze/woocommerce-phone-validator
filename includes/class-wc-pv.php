@@ -178,7 +178,8 @@ final class WC_PV {
 	 */
 	public function admin_notices() {
 		$note = __( '<strong>Phone Validator for WooCommerce</strong> plugin requires <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">WooCommerce</a> plugin to be active!', 'woo-phone-validator' );
-		echo '<div class="error"><p>' . $note . '</p></div>';
+		// phpcs:ignore
+		printf( '<div class="error"><p>%s</p></div>', $note );
 	}
 
 
@@ -223,13 +224,18 @@ final class WC_PV {
 	 */
 	public function billing_phone_validation() {
 		global $wc_pv_woo_custom_field_meta;
+		// Nonce
+		$nonce_action = $wc_pv_woo_custom_field_meta['validation_nonce_action'];
+		$nonce_field = $wc_pv_woo_custom_field_meta['validation_nonce_field'];
 
+		// Custom fields
 		$phone_name            = $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'];
 		$phone_err_name        = $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'];
-		$phone_valid_field     = isset( $_POST[ $phone_name ] ) ? strtolower( sanitize_text_field( $_POST[ $phone_name ] ) ) : '';
-		$phone_valid_err_field = isset( $_POST[ $phone_err_name ] ) ? trim( sanitize_text_field( $_POST[ $phone_err_name ] ) ) : '';
-		$bil_email             = isset( $_POST['billing_email'] ) ? sanitize_email( $_POST['billing_email'] ) : '';
-		$bil_phone             = isset( $_POST['billing_phone'] ) ? sanitize_text_field( $_POST['billing_phone'] ) : '';
+		$phone_valid_field     = strtolower( wc_pv()->sanitize_field( $phone_name, 'text', $nonce_action, $nonce_field ) );
+		$phone_valid_err_field = trim( wc_pv()->sanitize_field( $phone_err_name, 'text', $nonce_action, $nonce_field ) );
+		$bil_email             = wc_pv()->sanitize_field( 'billing_email', 'email', $nonce_action, $nonce_field );
+		$bil_phone             = wc_pv()->sanitize_field( 'billing_phone', 'text', $nonce_action, $nonce_field );
+
 
 		// if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// from account side.
 		if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( ! empty( $phone_valid_err_field ) ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
@@ -245,11 +251,40 @@ final class WC_PV {
 	}
 
 	/**
+	 * Helps filter fields with wp_nonce
+	 * 
+	 * @param string $name Field name
+	 * @param string $type text,field(for now)
+	 * @param string $nonce_action
+	 * @param string $nonce_field
+	 * 
+	 * @since 2.0.0
+	 * @return string
+	 */
+	public function sanitize_field( $name, $type, $nonce_action, $nonce_field ) {
+		$field_pass = ( ! isset( $_POST[$name] ) || ! wp_verify_nonce( $_POST[$nonce_field], $nonce_action ) ? false : true );
+
+		if ( ! $field_pass ) {
+			return '';
+		}
+		$field = '';
+		switch ( strtolower( trim( $type) ) ) {
+			case 'email':
+				$field = sanitize_email( $_POST[$name] );
+			break;
+			default:
+				$field = sanitize_text_field( $_POST[$name] );
+		}
+		return $field;
+	}
+
+	/**
 	 * Validation error list
 	 *
 	 * Must follow the phone validation error sequence
 	 *
 	 * @param string $translation_type (optional) this determines some stuff, invalid for now, so not needed
+	 * @since 1.2.0
 	 * @return array
 	 */
 	public function get_validation_errors( $translation_type = '__' ) {

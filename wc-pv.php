@@ -48,6 +48,8 @@ define( 'WC_PV_ENVIRONMENT', $_wc_pv_env );
 $wc_pv_woo_custom_field_meta = array(
 	'billing_hidden_phone_field'     => '_wc_pv_phone_validator',
 	'billing_hidden_phone_err_field' => '_wc_pv_phone_validator_err',
+	'validation_nonce_action' => 'phone_validate',
+	'validation_nonce_field' => 'wc_pv_validate_nonce'
 );
 // include dependencies file
 if ( ! class_exists( 'WC_PV_Dependencies' ) ) {
