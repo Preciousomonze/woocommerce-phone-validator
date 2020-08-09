@@ -70,18 +70,17 @@ class WC_PV_Engine {
 	 * Enqueues all necessary scripts
 	 */
 	public function enqueue_js() {
-		$intl_tel_js_file = '/vendor/js/intlTelInput-jquery.min.js';
-		$frontend_js_file = '/js/frontend' . WC_PV_MIN_SUFFIX . '.js';
+		$intl_tel_js_file = '/assets/vendor/js/intlTelInput-jquery.min.js';
+		$frontend_js_file = '/assets/js/frontend' . WC_PV_MIN_SUFFIX . '.js';
 
-		wp_register_script( 'wc_pv_intl-phones-lib', $intl_tel_js_file, array( 'jquery' ), wc_pv()->get_asset_version_number( $intl_tel_js_file ), true );
+		wp_register_script( 'wc_pv_intl-phones-lib', wc_pv()->plugin_url() . $intl_tel_js_file, array( 'jquery' ), wc_pv()->get_asset_version_number( $intl_tel_js_file ), true );
 		$script_dep = array( 'wc_pv_intl-phones-lib' );
 
 		if ( is_checkout() ) { // For checkout, to load properly
 			$script_dep[] = 'wc-checkout';
 		}
 
-
-		wp_register_script( 'wc_pv_js-script', $frontend_js_file, $script_dep, wc_pv()->get_asset_version_number( $frontend_js_file ), true );
+		wp_register_script( 'wc_pv_js-script', wc_pv()->plugin_url() . $frontend_js_file, $script_dep, wc_pv()->get_asset_version_number( $frontend_js_file ), true );
 
 		// Localise script,
 		global $wc_pv_woo_custom_field_meta;
@@ -124,8 +123,11 @@ class WC_PV_Engine {
 	 * Enqueues all necessary css.
 	 */
 	public function enqueue_css() {
-		wp_enqueue_style( 'wc_pv_intl-phones-lib-css', wc_pv()->plugin_url() . '/assets/vendor/css/intlTelInput.min.css', array(), WC_PV_PLUGIN_VERSION );
-		wp_enqueue_style( 'wc_pv_css-style', wc_pv()->plugin_url() . '/assets/css/frontend' . WC_PV_MIN_SUFFIX . '.css', array('wc_pv_intl-phones-lib-css'), WC_PV_PLUGIN_VERSION );
+		$intl_tel_css_file = '/assets/vendor/css/intlTelInput.min.css';
+		$frontend_css_file = '/assets/css/frontend' . WC_PV_MIN_SUFFIX . '.css';
+
+		wp_enqueue_style( 'wc_pv_intl-phones-lib-css', wc_pv()->plugin_url() . $intl_tel_css_file, array(), wc_pv()->get_asset_version_number( $intl_tel_css_file ) );
+		wp_enqueue_style( 'wc_pv_css-style', wc_pv()->plugin_url() . $frontend_css_file, array('wc_pv_intl-phones-lib-css'), wc_pv()->get_asset_version_number( $frontend_css_file ) );
 	}
 
 	/**

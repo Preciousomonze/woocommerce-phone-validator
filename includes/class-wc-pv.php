@@ -81,7 +81,7 @@ final class WC_PV {
 		$this->deprecated_hook_handlers['actions'] = new WC_PV_Deprecated_Action_Hooks();
 		$this->deprecated_hook_handlers['filters'] = new WC_PV_Deprecated_Filter_Hooks();
 
-		do_action( 'wc_pv_init' );
+		do_action( 'wc_pv_loaded' );
 	}
 
 	/**
@@ -136,14 +136,9 @@ final class WC_PV {
 	 */
 	public function includes() {
 		if ( $this->is_request( 'frontend' ) ) {
-			add_action(
-				'woocommerce_init',
-				function() {
-					include_once WC_PV_ABSPATH . 'public/class-woocommerce-checkout.php';
-					include_once WC_PV_ABSPATH . 'public/class-woocommerce-account.php';
-				},
-				20
-			);
+			include_once WC_PV_ABSPATH . 'includes/class-wc-pv-engine.php';
+			include_once WC_PV_ABSPATH . 'public/class-wc-pv-checkout.php';
+			include_once WC_PV_ABSPATH . 'public/class-wc-pv-account.php';
 		}
 
 		// Support deprecated filter hooks and actions.
@@ -262,7 +257,9 @@ final class WC_PV {
 	 * @return string
 	 */
 	public function sanitize_field( $name, $type, $nonce_action, $nonce_field ) {
-		$field_pass = ( ! isset( $_POST[$name] ) || ! wp_verify_nonce( $_POST[$nonce_field], $nonce_action ) ? false : true );
+		// phpcs:ignore
+		$nonce_field = ( isset( $_POST[$nonce_field] ) ? sanitize_text_field( $_POST[$nonce_field] ) : '' );
+		$field_pass  = ( ! isset( $_POST[$name] ) || ! wp_verify_nonce( sanitize_text_field( $nonce_field ), $nonce_action ) ? false : true );
 
 		if ( ! $field_pass ) {
 			return '';
@@ -271,7 +268,7 @@ final class WC_PV {
 		switch ( strtolower( trim( $type) ) ) {
 			case 'email':
 				$field = sanitize_email( $_POST[$name] );
-			break;
+				break;
 			default:
 				$field = sanitize_text_field( $_POST[$name] );
 		}
@@ -386,7 +383,7 @@ final class WC_PV {
 	 * @return mixed
 	 */
 	public function get_asset_version_number( $file ) {
-		$f = wc_pv()->plugin_url() . '/assets/' . ltrim( $file, '/' );
+		$f = WC_PV_ABSPATH . ltrim( $file, '/' );
 		return ( trim( strtolower( WC_PV_ENVIRONMENT ) ) === 'production' ? WC_PV_PLUGIN_VERSION : filemtime( $f ) );
 	}
 
