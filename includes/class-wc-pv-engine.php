@@ -87,6 +87,8 @@ class WC_PV_Engine {
 		global $wc_pv_woo_custom_field_meta;
 		$wc_pv_json = array(
 			'isRTL'                 => ( is_rtl() ? 'yes' : 'no' ),
+			'nonceField'			=> wp_nonce_field( $wc_pv_woo_custom_field_meta['validation_nonce_action'], $wc_pv_woo_custom_field_meta['validation_nonce_field'] ),
+			'nonceFieldName'		=> $wc_pv_woo_custom_field_meta['validation_nonce_action'],
 			'phoneValidatorName'    => $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'],
 			'phoneValidatorErrName' => $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'],
 			'phoneErrorTitle'       => _x( '<strong>Phone validation error:</strong> ', 'starting error phrase', 'woo-phone-validator' ),

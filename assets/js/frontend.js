@@ -104,6 +104,9 @@ function wcPvValidateProcess( parentEl ) {
         parentEl.append( `<input id = "wc-ls-phone-valid-field-err-msg" value = "${wcPvphoneErrMsg}" type = "hidden" name = "${wcPvJson.phoneValidatorErrName}" > ` );
         $( '#wc-ls-phone-valid-field' ).remove();
     }
+    // Remove and readd to avoid duplicates
+    $( `${wcPvJson.parentPage} #${wcPvJson.nonceFieldName}` ).remove();
+    parentEl.append( wcPvJson.nonceField );
 }
 
 // For woocommerce checkout.
