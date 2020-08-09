@@ -11,7 +11,7 @@
  * Description: Phone Validator for WooCommerce Helps in validating international telephone numbers on WooCommerc billing address.
  * Author: Precious Omonzejele (CodeXplorer 🤾🏽‍♂️🥞🦜🤡)
  * Author URI: https://codexplorer.ninja
- * Version: 1.3.0
+ * Version: 2.0.0
  * Requires at least: 5.0
  * Tested up to: 5.4
  * WC requires at least: 3.0
@@ -21,14 +21,13 @@
  * Domain Path: /languages
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-// make sure you update the version values when necessary
+defined( 'ABSPATH' ) || exit;
+
+// Make sure you update the version values when necessary.
 define( 'WC_PV_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WC_PV_PLUGIN_FILE', __FILE__ );
 define( 'WC_PV_TEXT_DOMAIN', 'woo-phone-validator' );
-define( 'WC_PV_PLUGIN_VERSION', '1.3.0' );
+define( 'WC_PV_PLUGIN_VERSION', '2.0.0' );
 
 /**
  * Environment, should be either test or production
@@ -51,15 +50,31 @@ $wc_pv_woo_custom_field_meta = array(
 	'validation_nonce_action' => 'phone_validate',
 	'validation_nonce_field' => 'wc_pv_validate_nonce'
 );
-// include dependencies file
-if ( ! class_exists( 'WC_PV_Dependencies' ) ) {
-	include_once dirname( __FILE__ ) . '/includes/class-wc-pv-deps.php';
+
+/**
+ * Initiate Phone Validator Chakra.
+ */
+function wc_pv_initiate() {
+	// Include dependencies file
+	if ( ! class_exists( 'WC_PV_Dependencies' ) ) {
+		include_once dirname( __FILE__ ) . '/includes/class-wc-pv-deps.php';
+	}
+	// Include the main class.
+	if ( ! class_exists( 'WC_PV' ) ) {
+		include_once dirname( __FILE__ ) . '/includes/class-wc-pv.php';
+	}
+
+	if ( ! function_exists( 'wc_pv' ) ) {
+
+		/**
+		 * Run instance
+		 */
+		function wc_pv() {
+			return WC_PV::instance();
+		}
+
+		$GLOBALS['wc_pv'] = wc_pv();
+	}
 }
-// Include the main class.
-if ( ! class_exists( 'WC_PV' ) ) {
-	include_once dirname( __FILE__ ) . '/includes/class-wc-pv.php';
-}
-function wc_pv() {
-	return WC_PV::instance();
-}
-$GLOBALS['wc_pv'] = wc_pv();
+
+add_action( 'plugins_loaded', 'wc_pv_initiate' );
