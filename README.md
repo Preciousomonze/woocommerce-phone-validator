@@ -89,6 +89,9 @@ Yes you can, check out the [github repo here](https://github.com/Preciousomonze/
 
 ## Changelog
 
+### 1.3.0 - 31/07/2020
+* Fix: typo for billing_phone in js file.
+* New: Enable Preferred Countries listing using filter.
 ### 1.2.1 - 28/07/2020
 * Update: Adjusted stable tag, Github Actions wahala and struggle, some svn structure clean up.
 ### 1.2.0 - 27/07/2020
