@@ -276,6 +276,15 @@ final class WC_PV {
 	}
 
 	/**
+	 * Get logged in user billing phone
+	 *
+	 * @return string
+	 */
+	public function get_current_user_phone() {
+		return get_user_meta( get_current_user_id(), 'billing_phone', true );
+	}
+
+	/**
 	 * Validation error list
 	 *
 	 * Must follow the phone validation error sequence
@@ -293,7 +302,8 @@ final class WC_PV {
 			__( 'Phone number too long', 'woo-phone-validator' ),
 			__( 'Invalid number', 'woo-phone-validator' ),
 		);
-		return $errors;
+		/** @since 2.0.0 */
+		return apply_filters( 'wc_pv_validation_error_list', $errors );
 	}
 
 	/**
@@ -346,11 +356,23 @@ final class WC_PV {
 	/**
 	 * Gets allowed countries
 	 *
+	 * Uses Allowed countries set in WooCommerce store
+	 * 
 	 * @since 1.2.0
 	 * @return array
 	 */
 	public function get_allowed_countries() {
 		return apply_filters( 'wc_pv_allowed_countries', array_keys( WC()->countries->get_allowed_countries() ) );
+	}
+
+	/**
+	 * Gets excluded countries
+	 *
+	 * @since 2.0.0
+	 * @return array
+	 */
+	public function get_excluded_countries() {
+		return apply_filters( 'wc_pv_excluded_countries', array() );
 	}
 
 	/**
@@ -364,12 +386,125 @@ final class WC_PV {
 	}
 
 	/**
-	 * Get logged in user billing phone
+	 * National Mode.
 	 *
+	 * Allow users to enter national numbers (and not have to think about international dial codes).
+	 * Formatting, validation and placeholders still work. 
+	 * Then you can use getNumber to extract a full international number - see example. 
+	 * This option now defaults to true, and it is recommended that you leave it that way as it provides a
+	 * better experience for the user. 
+	 *
+	 * @since 2.0.0
+	 * @return bool
+	 */
+	public function national_mode() {
+		return apply_filters( 'wc_pv_national_mode', true );
+	}
+
+	/**
+	 * Auto hide dial code
+	 * 
+	 * If there is just a dial code in the input: remove it on blur or submit.
+	 * This is to prevent just a dial code getting submitted with the form. 
+	 * Requires nationalMode to be set to false. 
+	 * So if true, sets nationalMode to false
+	 *
+	 * @since 2.0.0
+	 * @return bool
+	 */
+	public function auto_hide_dial_code() {
+		$value = apply_filters( 'wc_pv_auto_hide_dial_code', false );
+		if ( true === $value ) {
+			// Set nationalMode to false
+			add_filter( 'wc_pv_national_mode', '__return_false' );
+		}
+		return $value;
+	}
+
+	/**
+	 * Allow dropdown
+	 * 
+	 * Whether or not to allow the dropdown. 
+	 * If disabled, there is no dropdown arrow, and the selected flag is not clickable. 
+	 * Also we display the selected flag on the right instead because it is just a marker of state.
+	 *
+	 * @since 2.0.0
+	 * @return bool
+	 */
+	public function allow_dropdown() {
+		return apply_filters( 'wc_pv_allow_dropdown', true );
+	}
+	
+	/**
+	 * Additional classes to add to the parent div
+	 *
+	 * @since 2.0.0
 	 * @return string
 	 */
-	public function get_current_user_phone() {
-		return get_user_meta( get_current_user_id(), 'billing_phone', true );
+	public function custom_container() {
+		return apply_filters( 'wc_pv_add_container_classes', '' );
+	}
+
+	/**
+	 * Set the input's placeholder to an example number for the selected country.
+	 *
+	 * Set the input's placeholder to an example number for the selected country, and update it if the country changes.
+	 * You can specify the number type using the placeholderNumberType option. By default it is set to "polite", 
+	 * which means it will only set the placeholder if the input doesn't already have one.
+	 * You can also set it to "aggressive", which will replace any existing placeholder, or "off". 
+	 * Requires the utilsScript option.
+	 * 
+	 * @since 2.0.0
+	 * @return string
+	 */
+	public function get_auto_placeholder() {
+		return apply_filters( 'wc_pv_set_auto_placeholder', 'polite' );
+	}
+
+	/**
+	 * Gets Custom Placeholder.
+	 *
+	 * @since 2.0.0
+	 * @return array
+	 */
+	public function get_custom_placeholder() {
+		return apply_filters( 'wc_pv_set_placeholder', array() );
+	}
+
+	/**
+	 * Placeholder number type.
+	 * 
+	 * Specify one of the keys from the global enum intlTelInputUtils.numberType
+	 * FIXED_LINE,MOBILE,FIXED_LINE_OR_MOBILE,TOLL_FREE,PREMIUM_RATE,SHARED_COST,VOIP,PERSONAL_NUMBER,PAGER,UAN,VOICEMAIL,UNKNOWN
+	 * Default is MOBILE
+	 * 
+	 * @since 2.0.0
+	 * @return string
+	 */
+	public function get_placeholder_number_type() {
+		$number_types = array(
+			'FIXED_LINE',
+			'MOBILE',
+			'FIXED_LINE_OR_MOBILE',
+			'TOLL_FREE',
+			'PREMIUM_RATE',
+			'SHARED_COST',
+			'VOIP',
+			'PERSONAL_NUMBER',
+			'PAGER',
+			'UAN',
+			'VOICEMAIL',
+			'UNKNOWN'
+		);
+
+		$value = apply_filters( 'wc_pv_set_placeholder_number_type', 'mobile' );
+		
+		$type = preg_grep('/^{$value}/i', $number_types );
+
+		if (empty( $type ) ) {
+			return '';
+		}
+		return $type[0];
 	}
 
 	/**

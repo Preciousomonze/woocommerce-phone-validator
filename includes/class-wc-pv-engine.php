@@ -97,6 +97,12 @@ class WC_PV_Engine {
 			'defaultCountry'        => wc_pv()->get_default_country(),
 			'onlyCountries'         => wc_pv()->get_allowed_countries(),
 			'preferredCountries'    => wc_pv()->get_preferred_countries(),
+			'excludeCountries'		=> wc_pv()->get_excluded_countries(),
+			'nationalMode'			=> wc_pv()->national_mode(),
+			'autoHideDialCode'		=> wc_pv()->auto_hide_dial_code(),
+			'autoPlaceholder'		=> wc_pv()->get_auto_placeholder(),
+			'customContainer'		=> wc_pv()->custom_container(),
+			'allowDropdown'			=> wc_pv()->allow_dropdown(),
 			'utilsScript'           => wc_pv()->plugin_url() . '/assets/vendor/js/utils.js',
 		);
 		// get phone value for international lib use
