@@ -497,11 +497,21 @@ final class WC_PV {
 			'UNKNOWN'
 		);
 
-		$value = apply_filters( 'wc_pv_set_placeholder_number_type', 'mobile' );
-		
+		$value = strtoupper( apply_filters( 'wc_pv_set_placeholder_number_type', 'mobile' ) );
+
+		// Already same mobile value, retun asap.
+		if ( 'MOBILE' === $value ) {
+			return $value;
+		}
+
+		// Since value is searched for in array, make sure its at least 3 characters
+		if ( strlen( $value ) < 3 ) {
+			return '';
+		}
+
 		$type = preg_grep('/^{$value}/i', $number_types );
 
-		if (empty( $type ) ) {
+		if ( empty( $type ) ) {
 			return '';
 		}
 		return $type[0];
