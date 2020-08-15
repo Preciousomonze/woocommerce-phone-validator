@@ -302,7 +302,10 @@ final class WC_PV {
 			__( 'Phone number too long', 'woo-phone-validator' ),
 			__( 'Invalid number', 'woo-phone-validator' ),
 		);
-		/** @since 2.0.0 */
+		/**
+		 * Validation error list.
+		 * @since 2.0.0
+		 */
 		return apply_filters( 'wc_pv_validation_error_list', $errors );
 	}
 
@@ -509,12 +512,54 @@ final class WC_PV {
 			return '';
 		}
 
-		$type = preg_grep('/^{$value}/i', $number_types );
+		$type = preg_grep( '/^{$value}/i', $number_types );
 
 		if ( empty( $type ) ) {
 			return '';
 		}
 		return $type[0];
+	}
+
+	/**
+	 * Localized Countries.
+	 * 
+	 * Type: Object Default: {}
+	 * Allows to translate the countries by its given iso code e.g.: { 'de': 'Deutschland' }
+	 * Somehow i have to convert this to object on the js side.
+	 * 
+	 * @return string Json
+	 */
+	public function get_localized_countries() {
+		$data = apply_filters( 'wc_pv_set_localized_countries', array() );
+		return wp_json_encode( $data );
+	}
+
+	/**
+	 * Hidden input for Phone number
+	 * 
+	 * Add a hidden input with the given name. Alternatively, if your input name contains square brackets 
+	 * (e.g. name="phone_number[main]") then it will give the hidden input the same name, 
+	 * replacing the contents of the brackets with the given name 
+	 * (e.g. hiddenInput: "full", then in this case the hidden input would have name="phone_number[full]").
+	 * Leaving this here, might not need implementation currently. :) 
+	 * If you find this and want to implement it, cool, be my guest. 
+	 * 
+	 * @return string
+	 */
+	public function hidden_input() {
+		return apply_filters( 'wc_pv_set_hidden_input', '' );
+	}
+
+	/**
+	 * Format On Display
+	 * 
+	 * Format the input value (according to the nationalMode option) during initialisation, and on setNumber.
+	 * Requires the utilsScript option.
+	 * 
+	 * @return bool
+	 */
+	public function format_on_display() {
+		return apply_filters( 'wc_pv_format_on_display', true );
 	}
 
 	/**
