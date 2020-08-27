@@ -221,7 +221,7 @@ final class WC_PV {
 		global $wc_pv_woo_custom_field_meta;
 		// Nonce
 		$nonce_action = $wc_pv_woo_custom_field_meta['validation_nonce_action'];
-		$nonce_field = $wc_pv_woo_custom_field_meta['validation_nonce_field'];
+		$nonce_field  = $wc_pv_woo_custom_field_meta['validation_nonce_field'];
 
 		// Custom fields
 		$phone_name            = $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'];
@@ -242,6 +242,14 @@ final class WC_PV {
 			wc_add_notice( $phone_err_msg, 'error' );
 			return false;
 		}
+
+		// Space for custom error handling extension.
+		$outside_handling = apply_filters( 'wc_pv_add_validation_error', '', $bil_phone, $bil_email );
+
+		if ( ! empty( $outside_handling ) ) {
+			wc_add_notice( $outside_handling, 'error' );
+		}
+
 		return true;
 	}
 
@@ -304,6 +312,7 @@ final class WC_PV {
 		);
 		/**
 		 * Validation error list.
+		 * 
 		 * @since 2.0.0
 		 */
 		return apply_filters( 'wc_pv_validation_error_list', $errors );
