@@ -22,7 +22,7 @@ let onlyCountries    = wcPvJson.onlyCountries.map( value => { return value.toUpp
 
 var wcPvPhoneIntl = $( '.wc-pv-intl input' ).intlTelInput(
     {
-        initialCountry: ( ( wcPvDefCountry == '' || wcPvDefCountry == undefined ) ? 'NG' : wcPvDefCountry ),
+        initialCountry: ( ( wcPvDefCountry == '' || wcPvDefCountry == undefined || wcPvDefCountry == 'define' ) ? 'NG' : wcPvDefCountry ),
         onlyCountries: onlyCountries,
         separateDialCode: separateDialCode,
         preferredCountries: wcPvJson.preferredCountries,
