@@ -2,10 +2,12 @@
 
 = 2.0.0 - /08/2020 =
 * Fix: '0961' prefix for Philippines not validating.
+* Fix: JS fatal error on my-account page when no billing country is selected.
 * Update: updated usage to V17.0 of IntlTel Input Library
 * Enhancement: Proper Code cleaning and structuring.
 * Update: Added nonce to validation (phpcs kept bugging me :) )
 * New: You can now extend the phone validation conditions and errors, with the 'wc_pv_add_validation_error" filter.
+
 
 = 1.3.0 - 31/07/2020 =
 * Fix: typo for billing_phone in js file.
