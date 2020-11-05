@@ -239,6 +239,12 @@ final class WC_PV {
 				$default                 = $country;
 			}
 		}
+		if( empty( $default ) ) {
+			$geo = WC_Geolocation::geolocate_ip();
+			if ( !empty( $geo['country'] ) ) {
+				$default = $geo['country'];
+			}
+		}
 		return apply_filters( 'wc_pv_set_default_country', $default );
 	}
 
