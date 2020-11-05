@@ -4,12 +4,13 @@ var $ = jQuery;
 // set phone number properly for intl
 // here, the index maps to the error code returned from getValidationError
 var wcPvPhoneErrorMap = wcPvJson.validationErrors;
+var wcPvPhoneIntl;
 // start
 $( document.body ).bind( 'updated_checkout', function( data ) {
     if ($( '.wc-pv-intl input' ).length == 0) {// add class, some checkout plugin has overriden my baby
         $( '#billing_phone_field' ).addClass( 'wc-pv-phone wc-pv-intl' );
     }
-    initWcPvPhoneIntl();
+    wcPvPhoneIntl = initWcPvPhoneIntl();
 });
 
 // Set default country.
@@ -37,7 +38,6 @@ function initWcPvPhoneIntl() {
         }
     );
 }
-var wcPvPhoneIntl = initWcPvPhoneIntl();
 
 /*if (wcPvJson.userPhone !== undefined ) {
 	wcPvPhoneIntl.intlTelInput("setNumber").val(wcPvJson.userPhone);
