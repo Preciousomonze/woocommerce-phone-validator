@@ -5,32 +5,39 @@ var $ = jQuery;
 // here, the index maps to the error code returned from getValidationError
 var wcPvPhoneErrorMap = wcPvJson.validationErrors;
 // start
-if ($( '.wc-pv-intl input' ).length == 0) {// add class, some checkout plugin has overriden my baby
-    $( '#billing_phone_field' ).addClass( 'wc-pv-phone wc-pv-intl' );
-}
+$( document.body ).bind( 'updated_checkout', function( data ) {
+    if ($( '.wc-pv-intl input' ).length == 0) {// add class, some checkout plugin has overriden my baby
+        $( '#billing_phone_field' ).addClass( 'wc-pv-phone wc-pv-intl' );
+    }
+    initWcPvPhoneIntl();
+});
+
 // Set default country.
 var wcPvDefCountry = ( wcPvJson.defaultCountry == '' ? $( `${wcPvJson.parentPage} #billing_country` ).val() : wcPvJson.defaultCountry );
 
 let separateDialCode = ( wcPvJson.separateDialCode == 1 ? true : false );
 let onlyCountries    = wcPvJson.onlyCountries.map( value => { return value.toUpperCase(); } );
 
-var wcPvPhoneIntl = $( '.wc-pv-intl input' ).intlTelInput(
-    {
-        initialCountry: ( ( wcPvDefCountry == '' || wcPvDefCountry == undefined ) ? 'NG' : wcPvDefCountry ),
-        onlyCountries: onlyCountries,
-        separateDialCode: separateDialCode,
-        utilsScript: wcPvJson.utilsScript,
-        preferredCountry: '',
-        //autoHideDialCode: true,
-        //nationalMode: false,
-        /* geoIpLookup: function(callback) {
-		$.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-		const countryCode = (resp && resp.country) ? resp.country : '';//asking for payment shaa,smh
-		callback(countryCode);
-		});
-		},//to pick user country */
-    }
-);
+function initWcPvPhoneIntl() {
+    return $( '.wc-pv-intl input' ).intlTelInput(
+        {
+            initialCountry: ( ( wcPvDefCountry == '' || wcPvDefCountry == undefined ) ? 'NG' : wcPvDefCountry ),
+            onlyCountries: onlyCountries,
+            separateDialCode: separateDialCode,
+            utilsScript: wcPvJson.utilsScript,
+            preferredCountry: '',
+            //autoHideDialCode: true,
+            //nationalMode: false,
+            /* geoIpLookup: function(callback) {
+            $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+            const countryCode = (resp && resp.country) ? resp.country : '';//asking for payment shaa,smh
+            callback(countryCode);
+            });
+            },//to pick user country */
+        }
+    );
+}
+var wcPvPhoneIntl = initWcPvPhoneIntl();
 
 /*if (wcPvJson.userPhone !== undefined ) {
 	wcPvPhoneIntl.intlTelInput("setNumber").val(wcPvJson.userPhone);
