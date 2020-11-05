@@ -180,34 +180,4 @@ final class WC_PV {
 		printf( '<div class="error"><p>%s</p></div>', $note );
 	}
 
-	/**
-	 * Helps filter fields with wp_nonce
-	 * 
-	 * @param string $name Field name
-	 * @param string $type text,field(for now)
-	 * @param string $nonce_action
-	 * @param string $nonce_field
-	 * 
-	 * @since 2.0.0
-	 * @return string
-	 */
-	public function sanitize_field( $name, $type, $nonce_action, $nonce_field ) {
-		// phpcs:ignore
-		$nonce_field = ( isset( $_POST[$nonce_field] ) ? sanitize_text_field( $_POST[$nonce_field] ) : '' );
-		$field_pass  = ( ! isset( $_POST[$name] ) || ! wp_verify_nonce( sanitize_text_field( $nonce_field ), $nonce_action ) ? false : true );
-
-		if ( ! $field_pass ) {
-			return '';
-		}
-		$field = '';
-		switch ( strtolower( trim( $type) ) ) {
-			case 'email':
-				$field = sanitize_email( $_POST[$name] );
-				break;
-			default:
-				$field = sanitize_text_field( $_POST[$name] );
-		}
-		return $field;
-	}
-
 }
