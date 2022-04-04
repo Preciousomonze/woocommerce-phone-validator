@@ -234,9 +234,10 @@ final class WC_PV {
 
 		// if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// from account side.
 		if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( ! empty( $phone_valid_err_field ) ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
+			/* Issues #28, says WC Doesn't actually handle thing, soooo.
 			if ( ! is_numeric( str_replace( ' ', '', $bil_phone ) ) ) { // WC will handle this, so no need to report errors
 				return true;
-			}
+			}*/
 
 			$phone_err_msg = __( $phone_valid_err_field, 'woo-phone-validator' );
 			wc_add_notice( $phone_err_msg, 'error' );
