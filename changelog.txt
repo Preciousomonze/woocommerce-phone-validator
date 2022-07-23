@@ -2,7 +2,8 @@
 
 = 2.0.0 - /08/2020 =
 * Fix: '0961' prefix for Philippines not validating.
-* Update: updated usage to V17.0 of IntlTel Input Library
+* Update: updated usage to V17.0.18 of IntlTel Input Library
+* Changed folder structure for Intl-tel Input
 * Enhancement: Proper Code cleaning and structuring.
 * Update: Added nonce to validation (phpcs kept bugging me :) )
 
