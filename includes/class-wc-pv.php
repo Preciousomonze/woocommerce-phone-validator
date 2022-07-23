@@ -221,7 +221,7 @@ final class WC_PV {
 		global $wc_pv_woo_custom_field_meta;
 		// Nonce
 		$nonce_action = $wc_pv_woo_custom_field_meta['validation_nonce_action'];
-		$nonce_field = $wc_pv_woo_custom_field_meta['validation_nonce_field'];
+		$nonce_field  = $wc_pv_woo_custom_field_meta['validation_nonce_field'];
 
 		// Custom fields
 		$phone_name            = $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'];
@@ -234,14 +234,23 @@ final class WC_PV {
 
 		// if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// from account side.
 		if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( ! empty( $phone_valid_err_field ) ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
+			/* Issues #28, says WC Doesn't actually handle thing, soooo.
 			if ( ! is_numeric( str_replace( ' ', '', $bil_phone ) ) ) { // WC will handle this, so no need to report errors
 				return true;
-			}
+			}*/
 
 			$phone_err_msg = __( $phone_valid_err_field, 'woo-phone-validator' );
 			wc_add_notice( $phone_err_msg, 'error' );
 			return false;
 		}
+
+		// Space for custom error handling extension.
+		$outside_handling = apply_filters( 'wc_pv_add_validation_error', '', $bil_phone, $bil_email );
+
+		if ( ! empty( $outside_handling ) ) {
+			wc_add_notice( $outside_handling, 'error' );
+		}
+
 		return true;
 	}
 
@@ -304,6 +313,7 @@ final class WC_PV {
 		);
 		/**
 		 * Validation error list.
+		 * 
 		 * @since 2.0.0
 		 */
 		return apply_filters( 'wc_pv_validation_error_list', $errors );

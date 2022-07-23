@@ -140,7 +140,10 @@ class WC_PV_Engine {
 	 * Adds extra fields to woocommerce billing form
 	 */
 	public function add_billing_fields( $fields ) {
-		$fields['billing_phone']['class'][0] .= ' wc-pv-phone wc-pv-intl';
+
+		$extras = apply_filters('wc_pv_add_to_main_class', '', $fields );
+		
+		$fields['billing_phone']['class'][0] .= ' wc-pv-phone wc-pv-intl ' . $extras;
 		return $fields;
 	}
 
