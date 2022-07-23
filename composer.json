@@ -1,5 +1,5 @@
 {
-  "name": "codexplorer/woo-phone-validator",
+  "name": "preciousomonze/woo-phone-validator",
 	"description": "Forces validation of WooCommerce billing phone field on checkout and billing address edit page",
 	"type": "wordpress-plugin",
   "license": "GPL-3.0",
