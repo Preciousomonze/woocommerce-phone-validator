@@ -41,24 +41,33 @@ if ( isset( $_SERVER['SERVER_NAME'] ) && strpos( sanitize_text_field( $_SERVER['
 
 define( 'WC_PV_ENVIRONMENT', $_wc_pv_env );
 
-// for global option meta access :)
-// $wc_pv_option_meta = array();
-// custom fields names
+// For global option meta access :).
+ $wc_pv_woo_option_meta = array(
+	'disable_checkout_billing_display'   => '',
+	'disable_checkout_shipping_display'  => '',
+	'disable_checkout_billing_validate'  => '',
+	'disable_checkout_shipping_validate' => '',
+	'disable_account_billing_display'    => '',
+	'disable_account_shipping_display'   => '',
+ );
+
+// Custom fields names.
 $wc_pv_woo_custom_field_meta = array(
 	'billing_hidden_phone_field'     => '_wc_pv_phone_validator',
 	'billing_hidden_phone_err_field' => '_wc_pv_phone_validator_err',
-	'validation_nonce_action' => 'phone_validate',
-	'validation_nonce_field' => 'wc_pv_validate_nonce'
+	'validation_nonce_action' 		 => 'phone_validate',
+	'validation_nonce_field' 		 => 'wc_pv_validate_nonce'
 );
 
 /**
  * Initiate Phone Validator Chakra.
  */
 function wc_pv_initiate() {
-	// Include dependencies file
+	// Include dependencies file.
 	if ( ! class_exists( 'WC_PV_Dependencies' ) ) {
 		include_once dirname( __FILE__ ) . '/includes/class-wc-pv-deps.php';
 	}
+
 	// Include the main class.
 	if ( ! class_exists( 'WC_PV' ) ) {
 		include_once dirname( __FILE__ ) . '/includes/class-wc-pv.php';
@@ -67,7 +76,7 @@ function wc_pv_initiate() {
 	if ( ! function_exists( 'wc_pv' ) ) {
 
 		/**
-		 * Run instance
+		 * Run instance.
 		 */
 		function wc_pv() {
 			return WC_PV::instance();

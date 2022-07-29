@@ -10,7 +10,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * For handling the fields on edit address page
+ * For handling the fields on edit address page.
  */
 class WC_PV_Account {
 
@@ -56,21 +56,40 @@ class WC_PV_Account {
 	}
 
 	/**
-	 * Construcdur :)
+	 * Construcdur :).
 	 */
 	public function __construct() {
 		add_action( 'woocommerce_after_save_address_validation', array( $this, 'account_page_validate' ), 10, 2 );
 	}
 
 	/**
-	 * For Phone validation
+	 * For Phone validation.
 	 *
 	 * @param int    $user_id User ID being saved.
 	 * @param string $load_address Type of address e.g. billing or shipping.
 	 * @hook woocommerce_after_save_address_validation
 	 */
 	public function account_page_validate( $user_id, $load_address ) {
-		wc_pv()->billing_phone_validation();
+		global $wc_pv_woo_option_meta;
+		// 	'disable_checkout_billing_display'   => '',
+		// 	'disable_checkout_shipping_display'  => '',
+		// 	'disable_phone_checkout_billing_validate'  => '',
+		// 	'disable_phone_checkout_shipping_validate' => '',
+		// 	'disable_phone_account_billing_display'    => '',
+		// 	'disable_phone_account_shipping_display'   => '',
+		// );
+
+		/**
+		 * Filters the disable account billing/shipping validation.
+		 *
+		 * @param int    $user_id
+		 * @param string $load_address
+		 */
+		$disabled_validation = apply_filters( 'wc_pv_disable_account_' . $load_address . '_validation', get_option( $wc_pv_woo_option_meta['disable_account_' . $load_address . '_validation'], false ),  $user_id, $load_address );
+
+		if ( ! $disabled_validation ) {
+			WC_PV_Helper::{$load_address . "_phone_validation"}();
+		}
 	}
 }
 

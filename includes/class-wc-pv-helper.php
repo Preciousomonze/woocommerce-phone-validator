@@ -15,53 +15,6 @@ defined( 'ABSPATH' ) || exit;
 class WC_PV_Helper {
 
 	/**
-	 * The single instance of the class.
-	 *
-	 * @var WC_PV
-	 * @since 1.0.0
-	 */
-	protected static $instance = null;
-
-	/**
-	 * Array of deprecated hook handlers.
-	 *
-	 * @var array of WC_PV_Deprecated_Hooks
-	 * @since 2.0.0
-	 */
-	public $deprecated_hook_handlers = array();
-
-	/**
-	 * Main instance
-	 *
-	 * @return class object
-	 */
-	public static function instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-	/**
-	 * Cloning is forbidden.
-	 *
-	 * @since 2.0.0
-	 */
-	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cloning this object is forbidden. 🤡', 'woo-phone-validator' ), '2.0.0' );
-	}
-
-	/**
-	 * Unserializing instances of this class is forbidden.
-	 *
-	 * @since 2.0.0
-	 */
-	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Unserializing instances of this class is forbidden. 🤡', 'woo-phone-validator' ), '2.0.0' );
-	}
-
-
-	/**
 	 * Checks if we're currently on the checkout page
 	 *
 	 * For some reason, the default woocommerce is_checkout() doesnt seem to work, runs too early
@@ -79,9 +32,9 @@ class WC_PV_Helper {
 	}
 
 	/**
-	 * Checks if we're currently on the myaccount pages
+	 * Checks if we're currently on the myaccount pages.
 	 *
-	 * For some reason, the default woocommerce is_account_page() doesnt seem to work, runs too early
+	 * For some reason, the default woocommerce is_account_page() doesnt seem to work, runs too early.
 	 *
 	 * @return bool
 	 */
@@ -96,40 +49,74 @@ class WC_PV_Helper {
 	}
 
 	/**
-	 * For backend validation of phone
+	 * For backend validation of phone.
 	 *
 	 * @return bool
 	 */
-	public static function billing_phone_validation() {
+	public function billing_phone_validation() {
 		global $wc_pv_woo_custom_field_meta;
-		// Nonce
-		$nonce_action = $wc_pv_woo_custom_field_meta['validation_nonce_action'];
-		$nonce_field = $wc_pv_woo_custom_field_meta['validation_nonce_field'];
 
-		// Custom fields
+		// Nonce.
+		$nonce_action = $wc_pv_woo_custom_field_meta['validation_nonce_action'];
+		$nonce_field  = $wc_pv_woo_custom_field_meta['validation_nonce_field'];
+
+		// Custom fields.
 		$phone_name            = $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'];
 		$phone_err_name        = $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'];
-		$phone_valid_field     = strtolower( wc_pv()->sanitize_field( $phone_name, 'text', $nonce_action, $nonce_field ) );
-		$phone_valid_err_field = trim( wc_pv()->sanitize_field( $phone_err_name, 'text', $nonce_action, $nonce_field ) );
-		$bil_email             = wc_pv()->sanitize_field( 'billing_email', 'email', $nonce_action, $nonce_field );
-		$bil_phone             = wc_pv()->sanitize_field( 'billing_phone', 'text', $nonce_action, $nonce_field );
+		$phone_valid_field     = strtolower( self::sanitize_field( $phone_name, 'text', $nonce_action, $nonce_field ) );
+		$phone_valid_err_field = trim( self::sanitize_field( $phone_err_name, 'text', $nonce_action, $nonce_field ) );
+		// $bil_email          = wc_pv()->sanitize_field( 'billing_email', 'email', $nonce_action, $nonce_field );
+		$bil_phone             = self::sanitize_field( 'billing_phone', 'text', $nonce_action, $nonce_field );
 
+		return self::check_phone_validation( $bil_phone, $phone_valid_field, $phone_valid_err_field );
+	}
 
+	/**
+	 * 
+	 */
+	public static function shipping_phone_validation() {
+
+	}
+
+	/**
+	 * Checks for phone validation.
+	 * 
+	 * @param string $phone
+	 * @param string $phone_valid_field
+	 * @param string $phone_valid_err_field
+	 * @return bool
+	 */
+	public static function check_phone_validation( $phone, $phone_valid_field, $phone_valid_err_field ) {
 		// if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// from account side.
-		if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( ! empty( $phone_valid_err_field ) ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
+		if ( /* ! empty( $bil_email ) && */ ! empty( $phone ) && ( ! empty( $phone_valid_err_field ) ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
+			/* Issues #28, says WC Doesn't actually handle thing, soooo.
 			if ( ! is_numeric( str_replace( ' ', '', $bil_phone ) ) ) { // WC will handle this, so no need to report errors
 				return true;
-			}
+			}*/
 
-			$phone_err_msg = __( $phone_valid_err_field, 'woo-phone-validator' );
-			wc_add_notice( $phone_err_msg, 'error' );
-			return false;
+			/**
+			 * Filters the validation error for WC.
+			 * 
+			 * Incase one decides not to display anything or edit based on their logic.
+			 * Wanted to make this a way of disabling to, but naa, there will be other means.
+			 * 
+			 * @since 2.0.0
+			 * 
+			 * @param string $phone_valid_err_field
+			 * @param string $phone
+			 */
+			$phone_err_msg = apply_filters( 'wc_pv_wc_validation_error', $phone_valid_err_field, $phone );
+
+			if ( ! empty( $phone_err_msg ) ) {
+				wc_add_notice( $phone_err_msg, 'error' );
+			}
 		}
+
 		return true;
 	}
 
 	/**
-	 * Helps filter fields with wp_nonce
+	 * Helps filter fields with wp_nonce.
 	 * 
 	 * @param string $name Field name
 	 * @param string $type text,field(for now)
@@ -159,16 +146,18 @@ class WC_PV_Helper {
 	}
 
 	/**
-	 * Get logged in user billing phone
+	 * Get logged in user meta phone phone.
+	 * 
+	 * @param string $type must be a valid meta name: billing_phone, shipping_phone, etc.
 	 *
 	 * @return string
 	 */
-	public static function get_current_user_phone() {
-		return get_user_meta( get_current_user_id(), 'billing_phone', true );
+	public static function get_current_user_phone( $type = 'billing_phone' ) {
+		return get_user_meta( get_current_user_id(), $type, true );
 	}
 
 	/**
-	 * Validation error list
+	 * Validation error list.
 	 *
 	 * Must follow the phone validation error sequence
 	 *
@@ -177,30 +166,31 @@ class WC_PV_Helper {
 	 * @return array
 	 */
 	public static function get_validation_errors( $translation_type = '__' ) {
-		// Invalid number, Invalid country code, Phone number too short, Phone number too long, Invalid number
-		$errors = array(
+		/**
+		 * Filters validation error list.
+		 * 
+		 * Invalid number, Invalid country code, Phone number too short, Phone number too long, Invalid number.
+		 * @param array
+		 * @since 2.0.0
+		 */
+		return apply_filters( 'wc_pv_validation_error_list', array(
 			__( 'Invalid number', 'woo-phone-validator' ),
 			__( 'Invalid country code', 'woo-phone-validator' ),
 			__( 'Phone number too short', 'woo-phone-validator' ),
 			__( 'Phone number too long', 'woo-phone-validator' ),
-			__( 'Invalid number', 'woo-phone-validator' ),
-		);
-		/**
-		 * Validation error list.
-		 * @since 2.0.0
-		 */
-		return apply_filters( 'wc_pv_validation_error_list', $errors );
+			__( 'Invalid number', 'woo-phone-validator' ),	
+		) );
 	}
 
 	/**
-	 * Separate dial code
+	 * Separate dial code.
 	 *
 	 * @param  bool $value (optional) default is false
 	 * @return bool
 	 */
 	public function separate_dial_code( $value = false ) {
 		/**
-		 * Filter boolean value to separate dial code
+		 * Filters boolean value to separate dial code
 		 *
 		 * @since 1.2.0
 		 */
@@ -236,6 +226,13 @@ class WC_PV_Helper {
 				$default                 = $country;
 			}
 		}
+
+		/**
+		 * Filters Default country.
+		 * 
+		 * @since 2.0
+		 * @param string $default
+		 */
 		return apply_filters( 'wc_pv_set_default_country', $default );
 	}
 

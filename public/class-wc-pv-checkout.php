@@ -56,20 +56,33 @@ class WC_PV_Checkout {
 	}
 
 	/**
-	 * Construcdur :)
+	 * Construcdur :).
 	 */
 	public function __construct() {
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'checkout_validate' ) );
+		add_action( 'woocommerce_after_checkout_validation', array( $this, 'checkout_validate' ), 10, 2 );
 	}
 
 	/**
-	 * For phone validation
+	 * For phone validation.
 	 *
 	 * @param array $data | the external data
 	 * @hook woocommerce_after_checkout_validation
 	 */
-	public function checkout_validate( $data ) {
-		wc_pv()->billing_phone_validation();
+	public function checkout_validate( $data, $error ) {
+
+		/**
+		 * Filters the disable checkout billing/shipping validation.
+		 *
+		 * @param int    $user_id
+		 * @param string $load_address
+		 */
+		$disabled_validation = apply_filters( 'wc_pv_disable_checkout_' . $load_address . '_validation', get_option( $wc_pv_woo_option_meta['disable_checkout_' . $load_address . '_validation'], false ),  $user_id, $load_address );
+
+		if ( ! $disabled_validation ) {
+			WC_PV_Helper::{ $load_address . "_phone_validation" }();
+		}
+
+		WC_PV_Helper::billing_phone_validation();
 	}
 }
 
