@@ -15,61 +15,20 @@ defined( 'ABSPATH' ) || exit;
 class WC_PV_Engine {
 
 	/**
-	 * The single instance of the class.
-	 *
-	 * @var WC_PV_Engine
-	 *
-	 * @since 2.0.0
-	 */
-	protected static $instance = null;
-
-	/**
-	 * Main class instance. Ensures only one instance of class is loaded or can be loaded.
-	 *
-	 * @static
-	 * @return WC_PV_Engine
-	 * @since  2.0.0
-	 */
-	public static function instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
-	/**
-	 * Cloning is forbidden.
-	 *
-	 * @since 2.0.0
-	 */
-	public function __clone() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cloning this object is forbidden. 🤡', 'woo-phone-validator' ), '2.0.0' );
-	}
-
-	/**
-	 * Unserializing instances of this class is forbidden.
-	 *
-	 * @since 2.0.0
-	 */
-	public function __wakeup() {
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Unserializing instances of this class is forbidden. 🤡', 'woo-phone-validator' ), '2.0.0' );
-	}
-
-	/**
 	 * Construcdur :)
 	 */
-	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_css' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_js' ) );
+	public static function init() {
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_css' ) );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_js' ) );
 
 		// Woocommerce things.
-		add_filter( 'woocommerce_billing_fields', array( $this, 'add_billing_fields' ), 20, 1 );
+		add_filter( 'woocommerce_billing_fields', array( __CLASS__, 'add_billing_fields' ), 20, 1 );
 	}
 
 	/**
 	 * Enqueues all necessary scripts.
 	 */
-	public function enqueue_js() {
+	public static function enqueue_js() {
 		$intl_tel_js_file = '/assets/intl-tel-build/js/intlTelInput-jquery.min.js';
 		$frontend_js_file = '/assets/js/frontend' . WC_PV_MIN_SUFFIX . '.js';
 
@@ -129,7 +88,7 @@ class WC_PV_Engine {
 	/**
 	 * Enqueues all necessary css.
 	 */
-	public function enqueue_css() {
+	public static function enqueue_css() {
 		$intl_tel_css_file = '/assets/intl-tel-build/css/intlTelInput.min.css';
 		$frontend_css_file = '/assets/css/frontend' . WC_PV_MIN_SUFFIX . '.css';
 
@@ -151,6 +110,30 @@ class WC_PV_Engine {
 		return $fields;
 	}
 
+	
+	/**
+	 * For backend validation of billing phone.
+	 *
+	 * @param array    $fields
+ 	 * @param WP_Error $errors Validation errors.
+	 * @return bool
+	 */
+	public static function billing_phone_validation( $fields, $errors ) {
+		return WC_PV_Helper::phone_validation( 'billing', $fields, $errors );
+	}
+
+	/**
+	 * For backend validation of shipping phone.
+	 *
+	 * @param array    $fields
+ 	 * @param WP_Error $errors Validation errors.
+	 * @return bool
+	 */
+	public static function shipping_phone_validation( $fields, $errors ) {
+		return WC_PV_Helper::phone_validation( 'shipping', $fields, $errors );
+	}
+
+
 }
 
-WC_PV_Engine::instance();
+WC_PV_Engine::init();

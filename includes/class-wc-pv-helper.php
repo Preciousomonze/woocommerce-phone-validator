@@ -22,9 +22,7 @@ class WC_PV_Helper {
 	 * @return bool
 	 */
 	public static function is_checkout() {
-		$id = get_option( 'woocommerce_checkout_page_id', false );
-
-		if ( is_page( $id ) ) {
+		if ( is_page( get_option( 'woocommerce_checkout_page_id', false ) ) ) {
 			return true;
 		}
 
@@ -39,9 +37,7 @@ class WC_PV_Helper {
 	 * @return bool
 	 */
 	public static function is_account_page() {
-		$id = get_option( 'woocommerce_myaccount_page_id', false );
-
-		if ( is_page( $id ) ) {
+		if ( is_page( get_option( 'woocommerce_myaccount_page_id', false ) ) ) {
 			return true;
 		}
 
@@ -53,7 +49,7 @@ class WC_PV_Helper {
 	 *
 	 * @return bool
 	 */
-	public function billing_phone_validation() {
+	public function phone_validation( $type, $fields, $errors ) {
 		global $wc_pv_woo_custom_field_meta;
 
 		// Nonce.
@@ -61,21 +57,14 @@ class WC_PV_Helper {
 		$nonce_field  = $wc_pv_woo_custom_field_meta['validation_nonce_field'];
 
 		// Custom fields.
-		$phone_name            = $wc_pv_woo_custom_field_meta['billing_hidden_phone_field'];
-		$phone_err_name        = $wc_pv_woo_custom_field_meta['billing_hidden_phone_err_field'];
+		$phone_name            = $wc_pv_woo_custom_field_meta[ "{$type}_hidden_phone_field" ];
+		$phone_err_name        = $wc_pv_woo_custom_field_meta[ "{$type}_hidden_phone_err_field" ];
 		$phone_valid_field     = strtolower( self::sanitize_field( $phone_name, 'text', $nonce_action, $nonce_field ) );
 		$phone_valid_err_field = trim( self::sanitize_field( $phone_err_name, 'text', $nonce_action, $nonce_field ) );
 		// $bil_email          = wc_pv()->sanitize_field( 'billing_email', 'email', $nonce_action, $nonce_field );
-		$bil_phone             = self::sanitize_field( 'billing_phone', 'text', $nonce_action, $nonce_field );
+		$phone             = self::sanitize_field( $type . '_phone', 'text', $nonce_action, $nonce_field );
 
-		return self::check_phone_validation( $bil_phone, $phone_valid_field, $phone_valid_err_field );
-	}
-
-	/**
-	 * 
-	 */
-	public static function shipping_phone_validation() {
-
+		return self::check_phone_validation( $phone, $phone_valid_field, $phone_valid_err_field );
 	}
 
 	/**
@@ -86,7 +75,7 @@ class WC_PV_Helper {
 	 * @param string $phone_valid_err_field
 	 * @return bool
 	 */
-	public static function check_phone_validation( $phone, $phone_valid_field, $phone_valid_err_field ) {
+	public static function check_phone_validation( $type, $phone, $phone_valid_field, $phone_valid_err_field ) {
 		// if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// from account side.
 		if ( /* ! empty( $bil_email ) && */ ! empty( $phone ) && ( ! empty( $phone_valid_err_field ) ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
 			/* Issues #28, says WC Doesn't actually handle thing, soooo.
@@ -104,11 +93,12 @@ class WC_PV_Helper {
 			 * 
 			 * @param string $phone_valid_err_field
 			 * @param string $phone
+			 * @param string $type billing|shipping
 			 */
-			$phone_err_msg = apply_filters( 'wc_pv_wc_validation_error', $phone_valid_err_field, $phone );
+			$phone_err_msg = apply_filters( 'wc_pv__validation_error', $phone_valid_err_field, $phone, $type );
 
 			if ( ! empty( $phone_err_msg ) ) {
-				wc_add_notice( $phone_err_msg, 'error' );
+				return false;
 			}
 		}
 
