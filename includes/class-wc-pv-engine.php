@@ -102,7 +102,7 @@ class WC_PV_Engine {
 	 * @param array $fields
 	 * @return array
 	 */
-	public function add_billing_fields( $fields ) {
+	public static function add_billing_fields( $fields ) {
 
 		$extras = apply_filters( 'wc_pv_add_to_main_class', '', $fields );
 
@@ -114,23 +114,25 @@ class WC_PV_Engine {
 	/**
 	 * For backend validation of billing phone.
 	 *
-	 * @param array    $fields
- 	 * @param WP_Error $errors Validation errors.
+	 * @param string   $area
+	 * @param array    $fields (optional)
+ 	 * @param WP_Error $errors (optional) Validation errors.
 	 * @return bool
 	 */
-	public static function billing_phone_validation( $fields, $errors ) {
-		return WC_PV_Helper::phone_validation( 'billing', $fields, $errors );
+	public static function billing_phone_validation( $area, $fields = null, $errors = null ) {
+		return WC_PV_Helper::phone_validation( $area, 'billing', $fields, $errors );
 	}
 
 	/**
 	 * For backend validation of shipping phone.
 	 *
-	 * @param array    $fields
- 	 * @param WP_Error $errors Validation errors.
+	 * @param string   $area
+	 * @param array    $fields (optional)
+ 	 * @param WP_Error $errors (optional) Validation errors.
 	 * @return bool
 	 */
-	public static function shipping_phone_validation( $fields, $errors ) {
-		return WC_PV_Helper::phone_validation( 'shipping', $fields, $errors );
+	public static function shipping_phone_validation( $area, $fields = null, $errors = null ) {
+		return WC_PV_Helper::phone_validation( $area, 'shipping', $fields, $errors );
 	}
 
 

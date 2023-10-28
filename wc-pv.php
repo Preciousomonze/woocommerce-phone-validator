@@ -43,13 +43,15 @@ define( 'WC_PV_ENVIRONMENT', $_wc_pv_env );
 
 // For global option meta access :).
  $wc_pv_woo_option_meta = array(
-	'disable_checkout_billing_display'   => '',
-	'disable_checkout_shipping_display'  => '',
-	'disable_checkout_billing_validate'  => '',
-	'disable_checkout_shipping_validate' => '',
-	'disable_account_billing_display'    => '',
-	'disable_account_shipping_display'   => '',
- );
+	'disable_checkout_billing_display'     => '',
+	'disable_checkout_shipping_display'    => '',
+	'disable_checkout_billing_validation'  => '',
+	'disable_checkout_shipping_validation' => '',
+	'disable_account_billing_display'      => '',
+	'disable_account_shipping_display'     => '',
+	'disable_account_billing_validation'   => '',
+	'disable_account_shipping_validation'  => '',
+	);
 
 // Custom fields names.
 $wc_pv_woo_custom_field_meta = array(

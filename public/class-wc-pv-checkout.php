@@ -59,7 +59,7 @@ class WC_PV_Checkout {
 	 * Construcdur :).
 	 */
 	public function __construct() {
-		add_action( 'woocommerce_after_checkout_validation', array( $this, 'checkout_validate' ), 10, 2 );
+		add_action( 'woocommerce_after_checkout_validation', array( __CLASS__, 'checkout_validate' ), 10, 2 );
 	}
 
 	/**
@@ -68,20 +68,32 @@ class WC_PV_Checkout {
 	 * @param array $fileds | the external data
 	 * @hook woocommerce_after_checkout_validation
 	 */
-	public function checkout_validate( $fields, $error ) {
+	public static function checkout_validate( $fields, $error ) {
+		global $wc_pv_woo_option_meta;
+		
 		/**
-		 * Filters the disable checkout billing/shipping validation.
+		 * Filters the disable checkout billing validation.
 		 *
-		 * @param int    $user_id
-		 * @param string $load_address
+		 * @param int    $fields
+		 * @param string $error
 		 */
-		$disabled_validation = apply_filters( 'wc_pv_disable_checkout_' . $load_address . '_validation', get_option( $wc_pv_woo_option_meta['disable_checkout_' . $load_address . '_validation'], false ),  $user_id, $load_address );
+		$disabled_billing_validation = apply_filters( 'wc_pv_disable_checkout_billing_validation', get_option( $wc_pv_woo_option_meta['disable_checkout_billing_validation'], false ),  $fields, $error );
 
-		if ( ! $disabled_validation ) {
-			WC_PV_Helper::{ $load_address . "_phone_validation" }( $fields, $error );
+		/**
+		 * Filters the disable checkout shipping validation.
+		 *
+		 * @param int    $fields
+		 * @param string $error
+		 */
+		$disabled_shipping_validation = apply_filters( 'wc_pv_disable_checkout_shipping_validation', get_option( $wc_pv_woo_option_meta['disable_checkout_shipping_validation'], false ),  $fields, $error );
+
+		if ( ! $disabled_billing_validation ) {
+			WC_PV_Engine::billing_phone_validation( 'checkout', $fields, $error );
 		}
 
-		WC_PV_Helper::billing_phone_validation();
+		if ( ! $disabled_shipping_validation ) {
+			WC_PV_Engine::shipping_phone_validation( 'checkout', $fields, $error );
+		}
 	}
 }
 

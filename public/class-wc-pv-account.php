@@ -88,7 +88,7 @@ class WC_PV_Account {
 		$disabled_validation = apply_filters( 'wc_pv_disable_account_' . $load_address . '_validation', get_option( $wc_pv_woo_option_meta['disable_account_' . $load_address . '_validation'], false ),  $user_id, $load_address );
 
 		if ( ! $disabled_validation ) {
-			WC_PV_Helper::{$load_address . "_phone_validation"}();
+			WC_PV_Engine::{$load_address . "_phone_validation"}( 'account' );
 		}
 	}
 }

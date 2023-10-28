@@ -46,10 +46,14 @@ class WC_PV_Helper {
 
 	/**
 	 * For backend validation of phone.
-	 *
+	 * 
+	 * @param string $area
+	 * @param string $type Mostly Billing|Shipping
+	 * @param array|null    $fields (optional) arrays are passed here when its used with checkout_validation hook, otherwise, we pass null for other usecase
+ 	 * @param WP_Error|null $errors Validation errors same as above.
 	 * @return bool
 	 */
-	public function phone_validation( $type, $fields, $errors ) {
+	public static function phone_validation( $area, $type, $fields = null, $errors = null ) {
 		global $wc_pv_woo_custom_field_meta;
 
 		// Nonce.
@@ -64,19 +68,22 @@ class WC_PV_Helper {
 		// $bil_email          = wc_pv()->sanitize_field( 'billing_email', 'email', $nonce_action, $nonce_field );
 		$phone             = self::sanitize_field( $type . '_phone', 'text', $nonce_action, $nonce_field );
 
-		return self::check_phone_validation( $phone, $phone_valid_field, $phone_valid_err_field );
+		return self::check_phone_validation( $area, $type, $phone, $phone_valid_field, $phone_valid_err_field );
 	}
 
 	/**
 	 * Checks for phone validation.
 	 * 
+	 * @param string $area
+	 * @param string $type Mostly Billing|Shipping
 	 * @param string $phone
 	 * @param string $phone_valid_field
 	 * @param string $phone_valid_err_field
 	 * @return bool
 	 */
-	public static function check_phone_validation( $type, $phone, $phone_valid_field, $phone_valid_err_field ) {
+	public static function check_phone_validation( $area, $type, $phone, $phone_valid_field, $phone_valid_err_field ) {
 		// if ( ! empty( $bil_email ) && ! empty( $bil_phone ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// from account side.
+		// TODO: Email validation needed? https://github.com/Preciousomonze/woocommerce-phone-validator/issues/46
 		if ( /* ! empty( $bil_email ) && */ ! empty( $phone ) && ( ! empty( $phone_valid_err_field ) ) && ( empty( $phone_valid_field ) || ! is_numeric( $phone_valid_field ) ) ) {// there was an error, this way we know its coming directly from normal woocommerce, so no conflict :)
 			/* Issues #28, says WC Doesn't actually handle thing, soooo.
 			if ( ! is_numeric( str_replace( ' ', '', $bil_phone ) ) ) { // WC will handle this, so no need to report errors
@@ -95,9 +102,10 @@ class WC_PV_Helper {
 			 * @param string $phone
 			 * @param string $type billing|shipping
 			 */
-			$phone_err_msg = apply_filters( 'wc_pv__validation_error', $phone_valid_err_field, $phone, $type );
+			$phone_err_msg = apply_filters( 'wc_pv_' . $type . '_validation_error', $phone_valid_err_field, $phone, $type );
 
 			if ( ! empty( $phone_err_msg ) ) {
+				wc_add_notice( __( $phone_err_msg, 'woo-phone-validator' ), 'error' );
 				return false;
 			}
 		}
@@ -178,7 +186,7 @@ class WC_PV_Helper {
 	 * @param  bool $value (optional) default is false
 	 * @return bool
 	 */
-	public function separate_dial_code( $value = false ) {
+	public static function separate_dial_code( $value = false ) {
 		/**
 		 * Filters boolean value to separate dial code
 		 *
