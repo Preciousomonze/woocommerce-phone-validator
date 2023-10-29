@@ -94,7 +94,7 @@ class WC_PV_Helper {
 			 * Filters the validation error for WC.
 			 * 
 			 * Incase one decides not to display anything or edit based on their logic.
-			 * Wanted to make this a way of disabling to, but naa, there will be other means.
+			 * Wanted to make this a way of disabling too, but naa, there will be other means.
 			 * 
 			 * @since 2.0.0
 			 * 
@@ -224,7 +224,15 @@ class WC_PV_Helper {
 				$default                 = $country;
 			}
 		}
-
+	
+		// Solved with PR 35.
+		if( empty( $default ) ) {
+			$geo = WC_Geolocation::geolocate_ip();
+			if ( !empty( $geo['country'] ) ) {
+				$default = $geo['country'];
+			}
+		}
+	
 		/**
 		 * Filters Default country.
 		 * 
